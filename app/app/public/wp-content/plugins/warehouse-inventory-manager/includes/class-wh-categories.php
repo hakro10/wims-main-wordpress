@@ -44,7 +44,8 @@ class WH_Categories {
         $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
         $data = array(
             'name' => sanitize_text_field($_POST['name']),
-            'description' => sanitize_textarea_field($_POST['description'])
+            'description' => isset($_POST['description']) ? sanitize_textarea_field($_POST['description']) : '',
+            'parent_id' => isset($_POST['parent_id']) ? intval($_POST['parent_id']) : 0
         );
         
         if ($id > 0) {
@@ -104,6 +105,8 @@ class WH_Categories {
             id bigint(20) NOT NULL AUTO_INCREMENT,
             name varchar(255) NOT NULL,
             description text,
+            parent_id bigint(20) DEFAULT 0,
+            level int(11) DEFAULT 1,
             created_at datetime DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY  (id)
         ) $charset_collate;";
