@@ -1,0 +1,407 @@
+/**
+ * Warehouse Inventory Manager - Frontend Styles
+ * Modern frontend interface with shadcn/ui styling
+ */
+
+/* Import shadcn variables (optional; may not exist in some setups) */
+@import url('../../../../themes/warehouse-inventory-manager/assets/css/shadcn-components.css');
+
+/* ------------------------------------------------------------
+   Modal + Form fixes (align with screenshots issues)
+   - Ensure modal centers, correct padding, and proper z-index
+   - Inputs/selects/textarea full-width and not clipped
+   - Buttons align bottom-right and stay within container
+   - Number inputs use consistent appearance
+------------------------------------------------------------ */
+
+.wh-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+}
+
+.wh-modal .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.65); /* slate-950 @ 65% */
+}
+
+.wh-modal .modal-content {
+    position: relative;
+    background: hsl(var(--card, var(--background)));
+    color: hsl(var(--foreground));
+    width: min(880px, 92vw);
+    margin: 6vh auto;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius, 0.5rem);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+.wh-modal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+.wh-modal .modal-body {
+    padding: 1.25rem;
+}
+
+.wh-modal .modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid hsl(var(--border));
+}
+
+.wh-modal .modal-close {
+    background: transparent;
+    border: 0;
+    color: hsl(var(--muted-foreground));
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+/* Form grid inside modals */
+.wh-modal .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 1.25rem;
+}
+
+@media (max-width: 768px) { .wh-modal .form-grid { grid-template-columns: 1fr; } }
+
+.wh-modal label {
+    display: block;
+    font-weight: 600;
+    color: hsl(var(--foreground));
+    margin-bottom: 0.375rem;
+}
+
+.wh-modal input[type="text"],
+.wh-modal input[type="number"],
+.wh-modal input[type="email"],
+.wh-modal input[type="date"],
+.wh-modal input[type="time"],
+.wh-modal select,
+.wh-modal textarea {
+    width: 100%;
+    min-width: 0; /* prevent overflow in grid columns */
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius, 0.5rem);
+    padding: 0.625rem 0.75rem;
+    outline: none;
+}
+
+.wh-modal textarea { min-height: 120px; resize: vertical; }
+
+.wh-modal select { text-overflow: ellipsis; }
+
+/* Normalize number input steppers */
+.wh-modal input[type="number"] { -moz-appearance: textfield; }
+.wh-modal input[type="number"]::-webkit-outer-spin-button,
+.wh-modal input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; margin: 0;
+}
+
+/* Buttons fallback (in case component CSS not present) */
+.btn { 
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 0.5rem; height: 2.25rem; padding: 0 0.875rem;
+    border-radius: 0.5rem; border: 1px solid transparent;
+    font-weight: 600; cursor: pointer; white-space: nowrap;
+}
+.btn-primary { background: hsl(var(--primary, 221 83% 53%)); color: hsl(var(--primary-foreground, 0 0% 100%)); border-color: hsl(var(--primary, 221 83% 53%)); }
+.btn-outline { background: transparent; color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Ensure action buttons don’t float mid-form in grid layouts */
+.wh-modal .form-actions, .wh-modal .actions, .wh-modal .modal-actions { grid-column: 1 / -1; }
+
+/* Avoid large vertical side labels overlapping content */
+.wh-modal .side-label { display: none; }
+
+/* Frontend-specific styles */
+.warehouse-frontend {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.warehouse-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.warehouse-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: hsl(var(--foreground));
+}
+
+.warehouse-subtitle {
+    font-size: 1.25rem;
+    color: hsl(var(--muted-foreground));
+    margin: 0;
+}
+
+/* Inventory grid */
+.warehouse-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.warehouse-item {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.warehouse-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.1);
+}
+
+.warehouse-item-image {
+    width: 100%;
+    height: 200px;
+    background: hsl(var(--muted));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: hsl(var(--muted-foreground));
+}
+
+.warehouse-item-content {
+    padding: 1.5rem;
+}
+
+.warehouse-item-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: hsl(var(--foreground));
+}
+
+.warehouse-item-description {
+    color: hsl(var(--muted-foreground));
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}
+
+.warehouse-item-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.warehouse-item-price {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: hsl(var(--primary));
+}
+
+.warehouse-item-stock {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.warehouse-item-stock.in-stock {
+    background: hsl(142.1 76.2% 36.3% / 0.1);
+    color: hsl(142.1 76.2% 36.3%);
+}
+
+.warehouse-item-stock.low-stock {
+    background: hsl(45.4 93.4% 47.5% / 0.1);
+    color: hsl(45.4 93.4% 47.5%);
+}
+
+.warehouse-item-stock.out-of-stock {
+    background: hsl(0 84.2% 60.2% / 0.1);
+    color: hsl(0 84.2% 60.2%);
+}
+
+.warehouse-item-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Filters and search */
+.warehouse-filters {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.warehouse-filter-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    align-items: end;
+}
+
+.warehouse-search {
+    position: relative;
+}
+
+.warehouse-search input {
+    width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 0.75rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+.warehouse-search button {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: hsl(var(--muted-foreground));
+    cursor: pointer;
+}
+
+/* Pagination */
+.warehouse-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+}
+
+.warehouse-pagination button {
+    padding: 0.5rem 1rem;
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.warehouse-pagination button:hover {
+    background: hsl(var(--accent));
+}
+
+.warehouse-pagination button.active {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-color: hsl(var(--primary));
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .warehouse-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .warehouse-filter-group {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading states */
+.warehouse-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.warehouse-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid hsl(var(--border));
+    border-top: 2px solid hsl(var(--primary));
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Empty state */
+.warehouse-empty {
+    text-align: center;
+    padding: 3rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.warehouse-empty i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: hsl(var(--muted-foreground));
+}
+
+/* Dashboard styles */
+.warehouse-dashboard {
+    display: grid;
+    gap: 2rem;
+}
+
+.warehouse-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.warehouse-stat-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.warehouse-stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: hsl(var(--primary));
+    margin-bottom: 0.5rem;
+}
+
+.warehouse-stat-label {
+    color: hsl(var(--muted-foreground));
+    font-size: 0.875rem;
+}
+
+/* QR Code styles */
+.warehouse-qr-code {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.warehouse-qr-code img {
+    max-width: 200px;
+    height: auto;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+}

@@ -1,0 +1,201 @@
+/**
+ * Warehouse Inventory Manager - Admin Styles
+ * Modern admin interface with shadcn/ui styling
+ */
+
+/* Import shadcn variables (optional) */
+@import url('../../../../themes/warehouse-inventory-manager/assets/css/shadcn-components.css');
+
+/* Modal fixes (admin context) */
+.wh-modal {
+    position: fixed; inset: 0; z-index: 10000; display: none;
+}
+.wh-modal .modal-backdrop { position: absolute; inset: 0; background: rgba(2,6,23,0.65); }
+.wh-modal .modal-content {
+    position: relative; width: min(880px, 92vw); margin: 6vh auto;
+    background: #fff; background: hsl(var(--card, var(--background)));
+    color: hsl(var(--foreground)); border: 1px solid hsl(var(--border));
+    border-radius: var(--radius, 8px); box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+.wh-modal .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid hsl(var(--border)); }
+.wh-modal .modal-body { padding: 1.25rem; }
+.wh-modal .modal-actions { display: flex; gap: .75rem; justify-content: flex-end; padding: 0 1.25rem 1.25rem; border-top: 1px solid hsl(var(--border)); }
+.wh-modal .modal-close { background: transparent; border: 0; font-size: 1.5rem; color: hsl(var(--muted-foreground)); cursor: pointer; }
+.wh-modal .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem 1.25rem; }
+@media (max-width: 768px) { .wh-modal .form-grid { grid-template-columns: 1fr; } }
+.wh-modal input[type="text"],
+.wh-modal input[type="number"],
+.wh-modal input[type="email"],
+.wh-modal input[type="date"],
+.wh-modal input[type="time"],
+.wh-modal select,
+.wh-modal textarea { width: 100%; min-width: 0; border: 1px solid hsl(var(--border)); border-radius: var(--radius, 8px); padding: .625rem .75rem; background: hsl(var(--background)); color: hsl(var(--foreground)); }
+.wh-modal input[type="number"] { -moz-appearance: textfield; }
+.wh-modal input[type="number"]::-webkit-outer-spin-button,
+.wh-modal input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.wh-modal .form-actions, .wh-modal .actions, .wh-modal .modal-actions { grid-column: 1 / -1; }
+.wh-modal .side-label { display: none; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: 2.25rem; padding: 0 .875rem; border-radius: .5rem; border: 1px solid transparent; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.btn-primary { background: hsl(var(--primary, 221 83% 53%)); color: hsl(var(--primary-foreground, 0 0% 100%)); border-color: hsl(var(--primary, 221 83% 53%)); }
+.btn-outline { background: transparent; color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+
+/* Admin-specific styles */
+.warehouse-admin-wrap {
+    max-width: 1200px;
+    margin: 20px 20px 0 2px;
+}
+
+.warehouse-admin-header {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.warehouse-admin-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: hsl(var(--foreground));
+}
+
+.warehouse-admin-description {
+    color: hsl(var(--muted-foreground));
+    margin: 0;
+}
+
+/* Admin tabs */
+.warehouse-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+.warehouse-tab {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: transparent;
+    color: hsl(var(--muted-foreground));
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.warehouse-tab:hover {
+    color: hsl(var(--foreground));
+}
+
+.warehouse-tab.active {
+    color: hsl(var(--primary));
+    border-bottom-color: hsl(var(--primary));
+}
+
+/* Admin tables */
+.warehouse-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.warehouse-table th,
+.warehouse-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+.warehouse-table th {
+    background: hsl(var(--muted));
+    font-weight: 600;
+    color: hsl(var(--foreground));
+}
+
+.warehouse-table tr:hover {
+    background: hsl(var(--accent));
+}
+
+/* Admin forms */
+.warehouse-form {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 2rem;
+}
+
+.warehouse-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.warehouse-form-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: hsl(var(--foreground));
+}
+
+.warehouse-form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    transition: all 0.2s ease;
+}
+
+.warehouse-form-input:focus {
+    outline: none;
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.1);
+}
+
+/* Admin buttons */
+.warehouse-admin-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+/* Loading states */
+.warehouse-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    color: hsl(var(--muted-foreground));
+}
+
+.warehouse-spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid hsl(var(--border));
+    border-top: 2px solid hsl(var(--primary));
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 0.75rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive admin */
+@media (max-width: 768px) {
+    .warehouse-tabs {
+        flex-direction: column;
+    }
+    
+    .warehouse-admin-actions {
+        flex-direction: column;
+    }
+}
