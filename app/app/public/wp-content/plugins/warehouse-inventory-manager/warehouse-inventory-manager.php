@@ -186,6 +186,11 @@ class WarehouseInventoryManager {
             return;
         }
 
+        // Core WP components styles (for SelectControl/Popover stability)
+        if (function_exists('wp_enqueue_style')) {
+            wp_enqueue_style('wp-components');
+        }
+
         $admin_style_path = WH_INVENTORY_PLUGIN_DIR . 'admin/css/admin.css';
         $admin_style_url  = WH_INVENTORY_PLUGIN_URL . 'admin/css/admin.css';
         $ver_admin_style  = file_exists($admin_style_path) ? filemtime($admin_style_path) : WH_INVENTORY_VERSION;
