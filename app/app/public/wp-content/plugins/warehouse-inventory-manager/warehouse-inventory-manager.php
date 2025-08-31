@@ -156,16 +156,26 @@ class WarehouseInventoryManager {
         $ver_style  = file_exists($style_path) ? filemtime($style_path) : WH_INVENTORY_VERSION;
         wp_enqueue_style('wh-inventory-style', $style_url, array(), $ver_style);
 
-        // Front-end script
+        // Front-end scripts (modern bundle + small UI helpers)
+        $bundle_path = WH_INVENTORY_PLUGIN_DIR . 'dist/public.bundle.js';
+        $bundle_url  = WH_INVENTORY_PLUGIN_URL . 'dist/public.bundle.js';
+        if (file_exists($bundle_path)) {
+            wp_enqueue_script('wh-inventory-public-bundle', $bundle_url, array('jquery'), filemtime($bundle_path), true);
+        }
         $script_path = WH_INVENTORY_PLUGIN_DIR . 'assets/js/script.js';
         $script_url  = WH_INVENTORY_PLUGIN_URL . 'assets/js/script.js';
         $ver_script  = file_exists($script_path) ? filemtime($script_path) : WH_INVENTORY_VERSION;
         wp_enqueue_script('wh-inventory-script', $script_url, array('jquery'), $ver_script, true);
         
-        wp_localize_script('wh-inventory-script', 'whInventory', array(
+        // Provide AJAX + nonce to both handles if present
+        $local = array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('wh_inventory_nonce')
-        ));
+        );
+        wp_localize_script('wh-inventory-script', 'whInventory', $local);
+        if (wp_script_is('wh-inventory-public-bundle', 'enqueued')) {
+            wp_localize_script('wh-inventory-public-bundle', 'whInventory', $local);
+        }
     }
 
     public function admin_enqueue_scripts($hook_suffix) {
@@ -181,10 +191,26 @@ class WarehouseInventoryManager {
         $ver_admin_style  = file_exists($admin_style_path) ? filemtime($admin_style_path) : WH_INVENTORY_VERSION;
         wp_enqueue_style('wh-inventory-admin-style', $admin_style_url, array(), $ver_admin_style);
 
+        // Enqueue compiled admin app if present, plus small UI helpers
+        $bundle_path = WH_INVENTORY_PLUGIN_DIR . 'dist/admin.bundle.js';
+        $bundle_url  = WH_INVENTORY_PLUGIN_URL . 'dist/admin.bundle.js';
+        if (file_exists($bundle_path)) {
+            wp_enqueue_script('wh-inventory-admin-bundle', $bundle_url, array('jquery'), filemtime($bundle_path), true);
+        }
         $admin_script_path = WH_INVENTORY_PLUGIN_DIR . 'admin/js/admin.js';
         $admin_script_url  = WH_INVENTORY_PLUGIN_URL . 'admin/js/admin.js';
         $ver_admin_script  = file_exists($admin_script_path) ? filemtime($admin_script_path) : WH_INVENTORY_VERSION;
         wp_enqueue_script('wh-inventory-admin-script', $admin_script_url, array('jquery'), $ver_admin_script, true);
+
+        // Localize AJAX + nonce to both handles if present
+        $local = array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('wh_inventory_nonce')
+        );
+        wp_localize_script('wh-inventory-admin-script', 'whInventory', $local);
+        if (wp_script_is('wh-inventory-admin-bundle', 'enqueued')) {
+            wp_localize_script('wh-inventory-admin-bundle', 'whInventory', $local);
+        }
     }
 }
 
