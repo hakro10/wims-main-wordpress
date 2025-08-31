@@ -1,0 +1,19 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+
+# Node
+**/node_modules/
+
+# WordPress content
+app/app/public/wp-content/uploads/
+app/app/public/wp-content/cache/
+
+# Local env
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
