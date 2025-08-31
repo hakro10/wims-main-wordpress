@@ -3,6 +3,10 @@
 ## Project Overview
 A comprehensive WordPress-based warehouse inventory management system built with modern web technologies. The system provides complete inventory tracking, location management, category organization, task management, team collaboration, QR code generation, and sales tracking capabilities.
 
+## Active Components
+- Active Theme: Warehouse Inventory Manager (`wp-content/themes/warehouse-inventory-manager`)
+- Active Plugin: Warehouse Inventory Manager (`wp-content/plugins/warehouse-inventory-manager`)
+
 ## Technology Stack
 
 ### Frontend
@@ -12,6 +16,18 @@ A comprehensive WordPress-based warehouse inventory management system built with
 - **Icons**: Font Awesome
 - **Charts**: Chart.js (for dashboard analytics)
 - **QR Codes**: qrcode.js library
+- **Theme JS (present)**:
+  - `assets/js/warehouse.js`
+  - `assets/js/theme-toggle.js` (dark/light toggle + persistence)
+  - `assets/js/loading-manager.js`
+  - `assets/js/production.js`
+  - `assets/js/qr-scanner.js`
+- **Theme CSS (present)**:
+  - `assets/css/style.css` (main)
+  - `assets/css/shadcn-components.css`
+  - `assets/css/animations.css`
+  - `assets/css/production.css`
+  - `assets/css/dark-override.css` (dark‑mode overrides)
 
 ### Backend
 - **Platform**: WordPress
@@ -26,9 +42,9 @@ A comprehensive WordPress-based warehouse inventory management system built with
 
 ## Project Structure
 
-### WordPress Theme (`warehouse-inventory/`)
+### WordPress Theme (`warehouse-inventory-manager/`)
 ```
-warehouse-inventory/
+warehouse-inventory-manager/
 ├── assets/
 │   ├── css/
 │   │   ├── style.css          # Main stylesheet
@@ -56,16 +72,18 @@ warehouse-inventory/
 ```
 
 ### WordPress Plugin (`warehouse-inventory-manager/`)
+Current structure:
 ```
 warehouse-inventory-manager/
-├── warehouse-inventory-manager.php  # Main plugin file
+├── warehouse-inventory-manager.php       # Main plugin file (menus, AJAX, shortcodes)
 ├── includes/
-│   ├── class-wh-activator.php      # Plugin activation
-│   ├── class-wh-deactivator.php    # Plugin deactivation
-│   ├── class-wh-loader.php         # Class autoloader
-│   ├── class-wh-qr-codes.php       # QR code functionality
-│   └── database-migration.php      # Database schema management
+│   └── database-migration.php            # Database schema management
+├── assets/
+│   ├── css/{admin.css, frontend.css}
+│   └── js/{admin.js, frontend.js}
+└── dist/{admin.bundle.js, public.bundle.js, *.LICENSE.txt}
 ```
+Note: Older references to `class-wh-activator.php`, `class-wh-deactivator.php`, `class-wh-loader.php`, `class-wh-qr-codes.php` are not used in the current plugin.
 
 ## Database Schema
 
@@ -76,6 +94,11 @@ warehouse-inventory-manager/
 - `wp_wh_sales` - Sales records
 - `wp_wh_tasks` - Task management
 - `wp_wh_team_members` - Team member management
+### Supporting Tables (present in migration)
+- `wp_wh_stock_movements` - Track quantity changes and costing
+- `wp_wh_suppliers` - Suppliers registry
+- `wp_wh_task_history` - Completed task audit trail
+- `wp_wh_chat_messages` - Team chat messages
 
 ## Key Features
 
@@ -159,25 +182,21 @@ warehouse-inventory-manager/
 ### Installation Steps
 1. Clone the repository
 2. Install WordPress
-3. Copy theme to `wp-content/themes/`
-4. Copy plugin to `wp-content/plugins/`
+3. Copy theme `warehouse-inventory-manager/` to `wp-content/themes/`
+4. Copy plugin `warehouse-inventory-manager/` to `wp-content/plugins/`
 5. Activate theme and plugin in WordPress admin
 6. Run database migration (automatic on plugin activation)
 
 ### Development Commands
-```bash
-# Start development server
-npm run dev
+The repo does not include a root `package.json` with build scripts yet. Plugin bundles are prebuilt in `dist/`.
 
-# Build for production
-npm run build
-
-# Run tests
-npm test
-
-# Database migration
-wp wh-migrate
+Recommended local steps:
+- Run WordPress locally (e.g., Local by Flywheel).
+- For SSL: trust the Local certificate and switch the site to `https`. Optionally add in `wp-config.php`:
+```php
+define('FORCE_SSL_ADMIN', true);
 ```
+- Activate the theme and plugin. Database migrations run automatically on activation.
 
 ## Adding New Features
 
@@ -200,6 +219,24 @@ wp wh-migrate
 3. Test migration process
 4. Document changes
 
+## Access Control & Dark Mode
+- App pages require login; unauthenticated users see the theme’s sign‑in screen.
+- A dark/light toggle (`assets/js/theme-toggle.js`) persists user choice; the theme sets `data-theme` on `<html>` before styles load to avoid FOUC.
+- Dark overrides live in `assets/css/dark-override.css`.
+
+## Changelog (engineering updates)
+> Keep this section updated after fixes/changes.
+
+### 2025‑08‑31
+- Dark mode: added `assets/css/dark-override.css` and early `data-theme` boot.
+- Theme toggle: enqueued on theme pages and aligned in header next to Logout.
+- Auth protection: app requires login; restricted `wp_ajax_nopriv` to safe reads; modernized login UI.
+- AJAX URL: switched to relative `admin-ajax.php` to avoid http/https warnings.
+- Inventory/Categories/Locations (dark): unified card/list/badge colors; icon‑only buttons adjusted.
+- Sales (dark): stat cards, search form, profit controls, date input, and table colors fixed.
+- Forms (modals): standardized `.modal` containers, removed inline separators, normalized field layout; scoped top‑level layout via `.modal-form` to preserve two‑column rows; inputs/selects/textarea full‑width with correct colors in light+dark.
+ - Modal layout fixes: ensured buttons align inside modal, hid stray side labels, normalized number input spinners, and prevented select truncation; added fallback `.btn` styles. Implemented in plugin `assets/css/{frontend.css,admin.css}`.
+
 ## API Endpoints
 
 ### AJAX Handlers
@@ -218,13 +255,18 @@ wp wh-migrate
 - `get_task_history` - Get completed tasks
 - `send_chat_message` - Send team chat message
 
+Additional handlers (selection): `get_dashboard_stats`, `get_profit_data`, `rebuild_profit_data`, `fix_purchase_prices`, `debug_profit_data`, `get_team_members`, `add_team_member`, `update_team_member`, `delete_team_member`, `reset_user_password`, `get_inactive_items`, `permanently_delete_item`, `bulk_cleanup_inactive_items`.
+
+Public read‑only (no login): `get_inventory_items`, `get_dashboard_stats`.
+
 ## Troubleshooting
 
 ### Common Issues
 1. **Database Connection**: Check wp-config.php settings
 2. **Permission Errors**: Ensure proper file permissions
 3. **AJAX Failures**: Check nonce validation
-4. **Styling Issues**: Clear browser cache
+4. **Styling Issues**: Clear browser cache and verify that `assets/css/dark-override.css` and `assets/js/theme-toggle.js` are loaded.
+5. **Mixed Content/SSL**: If you see warnings about password fields on HTTP, enable HTTPS in Local and `FORCE_SSL_ADMIN`.
 
 ### Debug Mode
 Enable WordPress debug mode in wp-config.php:

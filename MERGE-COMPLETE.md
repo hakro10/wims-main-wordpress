@@ -36,7 +36,7 @@
 ### 📁 **All Files Present**
 - ✅ Plugin files: `warehouse-inventory-manager.php`
 - ✅ Assets: CSS/JS files for admin & frontend
-- ✅ Theme: Complete warehouse-inventory theme
+- ✅ Theme: Complete warehouse-inventory-manager theme
 - ✅ Documentation: `INSTALLATION.md`, `DEPLOYMENT.md`
 - ✅ Testing: `test-system.php`, `verify-system.php`
 - ✅ Production: `production.css`, `production.js`, `sw.js`

@@ -25,13 +25,13 @@ git checkout testing-kilo-code
 - Use Local by Flywheel to create a new WordPress site
 - Copy the repository files to your WordPress installation
 
-#### 4. Install the Plugin
+#### 4. Install the Plugin (Active: Warehouse Inventory Manager)
 1. Copy `warehouse-inventory-manager/` to `wp-content/plugins/`
-2. Activate the plugin in WordPress Admin → Plugins
+2. Activate the plugin "Warehouse Inventory Manager" in WordPress Admin → Plugins
 
-#### 5. Install the Theme
-1. Copy `warehouse-inventory/` to `wp-content/themes/`
-2. Activate the theme in WordPress Admin → Appearance → Themes
+#### 5. Install the Theme (Active: Warehouse Inventory Manager)
+1. Copy `warehouse-inventory-manager/` to `wp-content/themes/`
+2. Activate the theme "Warehouse Inventory Manager" in WordPress Admin → Appearance → Themes
 
 #### 6. Run Database Migration
 The plugin will automatically create all necessary tables on activation.

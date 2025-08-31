@@ -38,18 +38,18 @@ mv wordpress/* /var/www/html/
 chown -R www-data:www-data /var/www/html/
 ```
 
-### 3. Plugin Installation
+### 3. Plugin Installation (Active: Warehouse Inventory Manager)
 ```bash
 # Upload plugin to wp-content/plugins/
 cd /var/www/html/wp-content/plugins/
 # Upload warehouse-inventory-manager folder
 ```
 
-### 4. Theme Installation
+### 4. Theme Installation (Active: Warehouse Inventory Manager)
 ```bash
 # Upload theme to wp-content/themes/
 cd /var/www/html/wp-content/themes/
-# Upload warehouse-inventory folder
+# Upload warehouse-inventory-manager folder
 ```
 
 ### 5. Configuration
@@ -164,7 +164,7 @@ Add to theme's functions.php:
 function enable_service_worker() {
     echo '<script>
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("/wp-content/themes/warehouse-inventory/sw.js");
+            navigator.serviceWorker.register("/wp-content/themes/warehouse-inventory-manager/sw.js");
         }
     </script>';
 }
