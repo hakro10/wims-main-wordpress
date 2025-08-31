@@ -34,22 +34,22 @@ while [[ $# -gt 0 ]]; do
 done
 
 SUB=app/public
+# Absolute paths from superproject root (for editing)
 PLUGIN="$SUB/wp-content/plugins/warehouse-inventory-manager/warehouse-inventory-manager.php"
 THEME_CSS="$SUB/wp-content/themes/warehouse-inventory/style.css"
+# Relative paths inside submodule (for git add)
+REL_PLUGIN="wp-content/plugins/warehouse-inventory-manager/warehouse-inventory-manager.php"
+REL_THEME_CSS="wp-content/themes/warehouse-inventory/style.css"
 
 [[ -f "$PLUGIN" ]] || die "Plugin file not found: $PLUGIN"
 [[ -f "$THEME_CSS" ]] || die "Theme style.css not found: $THEME_CSS"
 
 # Extract current version from plugin constant
-CUR=$(rg -No "define\('WH_INVENTORY_VERSION',\s*'([0-9]+\.[0-9]+\.[0-9]+)'\)" "$PLUGIN" | sed -E "s/.*'([0-9]+\.[0-9]+\.[0-9]+)'.*/\1/" | head -n1)
+CUR=$(rg -No "define\('WH_INVENTORY_VERSION',[[:space:]]*'([0-9]+\.[0-9]+\.[0-9]+)'\)" "$PLUGIN" | sed -E "s/.*'([0-9]+\.[0-9]+\.[0-9]+)'.*/\1/" | head -n1)
 [[ -n "$CUR" ]] || die "Could not determine current version"
 
-inc_patch() {
-  IFS=. read -r a b c <<< "$CUR"; c=$((c+1)); echo "$a.$b.$c";
-}
-inc_minor() {
-  IFS=. read -r a b c <<< "$CUR"; b=$((b+1)); echo "$a.$b.0";
-}
+inc_patch() { IFS=. read -r a b c <<< "$CUR"; c=$((c+1)); echo "$a.$b.$c"; }
+inc_minor() { IFS=. read -r a b c <<< "$CUR"; b=$((b+1)); echo "$a.$b.0"; }
 
 if [[ -n "$TARGET" ]]; then
   NEW="$TARGET"
@@ -73,18 +73,15 @@ sed_inplace() {
   fi
 }
 
-# Update plugin header Version:
-sed_inplace "s/^(\s*\*\s*Version:\s*)[0-9]+\.[0-9]+\.[0-9]+/\\1$NEW/" "$PLUGIN"
-# Update plugin constant
-sed_inplace "s/(define\('WH_INVENTORY_VERSION',\s*')([0-9]+\.[0-9]+\.[0-9]+)('\))/\\1$NEW\\3/" "$PLUGIN"
+# Update plugin header Version and constant
+sed_inplace "s/^([[:space:]]*\*[[:space:]]*Version:[[:space:]]*)[0-9]+\.[0-9]+\.[0-9]+/\\1$NEW/" "$PLUGIN"
+sed_inplace "s/(define\('WH_INVENTORY_VERSION',[[:space:]]*')([0-9]+\.[0-9]+\.[0-9]+)('\))/\\1$NEW\\3/" "$PLUGIN"
 
 # Update theme style.css header
-sed_inplace "s/^(Version:\s*)[0-9]+\.[0-9]+\.[0-9]+/\\1$NEW/" "$THEME_CSS"
+sed_inplace "s/^(Version:[[:space:]]*)[0-9]+\.[0-9]+\.[0-9]+/\\1$NEW/" "$THEME_CSS"
 
 if [[ $COMMIT -eq 1 ]]; then
-  # Commit inside submodule
-  (cd "$SUB" && git add "$PLUGIN" "$THEME_CSS" && git commit -m "Release: bump version to $NEW")
-  # Update superproject pointer
+  (cd "$SUB" && git add "$REL_PLUGIN" "$REL_THEME_CSS" && git commit -m "Release: bump version to $NEW")
   git add "$SUB" && git commit -m "Release: update app/public to $NEW"
   echo "Committed version bump to $NEW."
 else

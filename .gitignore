@@ -17,3 +17,7 @@ app/app/public/wp-content/cache/
 # IDE
 .vscode/
 .idea/
+
+# Unused duplicate WP assets created during debugging
+app/app/public/wp-content/themes/warehouse-inventory/
+app/app/public/wp-content/mu-plugins/
