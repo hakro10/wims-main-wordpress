@@ -283,6 +283,11 @@ define('WP_DEBUG_DISPLAY', false);
 4. Update documentation
 5. Submit pull request
 
+## Versioning Rules
+- After committing a bug fix: bump app version by `+0.0.1` (patch).
+- After adding a new feature: bump app version by `+0.1` (minor).
+- Record the change in the changelog and update any visible version strings in the theme/plugin UI if present.
+
 ## Support
 For technical support or questions, refer to:
 - WordPress documentation
