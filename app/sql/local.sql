@@ -134,7 +134,7 @@ CREATE TABLE `wp_options` (
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`),
   KEY `autoload` (`autoload`)
-) ENGINE=InnoDB AUTO_INCREMENT=470 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=472 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -285,8 +285,8 @@ INSERT INTO `wp_options` VALUES (460,'_site_transient_timeout_theme_roots','1756
 INSERT INTO `wp_options` VALUES (461,'_site_transient_theme_roots','a:4:{s:16:\"twentytwentyfive\";s:7:\"/themes\";s:16:\"twentytwentyfour\";s:7:\"/themes\";s:17:\"twentytwentythree\";s:7:\"/themes\";s:19:\"warehouse-inventory\";s:7:\"/themes\";}','off');
 INSERT INTO `wp_options` VALUES (462,'_site_transient_timeout_php_check_617fc4d260191bf0de418d0d961f5a43','1757243209','off');
 INSERT INTO `wp_options` VALUES (463,'_site_transient_php_check_617fc4d260191bf0de418d0d961f5a43','a:5:{s:19:\"recommended_version\";s:3:\"8.3\";s:15:\"minimum_version\";s:6:\"7.2.24\";s:12:\"is_supported\";b:0;s:9:\"is_secure\";b:1;s:13:\"is_acceptable\";b:1;}','off');
-INSERT INTO `wp_options` VALUES (468,'_site_transient_timeout_wp_theme_files_patterns-bebd471143826cc9f1196a0a6d762fa0','1756655958','off');
-INSERT INTO `wp_options` VALUES (469,'_site_transient_wp_theme_files_patterns-bebd471143826cc9f1196a0a6d762fa0','a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}','off');
+INSERT INTO `wp_options` VALUES (470,'_site_transient_timeout_wp_theme_files_patterns-bebd471143826cc9f1196a0a6d762fa0','1756658286','off');
+INSERT INTO `wp_options` VALUES (471,'_site_transient_wp_theme_files_patterns-bebd471143826cc9f1196a0a6d762fa0','a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}','off');
 /*!40000 ALTER TABLE `wp_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1159,4 +1159,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-08-31 16:50:11
+-- Dump completed on 2025-08-31 17:08:47

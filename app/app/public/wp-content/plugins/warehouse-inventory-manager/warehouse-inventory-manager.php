@@ -160,7 +160,9 @@ class WarehouseInventoryManager {
         $bundle_path = WH_INVENTORY_PLUGIN_DIR . 'dist/public.bundle.js';
         $bundle_url  = WH_INVENTORY_PLUGIN_URL . 'dist/public.bundle.js';
         if (file_exists($bundle_path)) {
-            wp_enqueue_script('wh-inventory-public-bundle', $bundle_url, array('jquery'), filemtime($bundle_path), true);
+            // Ensure WP packages are available for the bundle
+            $deps = array('jquery', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n', 'wp-api-fetch');
+            wp_enqueue_script('wh-inventory-public-bundle', $bundle_url, $deps, filemtime($bundle_path), true);
         }
         $script_path = WH_INVENTORY_PLUGIN_DIR . 'assets/js/script.js';
         $script_url  = WH_INVENTORY_PLUGIN_URL . 'assets/js/script.js';
@@ -200,7 +202,9 @@ class WarehouseInventoryManager {
         $bundle_path = WH_INVENTORY_PLUGIN_DIR . 'dist/admin.bundle.js';
         $bundle_url  = WH_INVENTORY_PLUGIN_URL . 'dist/admin.bundle.js';
         if (file_exists($bundle_path)) {
-            wp_enqueue_script('wh-inventory-admin-bundle', $bundle_url, array('jquery'), filemtime($bundle_path), true);
+            // Ensure WP packages are available for the bundle
+            $deps = array('jquery', 'wp-element', 'wp-components', 'wp-data', 'wp-i18n', 'wp-api-fetch');
+            wp_enqueue_script('wh-inventory-admin-bundle', $bundle_url, $deps, filemtime($bundle_path), true);
         }
         $admin_script_path = WH_INVENTORY_PLUGIN_DIR . 'admin/js/admin.js';
         $admin_script_url  = WH_INVENTORY_PLUGIN_URL . 'admin/js/admin.js';
