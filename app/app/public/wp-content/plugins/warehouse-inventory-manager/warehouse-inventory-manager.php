@@ -150,8 +150,17 @@ class WarehouseInventoryManager {
     }
 
     public function enqueue_scripts() {
-        wp_enqueue_style('wh-inventory-style', WH_INVENTORY_PLUGIN_URL . 'assets/css/style.css', array(), WH_INVENTORY_VERSION);
-        wp_enqueue_script('wh-inventory-script', WH_INVENTORY_PLUGIN_URL . 'assets/js/script.js', array('jquery'), WH_INVENTORY_VERSION, true);
+        // Front-end styles
+        $style_path = WH_INVENTORY_PLUGIN_DIR . 'assets/css/style.css';
+        $style_url  = WH_INVENTORY_PLUGIN_URL . 'assets/css/style.css';
+        $ver_style  = file_exists($style_path) ? filemtime($style_path) : WH_INVENTORY_VERSION;
+        wp_enqueue_style('wh-inventory-style', $style_url, array(), $ver_style);
+
+        // Front-end script
+        $script_path = WH_INVENTORY_PLUGIN_DIR . 'assets/js/script.js';
+        $script_url  = WH_INVENTORY_PLUGIN_URL . 'assets/js/script.js';
+        $ver_script  = file_exists($script_path) ? filemtime($script_path) : WH_INVENTORY_VERSION;
+        wp_enqueue_script('wh-inventory-script', $script_url, array('jquery'), $ver_script, true);
         
         wp_localize_script('wh-inventory-script', 'whInventory', array(
             'ajax_url' => admin_url('admin-ajax.php'),
@@ -159,9 +168,23 @@ class WarehouseInventoryManager {
         ));
     }
 
-    public function admin_enqueue_scripts() {
-        wp_enqueue_style('wh-inventory-admin-style', WH_INVENTORY_PLUGIN_URL . 'admin/css/admin.css', array(), WH_INVENTORY_VERSION);
-        wp_enqueue_script('wh-inventory-admin-script', WH_INVENTORY_PLUGIN_URL . 'admin/js/admin.js', array('jquery'), WH_INVENTORY_VERSION, true);
+    public function admin_enqueue_scripts($hook_suffix) {
+        // Only load on our plugin admin pages to reduce overhead
+        $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+        $is_wh_screen = $screen && isset($screen->id) && false !== strpos($screen->id, 'warehouse');
+        if (!$is_wh_screen && strpos($hook_suffix, 'warehouse') === false) {
+            return;
+        }
+
+        $admin_style_path = WH_INVENTORY_PLUGIN_DIR . 'admin/css/admin.css';
+        $admin_style_url  = WH_INVENTORY_PLUGIN_URL . 'admin/css/admin.css';
+        $ver_admin_style  = file_exists($admin_style_path) ? filemtime($admin_style_path) : WH_INVENTORY_VERSION;
+        wp_enqueue_style('wh-inventory-admin-style', $admin_style_url, array(), $ver_admin_style);
+
+        $admin_script_path = WH_INVENTORY_PLUGIN_DIR . 'admin/js/admin.js';
+        $admin_script_url  = WH_INVENTORY_PLUGIN_URL . 'admin/js/admin.js';
+        $ver_admin_script  = file_exists($admin_script_path) ? filemtime($admin_script_path) : WH_INVENTORY_VERSION;
+        wp_enqueue_script('wh-inventory-admin-script', $admin_script_url, array('jquery'), $ver_admin_script, true);
     }
 }
 

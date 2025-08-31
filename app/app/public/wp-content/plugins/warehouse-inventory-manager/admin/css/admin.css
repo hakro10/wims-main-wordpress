@@ -1,0 +1,5 @@
+/* Warehouse Inventory Manager - Admin Styles */
+@import url('../../assets/css/style.css');
+.wh-admin h1 { margin-bottom: 12px; }
+.wh-admin .wh-card { margin-top: 8px; }
+

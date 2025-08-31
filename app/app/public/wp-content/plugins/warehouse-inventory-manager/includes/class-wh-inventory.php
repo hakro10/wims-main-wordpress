@@ -9,6 +9,7 @@ class WH_Inventory {
         
         // Initialize hooks
         add_action('wp_ajax_get_inventory_items', array($this, 'get_inventory_items'));
+        add_action('wp_ajax_nopriv_get_inventory_items', array($this, 'get_inventory_items'));
         add_action('wp_ajax_save_inventory_item', array($this, 'save_inventory_item'));
         add_action('wp_ajax_delete_inventory_item', array($this, 'delete_inventory_item'));
     }
@@ -60,7 +61,7 @@ class WH_Inventory {
         
         $items = $wpdb->get_results($query);
         
-        $items = apply_filters('wh_inventory_items', $items);
+        // Allow external filtering once.
         $items = apply_filters('wh_inventory_items', $items);
         wp_send_json_success(array(
             'items' => $items

@@ -9,6 +9,7 @@ class WH_Categories {
         
         // Initialize hooks
         add_action('wp_ajax_get_categories', array($this, 'get_categories'));
+        add_action('wp_ajax_nopriv_get_categories', array($this, 'get_categories'));
         add_action('wp_ajax_save_category', array($this, 'save_category'));
         add_action('wp_ajax_delete_category', array($this, 'delete_category'));
     }

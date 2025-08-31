@@ -1,0 +1,27 @@
+/* Warehouse Inventory Manager - Public Styles */
+:root {
+  --wh-bg: #ffffff;
+  --wh-fg: #0f172a;
+  --wh-muted: #475569;
+  --wh-card: #f8fafc;
+  --wh-accent: #2563eb;
+  --wh-border: #e2e8f0;
+}
+[data-theme="dark"],
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="dark"] {
+    --wh-bg: #0b1220;
+    --wh-fg: #e2e8f0;
+    --wh-muted: #94a3b8;
+    --wh-card: #0f172a;
+    --wh-accent: #60a5fa;
+    --wh-border: #1f2937;
+  }
+}
+body { background: var(--wh-bg); color: var(--wh-fg); }
+.wh-card { background: var(--wh-card); border: 1px solid var(--wh-border); border-radius: 10px; padding: 16px; }
+.wh-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.wh-btn { display:inline-flex; align-items:center; gap:8px; background: var(--wh-accent); color:#fff; border:0; border-radius:8px; padding:8px 12px; cursor:pointer; }
+.wh-toolbar { position:fixed; right:12px; bottom:12px; display:flex; gap:8px; }
+.wh-toggle { background: var(--wh-card); color: var(--wh-fg); border:1px solid var(--wh-border); border-radius:8px; padding:6px 10px; cursor:pointer; }
+

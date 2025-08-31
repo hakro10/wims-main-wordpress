@@ -9,6 +9,7 @@ class WH_Locations {
         
         // Initialize hooks
         add_action('wp_ajax_get_locations', array($this, 'get_locations'));
+        add_action('wp_ajax_nopriv_get_locations', array($this, 'get_locations'));
         add_action('wp_ajax_save_location', array($this, 'save_location'));
         add_action('wp_ajax_delete_location', array($this, 'delete_location'));
     }

@@ -1,22 +1,55 @@
-<div class="search-input">
-    <select id="location-select" class="form-input">
-        <option value="">Select Location</option>
-        <?php foreach ($locations as $location): ?>
-            <option value="<?php echo $location->name; ?>"><?php echo $location->name; ?></option>
-        <?php endforeach; ?>
+<?php if (!defined('ABSPATH')) { exit; } ?>
+<div class="wh-card">
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+    <label for="wh-location-select">Location</label>
+    <select id="wh-location-select">
+      <option value="">All locations</option>
     </select>
-    <i class="fas fa-map-marker-alt search-icon"></i>
-</div> 
+    <input type="search" id="wh-search" placeholder="Search inventory…" />
+  </div>
+  <div id="wh-inventory-list" class="wh-grid" style="margin-top:12px;"></div>
+</div>
 
-const location = document.getElementById('location-select').value;
-
-$location = isset($_POST['location']) ? sanitize_text_field($_POST['location']) : '';
-
-// Modify the query to include location filtering
-if (!empty($location)) {
-    $query .= " AND location LIKE '%" . $wpdb->esc_like($location) . "%'";
-}
-
-// Update the search and filter handlers
-search: search,
-location: location,
+<script>
+(function(){
+  const $list = document.getElementById('wh-inventory-list');
+  const $search = document.getElementById('wh-search');
+  const $loc = document.getElementById('wh-location-select');
+  function render(items){
+    $list.innerHTML = (items||[]).map(item => (
+      `<div class="wh-card"><strong>${item.name || ''}</strong><br/><small>${item.category_name||''} • ${item.location_name||''}</small></div>`
+    )).join('');
+  }
+  function fetchLocations(){
+    if (!window.whInventory) return;
+    const data = new FormData();
+    data.append('action','get_locations');
+    data.append('nonce', whInventory.nonce);
+    fetch(whInventory.ajax_url,{method:'POST',credentials:'same-origin',body:data}).then(r=>r.json()).then(json=>{
+      if (json && json.success && json.data && Array.isArray(json.data.locations)){
+        json.data.locations.forEach(l=>{
+          const opt=document.createElement('option');
+          opt.value=l.id; opt.textContent=l.name; $loc.appendChild(opt);
+        });
+      }
+    }).catch(()=>{});
+  }
+  function fetchItems(){
+    if (!window.whInventory) return;
+    const data = new FormData();
+    data.append('action','get_inventory_items');
+    data.append('nonce', whInventory.nonce);
+    if ($search.value) data.append('search',$search.value);
+    if ($loc.value) data.append('location', parseInt($loc.value,10));
+    fetch(whInventory.ajax_url,{method:'POST',credentials:'same-origin',body:data}).then(r=>r.json()).then(json=>{
+      render((json&&json.data&&json.data.items)||[]);
+    }).catch(()=>{});
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    fetchLocations();
+    fetchItems();
+    $search.addEventListener('input',()=>{ fetchItems(); });
+    $loc.addEventListener('change',()=>{ fetchItems(); });
+  });
+})();
+</script>
