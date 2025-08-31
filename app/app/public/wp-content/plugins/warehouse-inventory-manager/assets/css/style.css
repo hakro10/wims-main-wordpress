@@ -22,6 +22,5 @@ body { background: var(--wh-bg); color: var(--wh-fg); }
 .wh-card { background: var(--wh-card); border: 1px solid var(--wh-border); border-radius: 10px; padding: 16px; }
 .wh-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .wh-btn { display:inline-flex; align-items:center; gap:8px; background: var(--wh-accent); color:#fff; border:0; border-radius:8px; padding:8px 12px; cursor:pointer; }
-.wh-toolbar { position:fixed; right:12px; bottom:12px; display:flex; gap:8px; }
+.wh-toolbar { position:fixed; right:12px; bottom:12px; display:flex; gap:8px; z-index:10; }
 .wh-toggle { background: var(--wh-card); color: var(--wh-fg); border:1px solid var(--wh-border); border-radius:8px; padding:6px 10px; cursor:pointer; }
-
