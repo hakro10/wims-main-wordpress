@@ -30,6 +30,11 @@ body {
     margin: 0 auto;
 }
 
+/* Header layout helpers */
+.logo{ pointer-events:none; }
+.logo img, .logo .company-logo{ pointer-events:none; }
+.user-menu{ position:relative; z-index:10; }
+
 .warehouse-title {
     font-size: 1.5rem;
     font-weight: 600;
