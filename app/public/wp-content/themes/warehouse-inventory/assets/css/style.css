@@ -535,6 +535,10 @@ body {
     height: 20px;
 }
 
+/* Indentation guides for hierarchical trees */
+.category-indent { border-right: 1px dashed #e5e7eb; }
+.location-indent { border-right: 1px dashed #e5e7eb; }
+
 /* Status Badges */
 .badge {
     display: inline-flex;

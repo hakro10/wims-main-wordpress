@@ -139,6 +139,10 @@
 [data-theme="dark"] .location-name { color:#e5e7eb; }
 [data-theme="dark"] .location-code { background:#111827; color:#cbd5e1; border:1px solid #1f2937; }
 [data-theme="dark"] .location-type { background:rgba(59,130,246,.14); color:#93c5fd; border:1px solid rgba(59,130,246,.35); }
+[data-theme="dark"] .category-indent{ border-right:1px dashed #1f2937; }
+[data-theme="dark"] .location-indent{ border-right:1px dashed #1f2937; }
+[data-theme="dark"] .category-name-clickable{ color:#93c5fd !important; }
+[data-theme="dark"] .category-count{ color:#34d399 !important; }
 
 /* Icon-only action buttons */
 [data-theme="dark"] .btn-icon{ background:transparent; border-color:#334155; color:#94a3b8; }
