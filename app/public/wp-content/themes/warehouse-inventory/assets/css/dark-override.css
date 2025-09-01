@@ -307,3 +307,19 @@
 [data-theme="dark"] #password-modal p[style*='color: #374151'],
 [data-theme="dark"] #password-modal div[style*='background: #f8fafc']{ color:#e5e7eb !important; background:#0b1220 !important; border-color:#1f2937 !important; }
 [data-theme="dark"] #password-modal div[style*='background: #e2e8f0']{ background:#0b1220 !important; border-color:#334155 !important; }
+
+/* QR Codes page */
+[data-theme="dark"] .qr-codes-content .scanner-section,
+[data-theme="dark"] .qr-codes-content .generation-section{ background:#0f172a !important; border-color:#1f2937 !important; }
+[data-theme="dark"] .qr-codes-content .section-header h2{ color:#e5e7eb !important; }
+[data-theme="dark"] .qr-grid .qr-card{ background:#0b1220 !important; border-color:#1f2937 !important; }
+[data-theme="dark"] .qr-card-header h4{ color:#e5e7eb !important; }
+[data-theme="dark"] .qr-card .item-id,
+[data-theme="dark"] .qr-card .location-type,
+[data-theme="dark"] .qr-card .item-details,
+[data-theme="dark"] .qr-card .location-details{ color:#94a3b8 !important; }
+[data-theme="dark"] .qr-code-image{ border-color:#1f2937 !important; }
+[data-theme="dark"] .qr-placeholder{ color:#94a3b8 !important; }
+[data-theme="dark"] .print-modal-content{ background:#0f172a !important; color:#e5e7eb !important; border:1px solid #334155 !important; }
+[data-theme="dark"] .print-modal-header{ border-bottom:1px solid #334155 !important; }
+[data-theme="dark"] .print-modal-footer{ border-top:1px solid #334155 !important; }
