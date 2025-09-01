@@ -1,0 +1,55 @@
+PROJECT AUDIT SUMMARY
+====================
+Generated: 2025-09-01 14:38:01
+
+OVERVIEW:
+- Total files scanned: 34
+- Total discrepancies found: 32
+- Critical issues: 1
+- Medium issues: 1
+
+STRUCTURE VALIDATION:
+- Theme directory exists: YES
+- Plugin directory exists: YES
+- Theme name correct: YES
+- Plugin name correct: YES
+
+CRITICAL ISSUES FOUND:
+- Theme name mismatch: Documentation uses 'warehouse-inventory-manager' but actual directory is 'warehouse-inventory'
+
+MEDIUM PRIORITY ISSUES:
+- Documentation references 'dist/' folder but it does not exist in plugin
+
+OTHER ISSUES:
+- File referenced in agents.md does not exist: warehouse-inventory-manager
+- File referenced in agents.md does not exist: warehouse-inventory-manager
+- File referenced in agents.md does not exist: css/{frontend.css,admin.css}
+- File referenced in agents.md does not exist: class-wh-activator.php
+- File referenced in agents.md does not exist: class-wh-deactivator.php
+- File referenced in agents.md does not exist: class-wh-loader.php
+- File referenced in agents.md does not exist: class-wh-qr-codes.php
+- File referenced in agents.md does not exist: admin-ajax.php
+- File referenced in agents.md does not exist: class-wh-activator.php
+- File referenced in agents.md does not exist: class-wh-deactivator.php
+- File referenced in agents.md does not exist: class-wh-loader.php
+- File referenced in agents.md does not exist: class-wh-qr-codes.php
+- File referenced in DEPLOYMENT.md does not exist: warehouse-inventory-manager
+- File referenced in DEPLOYMENT.md does not exist: /wp-content/themes/warehouse-inventory-manager/sw.js
+- File referenced in MERGE-COMPLETE.md does not exist: production.css
+- File referenced in MERGE-COMPLETE.md does not exist: production.js
+- File referenced in RELEASING.md does not exist: warehouse-inventory
+- File referenced in RELEASING.md does not exist: warehouse-inventory-manager
+- File referenced in agents.md does not exist: warehouse-inventory-manager
+- File referenced in agents.md does not exist: warehouse-inventory-manager
+- File referenced in agents.md does not exist: css/{frontend.css,admin.css}
+- File referenced in agents.md does not exist: class-wh-activator.php
+- File referenced in agents.md does not exist: class-wh-deactivator.php
+- File referenced in agents.md does not exist: class-wh-loader.php
+- File referenced in agents.md does not exist: class-wh-qr-codes.php
+- File referenced in agents.md does not exist: admin-ajax.php
+- File referenced in agents.md does not exist: class-wh-activator.php
+- File referenced in agents.md does not exist: class-wh-deactivator.php
+- File referenced in agents.md does not exist: class-wh-loader.php
+- File referenced in agents.md does not exist: class-wh-qr-codes.php
+
+For detailed information, see project-audit-report.json

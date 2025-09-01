@@ -197,3 +197,43 @@
 [data-theme="dark"] .sales-table td{ border-bottom:1px solid #1f2937; color:#e5e7eb; }
 [data-theme="dark"] .sales-table tr:hover{ background:rgba(255,255,255,.03); }
 [data-theme="dark"] .payment-method{ background:#1f2937; color:#e5e7eb; }
+
+/* Tasks page (Kanban + Chat) */
+[data-theme="dark"] .tasks-main-container{ background:#0f172a !important; }
+[data-theme="dark"] .tasks-section{ background:transparent !important; }
+[data-theme="dark"] .page-header h1{ color:#e5e7eb !important; }
+[data-theme="dark"] .kanban-column{ background:#0b1220 !important; border:1px solid #1f2937 !important; }
+[data-theme="dark"] .column-title{ color:#e5e7eb !important; }
+[data-theme="dark"] .task-count{ background:#1f2937 !important; color:#cbd5e1 !important; }
+[data-theme="dark"] .column-content{ border-color:#1f2937 !important; }
+[data-theme="dark"] .column-content.drag-over{ background:rgba(59,130,246,.08) !important; border-color:#3b82f6 !important; }
+[data-theme="dark"] .task-card{ background:#0f172a !important; border-color:#1f2937 !important; color:#e5e7eb !important; }
+[data-theme="dark"] .task-header h4{ color:#e5e7eb !important; }
+[data-theme="dark"] .task-description{ color:#94a3b8 !important; }
+[data-theme="dark"] .task-meta{ color:#94a3b8 !important; }
+[data-theme="dark"] .task-footer{ color:#94a3b8 !important; border-top:1px solid #1f2937 !important; }
+[data-theme="dark"] .empty-column{ color:#94a3b8 !important; border-color:#1f2937 !important; }
+
+/* Sidebar (history/chat) */
+[data-theme="dark"] .sidebar-section{ background:#0f172a !important; border-left:1px solid #1f2937 !important; }
+[data-theme="dark"] .sidebar-panel{ background:transparent !important; }
+[data-theme="dark"] .sidebar-content{ color:#e5e7eb !important; }
+[data-theme="dark"] .history-item{ border-bottom:1px solid #1f2937 !important; }
+[data-theme="dark"] .history-item:hover{ background:rgba(255,255,255,.03) !important; }
+[data-theme="dark"] .history-date{ color:#34d399 !important; }
+[data-theme="dark"] .history-task h4{ color:#e5e7eb !important; }
+[data-theme="dark"] .history-task p{ color:#94a3b8 !important; }
+
+/* Chat panel */
+[data-theme="dark"] .chat-messages{ background:#0f172a !important; }
+[data-theme="dark"] .chat-message{ background:transparent !important; }
+[data-theme="dark"] .chat-message-header{ color:#94a3b8 !important; }
+[data-theme="dark"] .chat-message-author{ color:#cbd5e1 !important; }
+[data-theme="dark"] .chat-message-time{ color:#94a3b8 !important; }
+[data-theme="dark"] .chat-message.other{ background:transparent !important; }
+[data-theme="dark"] .chat-message.own{ background:transparent !important; }
+[data-theme="dark"] .chat-message.other .chat-message-content{ background:#0b1220; color:#e5e7eb; border:1px solid #1f2937; }
+[data-theme="dark"] .chat-message.own .chat-message-content{ background:#0f172a; color:#e5e7eb; border:1px solid #1f2937; }
+[data-theme="dark"] .chat-input-container{ background:#0b1220 !important; border-top:1px solid #1f2937 !important; }
+[data-theme="dark"] .chat-input{ background:#0b1220 !important; color:#e5e7eb !important; border:1px solid #1f2937 !important; }
+[data-theme="dark"] .chat-input:focus{ border-color:#60a5fa !important; box-shadow:0 0 0 3px rgba(96,165,250,.2) !important; }

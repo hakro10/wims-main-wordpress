@@ -1,0 +1,2667 @@
+{
+    "timestamp": "2025-09-01 14:38:01",
+    "project_structure": {
+        "theme_files": [
+            {
+                "path": "functions.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/functions.php",
+                "type": "file",
+                "size": 37397,
+                "modified": 1756664551,
+                "extension": "php"
+            },
+            {
+                "path": "index.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/index.php",
+                "type": "file",
+                "size": 7677,
+                "modified": 1756664852,
+                "extension": "php"
+            },
+            {
+                "path": "header.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/header.php",
+                "type": "file",
+                "size": 2524,
+                "modified": 1756664842,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/team.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/team.php",
+                "type": "file",
+                "size": 37562,
+                "modified": 1756667535,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/dashboard.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/dashboard.php",
+                "type": "file",
+                "size": 12486,
+                "modified": 1752189734,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/sales.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/sales.php",
+                "type": "file",
+                "size": 47537,
+                "modified": 1756669635,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/inventory.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/inventory.php",
+                "type": "file",
+                "size": 67996,
+                "modified": 1756676656,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/locations.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/locations.php",
+                "type": "file",
+                "size": 20816,
+                "modified": 1756677592,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/tasks.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/tasks.php",
+                "type": "file",
+                "size": 54569,
+                "modified": 1752188666,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/task-card-template.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/task-card-template.php",
+                "type": "file",
+                "size": 2957,
+                "modified": 1749640634,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/qr-codes.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/qr-codes.php",
+                "type": "file",
+                "size": 30813,
+                "modified": 1749749198,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/modern-dashboard.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/modern-dashboard.php",
+                "type": "file",
+                "size": 30000,
+                "modified": 1752392494,
+                "extension": "php"
+            },
+            {
+                "path": "template-parts\/categories.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/template-parts\/categories.php",
+                "type": "file",
+                "size": 27558,
+                "modified": 1756677492,
+                "extension": "php"
+            },
+            {
+                "path": "footer.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/footer.php",
+                "type": "file",
+                "size": 1294,
+                "modified": 1752102498,
+                "extension": "php"
+            },
+            {
+                "path": "style.css",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/style.css",
+                "type": "file",
+                "size": 15393,
+                "modified": 1756680534,
+                "extension": "css"
+            },
+            {
+                "path": "assets\/css\/animations.css",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+                "type": "file",
+                "size": 6985,
+                "modified": 1752406709,
+                "extension": "css"
+            },
+            {
+                "path": "assets\/css\/dark-override.css",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "type": "file",
+                "size": 8900,
+                "modified": 1756676909,
+                "extension": "css"
+            },
+            {
+                "path": "assets\/css\/style.css",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+                "type": "file",
+                "size": 14520,
+                "modified": 1756669495,
+                "extension": "css"
+            },
+            {
+                "path": "assets\/css\/production.css",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+                "type": "file",
+                "size": 5821,
+                "modified": 1752408342,
+                "extension": "css"
+            },
+            {
+                "path": "assets\/css\/shadcn-components.css",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+                "type": "file",
+                "size": 9494,
+                "modified": 1752368872,
+                "extension": "css"
+            },
+            {
+                "path": "assets\/js\/qr-scanner.js",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/qr-scanner.js",
+                "type": "file",
+                "size": 11406,
+                "modified": 1749691416,
+                "extension": "js"
+            },
+            {
+                "path": "assets\/js\/warehouse.js",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+                "type": "file",
+                "size": 4379,
+                "modified": 1752188666,
+                "extension": "js"
+            },
+            {
+                "path": "assets\/js\/script.js",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/script.js",
+                "type": "file",
+                "size": 165,
+                "modified": 1752188666,
+                "extension": "js"
+            },
+            {
+                "path": "assets\/js\/production.js",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+                "type": "file",
+                "size": 11899,
+                "modified": 1752408491,
+                "extension": "js"
+            },
+            {
+                "path": "assets\/js\/loading-manager.js",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+                "type": "file",
+                "size": 12017,
+                "modified": 1752406900,
+                "extension": "js"
+            },
+            {
+                "path": "assets\/js\/theme-toggle.js",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "type": "file",
+                "size": 4632,
+                "modified": 1756663888,
+                "extension": "js"
+            },
+            {
+                "path": "sw.js",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/sw.js",
+                "type": "file",
+                "size": 5391,
+                "modified": 1752408584,
+                "extension": "js"
+            }
+        ],
+        "plugin_files": [
+            {
+                "path": "warehouse-inventory-manager.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+                "type": "file",
+                "size": 81715,
+                "modified": 1756680534,
+                "extension": "php"
+            },
+            {
+                "path": "includes\/database-migration.php",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/database-migration.php",
+                "type": "file",
+                "size": 26110,
+                "modified": 1752188666,
+                "extension": "php"
+            },
+            {
+                "path": "warehouse-inventory-manager.php.bak",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php.bak",
+                "type": "file",
+                "size": 22868,
+                "modified": 1749378943,
+                "extension": "bak"
+            },
+            {
+                "path": "assets\/css\/admin.css",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/admin.css",
+                "type": "file",
+                "size": 5975,
+                "modified": 1756673450,
+                "extension": "css"
+            },
+            {
+                "path": "assets\/css\/frontend.css",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/frontend.css",
+                "type": "file",
+                "size": 9476,
+                "modified": 1756673426,
+                "extension": "css"
+            },
+            {
+                "path": "assets\/js\/frontend.js",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/frontend.js",
+                "type": "file",
+                "size": 17910,
+                "modified": 1756673484,
+                "extension": "js"
+            },
+            {
+                "path": "assets\/js\/admin.js",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/admin.js",
+                "type": "file",
+                "size": 13632,
+                "modified": 1756673543,
+                "extension": "js"
+            }
+        ],
+        "documentation_files": [
+            {
+                "path": "DEPLOYMENT.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/DEPLOYMENT.md",
+                "type": "file",
+                "size": 6508,
+                "modified": 1756672489
+            },
+            {
+                "path": "GEMINI.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/GEMINI.md",
+                "type": "file",
+                "size": 2390,
+                "modified": 1756737278
+            },
+            {
+                "path": "GENERATE-PREVIEW-PROMPT.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/GENERATE-PREVIEW-PROMPT.md",
+                "type": "file",
+                "size": 5288,
+                "modified": 1752410808
+            },
+            {
+                "path": "INSTALLATION.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/INSTALLATION.md",
+                "type": "file",
+                "size": 5250,
+                "modified": 1756672485
+            },
+            {
+                "path": "MERGE-COMPLETE.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/MERGE-COMPLETE.md",
+                "type": "file",
+                "size": 1876,
+                "modified": 1756672491
+            },
+            {
+                "path": "PREVIEW.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/PREVIEW.md",
+                "type": "file",
+                "size": 9461,
+                "modified": 1752410530
+            },
+            {
+                "path": "RELEASING.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/RELEASING.md",
+                "type": "file",
+                "size": 1080,
+                "modified": 1756680060
+            },
+            {
+                "path": "agents.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/agents.md",
+                "type": "file",
+                "size": 11142,
+                "modified": 1756679843
+            },
+            {
+                "path": "dev-logs.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/dev-logs.md",
+                "type": "file",
+                "size": 5977,
+                "modified": 1752408930
+            },
+            {
+                "path": "email_cleaner_analysis.md",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/email_cleaner_analysis.md",
+                "type": "file",
+                "size": 3130,
+                "modified": 1752412040
+            },
+            {
+                "path": "detailed-audit-report.txt",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/detailed-audit-report.txt",
+                "type": "file",
+                "size": 2546,
+                "modified": 1756736688
+            },
+            {
+                "path": "project-audit-summary.txt",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/project-audit-summary.txt",
+                "type": "file",
+                "size": 2790,
+                "modified": 1756736688
+            }
+        ],
+        "config_files": [
+            {
+                "path": "package.json",
+                "exists": false
+            },
+            {
+                "path": "webpack.config.js",
+                "exists": false
+            },
+            {
+                "path": "composer.json",
+                "exists": false
+            },
+            {
+                "path": ".gitignore",
+                "full_path": "\/Users\/macos\/Local Sites\/auris\/.gitignore",
+                "exists": true,
+                "size": 345
+            },
+            {
+                "path": "wp-config.php",
+                "exists": false
+            }
+        ]
+    },
+    "documentation_references": [
+        {
+            "reference": "warehouse-inventory-manager",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/warehouse-inventory-manager"
+            ]
+        },
+        {
+            "reference": "warehouse-inventory-manager",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/warehouse-inventory-manager"
+            ]
+        },
+        {
+            "reference": "js\/warehouse.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/warehouse.js"
+            ]
+        },
+        {
+            "reference": "js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "js\/loading-manager.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/loading-manager.js"
+            ]
+        },
+        {
+            "reference": "js\/production.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/production.js"
+            ]
+        },
+        {
+            "reference": "js\/qr-scanner.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/qr-scanner.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/qr-scanner.js"
+            ]
+        },
+        {
+            "reference": "css\/style.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/style.css"
+            ]
+        },
+        {
+            "reference": "css\/shadcn-components.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/shadcn-components.css"
+            ]
+        },
+        {
+            "reference": "css\/animations.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/animations.css"
+            ]
+        },
+        {
+            "reference": "css\/production.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/production.css"
+            ]
+        },
+        {
+            "reference": "css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "css\/{frontend.css,admin.css}",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/{frontend.css,admin.css}"
+            ]
+        },
+        {
+            "reference": "css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/warehouse.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/warehouse.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/loading-manager.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/loading-manager.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/production.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/production.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/qr-scanner.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/qr-scanner.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/qr-scanner.js"
+            ]
+        },
+        {
+            "reference": "assets\/css\/style.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/style.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/shadcn-components.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/shadcn-components.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/animations.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/animations.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/production.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/production.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "class-wh-activator.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-activator.php"
+            ]
+        },
+        {
+            "reference": "class-wh-deactivator.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-deactivator.php"
+            ]
+        },
+        {
+            "reference": "class-wh-loader.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-loader.php"
+            ]
+        },
+        {
+            "reference": "class-wh-qr-codes.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-qr-codes.php"
+            ]
+        },
+        {
+            "reference": "wp-config.php",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-config.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/wp-config.php"
+            ]
+        },
+        {
+            "reference": "database-migration.php",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/database-migration.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/database-migration.php"
+            ]
+        },
+        {
+            "reference": "assets\/js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "assets\/css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "admin-ajax.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/admin-ajax.php"
+            ]
+        },
+        {
+            "reference": "assets\/css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "assets\/js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "class-wh-activator.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-activator.php"
+            ]
+        },
+        {
+            "reference": "class-wh-deactivator.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-deactivator.php"
+            ]
+        },
+        {
+            "reference": "class-wh-loader.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-loader.php"
+            ]
+        },
+        {
+            "reference": "class-wh-qr-codes.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-qr-codes.php"
+            ]
+        },
+        {
+            "reference": "warehouse-inventory-manager",
+            "source_file": "DEPLOYMENT.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/warehouse-inventory-manager"
+            ]
+        },
+        {
+            "reference": "\/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+            "source_file": "DEPLOYMENT.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/\/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/\/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/\/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/\/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/\/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/\/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/\/wp-content\/themes\/warehouse-inventory-manager\/sw.js"
+            ]
+        },
+        {
+            "reference": "app\/public\/wp-config.php",
+            "source_file": "GEMINI.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-config.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/app\/public\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/app\/public\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/app\/public\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/app\/public\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/app\/public\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/app\/public\/wp-config.php"
+            ]
+        },
+        {
+            "reference": "warehouse-inventory-manager.php",
+            "source_file": "MERGE-COMPLETE.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/warehouse-inventory-manager.php"
+            ]
+        },
+        {
+            "reference": "test-system.php",
+            "source_file": "MERGE-COMPLETE.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/test-system.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/test-system.php"
+            ]
+        },
+        {
+            "reference": "verify-system.php",
+            "source_file": "MERGE-COMPLETE.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/verify-system.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/verify-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/verify-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/verify-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/verify-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/verify-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/verify-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/verify-system.php"
+            ]
+        },
+        {
+            "reference": "production.css",
+            "source_file": "MERGE-COMPLETE.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/production.css"
+            ]
+        },
+        {
+            "reference": "production.js",
+            "source_file": "MERGE-COMPLETE.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/production.js"
+            ]
+        },
+        {
+            "reference": "sw.js",
+            "source_file": "MERGE-COMPLETE.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/sw.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/sw.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/sw.js"
+            ]
+        },
+        {
+            "reference": "warehouse-inventory",
+            "source_file": "RELEASING.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/warehouse-inventory",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/warehouse-inventory",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/warehouse-inventory",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/warehouse-inventory",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/warehouse-inventory",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/warehouse-inventory"
+            ]
+        },
+        {
+            "reference": "warehouse-inventory-manager",
+            "source_file": "RELEASING.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/warehouse-inventory-manager"
+            ]
+        },
+        {
+            "reference": "wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "source_file": "RELEASING.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php"
+            ]
+        },
+        {
+            "reference": "wp-content\/themes\/warehouse-inventory\/style.css",
+            "source_file": "RELEASING.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/style.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/wp-content\/themes\/warehouse-inventory\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/wp-content\/themes\/warehouse-inventory\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/wp-content\/themes\/warehouse-inventory\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/wp-content\/themes\/warehouse-inventory\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/wp-content\/themes\/warehouse-inventory\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/wp-content\/themes\/warehouse-inventory\/style.css"
+            ]
+        },
+        {
+            "reference": "warehouse-inventory-manager",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/warehouse-inventory-manager"
+            ]
+        },
+        {
+            "reference": "warehouse-inventory-manager",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/warehouse-inventory-manager",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/warehouse-inventory-manager"
+            ]
+        },
+        {
+            "reference": "js\/warehouse.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/warehouse.js"
+            ]
+        },
+        {
+            "reference": "js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "js\/loading-manager.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/loading-manager.js"
+            ]
+        },
+        {
+            "reference": "js\/production.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/production.js"
+            ]
+        },
+        {
+            "reference": "js\/qr-scanner.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/qr-scanner.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/qr-scanner.js"
+            ]
+        },
+        {
+            "reference": "css\/style.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/style.css"
+            ]
+        },
+        {
+            "reference": "css\/shadcn-components.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/shadcn-components.css"
+            ]
+        },
+        {
+            "reference": "css\/animations.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/animations.css"
+            ]
+        },
+        {
+            "reference": "css\/production.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/production.css"
+            ]
+        },
+        {
+            "reference": "css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "css\/{frontend.css,admin.css}",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/{frontend.css,admin.css}",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/{frontend.css,admin.css}"
+            ]
+        },
+        {
+            "reference": "css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/warehouse.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/warehouse.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/loading-manager.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/loading-manager.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/production.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/production.js"
+            ]
+        },
+        {
+            "reference": "assets\/js\/qr-scanner.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/qr-scanner.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/qr-scanner.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/qr-scanner.js"
+            ]
+        },
+        {
+            "reference": "assets\/css\/style.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/style.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/shadcn-components.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/shadcn-components.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/animations.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/animations.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/production.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/production.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "class-wh-activator.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-activator.php"
+            ]
+        },
+        {
+            "reference": "class-wh-deactivator.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-deactivator.php"
+            ]
+        },
+        {
+            "reference": "class-wh-loader.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-loader.php"
+            ]
+        },
+        {
+            "reference": "class-wh-qr-codes.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-qr-codes.php"
+            ]
+        },
+        {
+            "reference": "wp-config.php",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-config.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/wp-config.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/wp-config.php"
+            ]
+        },
+        {
+            "reference": "database-migration.php",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/database-migration.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/database-migration.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/database-migration.php"
+            ]
+        },
+        {
+            "reference": "assets\/js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "assets\/css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "assets\/css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "admin-ajax.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/admin-ajax.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/admin-ajax.php"
+            ]
+        },
+        {
+            "reference": "assets\/css\/dark-override.css",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/dark-override.css"
+            ]
+        },
+        {
+            "reference": "assets\/js\/theme-toggle.js",
+            "source_file": "agents.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "reference": "class-wh-activator.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-activator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-activator.php"
+            ]
+        },
+        {
+            "reference": "class-wh-deactivator.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-deactivator.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-deactivator.php"
+            ]
+        },
+        {
+            "reference": "class-wh-loader.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-loader.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-loader.php"
+            ]
+        },
+        {
+            "reference": "class-wh-qr-codes.php",
+            "source_file": "agents.md",
+            "exists": false,
+            "actual_path": null,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/class-wh-qr-codes.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/class-wh-qr-codes.php"
+            ]
+        },
+        {
+            "reference": "css\/admin.css",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/admin.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/admin.css"
+            ]
+        },
+        {
+            "reference": "js\/admin.js",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/admin.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/admin.js"
+            ]
+        },
+        {
+            "reference": "css\/frontend.css",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/frontend.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/css\/frontend.css"
+            ]
+        },
+        {
+            "reference": "js\/frontend.js",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/frontend.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/js\/frontend.js"
+            ]
+        },
+        {
+            "reference": "assets\/css\/admin.css",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/admin.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/admin.css"
+            ]
+        },
+        {
+            "reference": "assets\/js\/admin.js",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/admin.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/admin.js"
+            ]
+        },
+        {
+            "reference": "assets\/css\/frontend.css",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/frontend.css",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/css\/frontend.css"
+            ]
+        },
+        {
+            "reference": "assets\/js\/frontend.js",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/frontend.js",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/assets\/js\/frontend.js"
+            ]
+        },
+        {
+            "reference": "test-system.php",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/test-system.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/test-system.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/test-system.php"
+            ]
+        },
+        {
+            "reference": "wp-load.php",
+            "source_file": "dev-logs.md",
+            "exists": true,
+            "actual_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-load.php",
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/wp-load.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-load.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/wp-load.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/wp-load.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/wp-load.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/wp-load.php",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/includes\/wp-load.php"
+            ]
+        }
+    ],
+    "missing_files": [],
+    "extra_files": [],
+    "naming_inconsistencies": [
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: css\/{frontend.css,admin.css}",
+            "file": "css\/{frontend.css,admin.css}",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-activator.php",
+            "file": "class-wh-activator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-deactivator.php",
+            "file": "class-wh-deactivator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-loader.php",
+            "file": "class-wh-loader.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-qr-codes.php",
+            "file": "class-wh-qr-codes.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: admin-ajax.php",
+            "file": "admin-ajax.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-activator.php",
+            "file": "class-wh-activator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-deactivator.php",
+            "file": "class-wh-deactivator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-loader.php",
+            "file": "class-wh-loader.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-qr-codes.php",
+            "file": "class-wh-qr-codes.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in DEPLOYMENT.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "DEPLOYMENT.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in DEPLOYMENT.md does not exist: \/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+            "file": "\/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+            "source": "DEPLOYMENT.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in MERGE-COMPLETE.md does not exist: production.css",
+            "file": "production.css",
+            "source": "MERGE-COMPLETE.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in MERGE-COMPLETE.md does not exist: production.js",
+            "file": "production.js",
+            "source": "MERGE-COMPLETE.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in RELEASING.md does not exist: warehouse-inventory",
+            "file": "warehouse-inventory",
+            "source": "RELEASING.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in RELEASING.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "RELEASING.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: css\/{frontend.css,admin.css}",
+            "file": "css\/{frontend.css,admin.css}",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-activator.php",
+            "file": "class-wh-activator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-deactivator.php",
+            "file": "class-wh-deactivator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-loader.php",
+            "file": "class-wh-loader.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-qr-codes.php",
+            "file": "class-wh-qr-codes.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: admin-ajax.php",
+            "file": "admin-ajax.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-activator.php",
+            "file": "class-wh-activator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-deactivator.php",
+            "file": "class-wh-deactivator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-loader.php",
+            "file": "class-wh-loader.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-qr-codes.php",
+            "file": "class-wh-qr-codes.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "naming_inconsistency",
+            "description": "Theme name mismatch: Documentation uses 'warehouse-inventory-manager' but actual directory is 'warehouse-inventory'",
+            "documented": "warehouse-inventory-manager",
+            "actual": "warehouse-inventory",
+            "severity": "high"
+        },
+        {
+            "type": "missing_directory",
+            "description": "Documentation references 'dist\/' folder but it does not exist in plugin",
+            "expected_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/dist",
+            "severity": "medium"
+        }
+    ],
+    "version_discrepancies": {
+        "plugin_header": "1.0.1",
+        "plugin_constant": "1.0.1",
+        "theme_style": "1.0.1"
+    },
+    "asset_validation": [
+        {
+            "asset_path": "assets\/css\/style.css",
+            "source_file": "app\/public\/wp-content\/themes\/warehouse-inventory\/functions.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/style.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/style.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/css\/dark-override.css",
+            "source_file": "app\/public\/wp-content\/themes\/warehouse-inventory\/functions.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/dark-override.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/dark-override.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/warehouse.js",
+            "source_file": "app\/public\/wp-content\/themes\/warehouse-inventory\/functions.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/warehouse.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/warehouse.js"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/theme-toggle.js",
+            "source_file": "app\/public\/wp-content\/themes\/warehouse-inventory\/functions.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "asset_path": "assets\/css\/production.css",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/production.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/production.js",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/production.js"
+            ]
+        },
+        {
+            "asset_path": "assets\/css\/animations.css",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/animations.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/css\/shadcn-components.css",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/shadcn-components.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/theme-toggle.js",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/loading-manager.js",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/loading-manager.js"
+            ]
+        },
+        {
+            "asset_path": "assets\/css\/production.css",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/production.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/production.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/production.js",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/production.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/production.js"
+            ]
+        },
+        {
+            "asset_path": "assets\/css\/animations.css",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/animations.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/animations.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/css\/shadcn-components.css",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/shadcn-components.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/shadcn-components.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/theme-toggle.js",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/theme-toggle.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/theme-toggle.js"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/loading-manager.js",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/loading-manager.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/loading-manager.js"
+            ]
+        },
+        {
+            "asset_path": "assets\/css\/admin.css",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/admin.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/admin.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/admin.js",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/admin.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/admin.js"
+            ]
+        },
+        {
+            "asset_path": "assets\/css\/frontend.css",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/css\/frontend.css",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/css\/frontend.css"
+            ]
+        },
+        {
+            "asset_path": "assets\/js\/frontend.js",
+            "source_file": "app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/warehouse-inventory-manager.php",
+            "exists": true,
+            "checked_paths": [
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/themes\/warehouse-inventory\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/assets\/js\/frontend.js",
+                "\/Users\/macos\/Local Sites\/auris\/app\/public\/assets\/js\/frontend.js"
+            ]
+        }
+    ],
+    "summary": {
+        "total_files_scanned": 34,
+        "total_discrepancies": 32,
+        "critical_issues": 1,
+        "medium_issues": 1,
+        "theme_exists": true,
+        "plugin_exists": true,
+        "theme_name_correct": true,
+        "plugin_name_correct": true
+    },
+    "all_discrepancies": [
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: css\/{frontend.css,admin.css}",
+            "file": "css\/{frontend.css,admin.css}",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-activator.php",
+            "file": "class-wh-activator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-deactivator.php",
+            "file": "class-wh-deactivator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-loader.php",
+            "file": "class-wh-loader.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-qr-codes.php",
+            "file": "class-wh-qr-codes.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: admin-ajax.php",
+            "file": "admin-ajax.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-activator.php",
+            "file": "class-wh-activator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-deactivator.php",
+            "file": "class-wh-deactivator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-loader.php",
+            "file": "class-wh-loader.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-qr-codes.php",
+            "file": "class-wh-qr-codes.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in DEPLOYMENT.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "DEPLOYMENT.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in DEPLOYMENT.md does not exist: \/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+            "file": "\/wp-content\/themes\/warehouse-inventory-manager\/sw.js",
+            "source": "DEPLOYMENT.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in MERGE-COMPLETE.md does not exist: production.css",
+            "file": "production.css",
+            "source": "MERGE-COMPLETE.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in MERGE-COMPLETE.md does not exist: production.js",
+            "file": "production.js",
+            "source": "MERGE-COMPLETE.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in RELEASING.md does not exist: warehouse-inventory",
+            "file": "warehouse-inventory",
+            "source": "RELEASING.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in RELEASING.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "RELEASING.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: warehouse-inventory-manager",
+            "file": "warehouse-inventory-manager",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: css\/{frontend.css,admin.css}",
+            "file": "css\/{frontend.css,admin.css}",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-activator.php",
+            "file": "class-wh-activator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-deactivator.php",
+            "file": "class-wh-deactivator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-loader.php",
+            "file": "class-wh-loader.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-qr-codes.php",
+            "file": "class-wh-qr-codes.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: admin-ajax.php",
+            "file": "admin-ajax.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-activator.php",
+            "file": "class-wh-activator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-deactivator.php",
+            "file": "class-wh-deactivator.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-loader.php",
+            "file": "class-wh-loader.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "missing_file",
+            "description": "File referenced in agents.md does not exist: class-wh-qr-codes.php",
+            "file": "class-wh-qr-codes.php",
+            "source": "agents.md"
+        },
+        {
+            "type": "naming_inconsistency",
+            "description": "Theme name mismatch: Documentation uses 'warehouse-inventory-manager' but actual directory is 'warehouse-inventory'",
+            "documented": "warehouse-inventory-manager",
+            "actual": "warehouse-inventory",
+            "severity": "high"
+        },
+        {
+            "type": "missing_directory",
+            "description": "Documentation references 'dist\/' folder but it does not exist in plugin",
+            "expected_path": "\/Users\/macos\/Local Sites\/auris\/app\/public\/wp-content\/plugins\/warehouse-inventory-manager\/dist",
+            "severity": "medium"
+        }
+    ]
+}

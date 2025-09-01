@@ -599,7 +599,7 @@ class WarehouseInventoryManager {
         
         if (!empty($search)) {
             $sql .= " AND (i.name LIKE %s OR i.internal_id LIKE %s OR i.sku LIKE %s OR i.barcode LIKE %s)";
-            $search_term = '%' . $search . '%';
+            $search_term = '%' . $wpdb->esc_like($search) . '%';
             $params = array_merge($params, array($search_term, $search_term, $search_term, $search_term));
         }
         
@@ -622,6 +622,25 @@ class WarehouseInventoryManager {
         $params = array_merge($params, array($per_page, $offset));
         
         $items = $wpdb->get_results($wpdb->prepare($sql, $params));
+
+        // Redact sensitive fields for unauthenticated requests
+        if (!is_user_logged_in()) {
+            $allowed = array(
+                'id', 'name', 'internal_id', 'sku', 'barcode', 'serial_number',
+                'category_id', 'location_id', 'quantity', 'stock_status', 'status',
+                'updated_at', 'category_name', 'location_name'
+            );
+            $items = array_map(function($item) use ($allowed) {
+                $item_array = (array) $item;
+                $filtered = array();
+                foreach ($allowed as $key) {
+                    if (array_key_exists($key, $item_array)) {
+                        $filtered[$key] = $item_array[$key];
+                    }
+                }
+                return (object) $filtered;
+            }, $items);
+        }
         
         // Get total count for pagination
         $count_sql = str_replace('SELECT i.*, c.name as category_name, l.name as location_name', 'SELECT COUNT(*)', $sql);
@@ -1265,22 +1284,9 @@ class WarehouseInventoryManager {
     
     // Team Management AJAX Handlers
     public function handle_get_team_members() {
-        error_log('=== HANDLE_GET_TEAM_MEMBERS CALLED ===');
-        error_log('POST data: ' . print_r($_POST, true));
-        error_log('Request method: ' . $_SERVER['REQUEST_METHOD']);
-        error_log('Is AJAX: ' . (defined('DOING_AJAX') && DOING_AJAX ? 'YES' : 'NO'));
-        
         check_ajax_referer('warehouse_nonce', 'nonce');
-        error_log('Nonce verified successfully');
-        
-        $current_user = wp_get_current_user();
-        error_log('Current user: ' . $current_user->user_login . ' (ID: ' . $current_user->ID . ')');
-        error_log('User roles: ' . implode(', ', $current_user->roles));
-        error_log('Has manage_options: ' . (current_user_can('manage_options') ? 'yes' : 'no'));
-        error_log('Has edit_posts: ' . (current_user_can('edit_posts') ? 'yes' : 'no'));
         
         if (!current_user_can('manage_options') && !current_user_can('edit_posts')) {
-            error_log('Permission denied for user');
             wp_send_json_error('Insufficient permissions');
         }
         
@@ -1291,16 +1297,7 @@ class WarehouseInventoryManager {
                 LEFT JOIN {$wpdb->users} u ON tm.user_id = u.ID
                 ORDER BY tm.created_at DESC";
         
-        error_log('SQL query: ' . $sql);
-        
         $members = $wpdb->get_results($sql);
-        
-        error_log('Members found: ' . count($members));
-        error_log('Raw members data: ' . print_r($members, true));
-        if ($wpdb->last_error) {
-            error_log('SQL error: ' . $wpdb->last_error);
-        }
-        
         wp_send_json_success($members);
     }
     
