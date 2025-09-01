@@ -970,25 +970,23 @@ textarea.form-input {
 /* Constrain layout to viewport and avoid horizontal overflow */
 html, body { max-width: 100%; overflow-x: hidden; }
 .tasks-content, .tasks-main-container, .kanban-board { max-width: 100%; box-sizing: border-box; }
-.kanban-board { overflow-x: auto; }
 .sidebar-section { max-width: 100%; }
 
-/* Always show all columns side-by-side with internal scrolling */
+/* Always show all columns side-by-side (3 kanban + history) */
 .tasks-main-container { height: calc(100vh - 150px); }
 .tasks-section { overflow: hidden; }
-.kanban-board { display: flex; flex-wrap: nowrap; gap: 1.5rem; overflow-x: auto; height: 100%; }
-.kanban-column { flex: 0 0 340px; min-width: 320px; height: 100%; min-height: 0; }
+.kanban-board { display: grid; grid-template-columns: repeat(3, minmax(200px, 1fr)); gap: 1rem; height: 100%; }
+.kanban-column { height: 100%; min-height: 0; min-width: 0; }
 .column-content { min-height: 0; overflow-y: auto; }
-.sidebar-section { height: 100%; max-height: none; display: flex; flex-direction: column; }
+.sidebar-section { height: 100%; max-height: none; display: flex; flex-direction: column; width: clamp(260px, 24vw, 340px); }
 .sidebar-panel { height: 100%; }
 .chat-messages { flex: 1; height: auto; max-height: none; }
 .chat-input-container { flex-shrink: 0; }
 
 /* Tighter sidebar on medium screens to prevent stretch */
 @media (max-width: 1360px) {
-    .sidebar-section { width: 340px; }
+    .sidebar-section { width: clamp(240px, 28vw, 320px); }
 }
-/* With flex layout, keep columns fixed width; responsive handled by horizontal scroll */
 </style>
 
 <script>
