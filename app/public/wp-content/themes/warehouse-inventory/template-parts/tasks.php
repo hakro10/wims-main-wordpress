@@ -967,6 +967,22 @@ textarea.form-input {
     justify-content: center !important;
     gap: 0.5rem !important;
 }
+/* Constrain layout to viewport and avoid horizontal overflow */
+html, body { max-width: 100%; overflow-x: hidden; }
+.tasks-content, .tasks-main-container, .kanban-board { max-width: 100%; box-sizing: border-box; }
+.kanban-board { overflow-x: auto; }
+.sidebar-section { max-width: 100%; }
+
+/* Tighter sidebar on medium screens to prevent stretch */
+@media (max-width: 1360px) {
+    .sidebar-section { width: 340px; }
+}
+@media (max-width: 1200px) {
+    .kanban-board { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+    .kanban-board { grid-template-columns: 1fr; }
+}
 </style>
 
 <script>
