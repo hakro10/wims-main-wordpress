@@ -241,6 +241,7 @@
 /* Kanban columns: transparent panels, colored headers only */
 [data-theme="dark"] .kanban-column{ background:transparent !important; border:none !important; box-shadow:none !important; }
 [data-theme="dark"] .kanban-column .column-title{ background:rgba(148,163,184,.08); color:#e5e7eb; }
+[data-theme="dark"] .column-header{ position:sticky; top:0; z-index:2; }
 [data-theme="dark"] .kanban-column[data-status="pending"] .column-title{ background:rgba(59,130,246,.16); color:#bfdbfe; }
 [data-theme="dark"] .kanban-column[data-status="in_progress"] .column-title{ background:rgba(99,102,241,.16); color:#c7d2fe; }
 [data-theme="dark"] .kanban-column[data-status="completed"] .column-title{ background:rgba(34,197,94,.14); color:#86efac; }

@@ -258,9 +258,9 @@ if ($tasks) {
 
 <style>
 .tasks-content {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 2rem 0;
+    padding: 2rem 1rem;
 }
 
 .page-header {
@@ -328,16 +328,17 @@ if ($tasks) {
 
 .kanban-board {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
     gap: 1rem;
     height: 100%;
     min-width: 0; /* allow grid to shrink within container */
 }
 
 .kanban-column {
-    background: #f8fafc;
-    border-radius: 12px;
-    padding: 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
     min-height: 600px;
     display: flex;
     flex-direction: column;
@@ -345,7 +346,10 @@ if ($tasks) {
 }
 
 .column-header {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .column-title {
@@ -371,9 +375,9 @@ if ($tasks) {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
     min-height: 400px;
-    padding: 0.5rem;
+    padding: 0 0.25rem 0.5rem 0.25rem;
     border-radius: 8px;
     transition: background-color 0.2s;
 }
