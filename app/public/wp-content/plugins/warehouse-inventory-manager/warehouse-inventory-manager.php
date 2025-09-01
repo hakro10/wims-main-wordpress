@@ -3,7 +3,7 @@
  * Plugin Name: Warehouse Inventory Manager
  * Plugin URI: https://example.com/warehouse-inventory-manager
  * Description: Complete warehouse inventory management system with dashboard, items, categories, locations, sales tracking, and QR codes.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: Your Name
  * License: GPL v2 or later
  * Text Domain: warehouse-inventory
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('WH_INVENTORY_VERSION', '1.1.1');
+define('WH_INVENTORY_VERSION', '1.1.2');
 define('WH_INVENTORY_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WH_INVENTORY_PLUGIN_URL', plugin_dir_url(__FILE__));
 
