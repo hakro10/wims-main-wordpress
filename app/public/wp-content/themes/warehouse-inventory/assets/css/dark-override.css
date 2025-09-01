@@ -134,6 +134,8 @@
 [data-theme="dark"] .category-row:hover { background: rgba(255,255,255,.03); }
 [data-theme="dark"] .category-name { color:#e5e7eb; }
 [data-theme="dark"] .category-details, [data-theme="dark"] .category-stats { color:#94a3b8; }
+[data-theme="dark"] .category-name-clickable{ color:#e5e7eb; }
+[data-theme="dark"] .category-count{ color:#34d399 !important; }
 [data-theme="dark"] .location-row { border-bottom-color:#1f2937; }
 [data-theme="dark"] .location-row:hover { background: rgba(255,255,255,.03); }
 [data-theme="dark"] .location-name { color:#e5e7eb; }

@@ -31,8 +31,8 @@ function render_category_tree($categories, $level = 0) {
                 
                 <div class="category-info">
                     <div class="category-header">
-                        <h4 class="category-name-clickable" onclick="showCategoryItems(<?php echo $category->id; ?>, '<?php echo esc_js($category->name); ?>')" style="cursor: pointer; color: #3b82f6; text-decoration: underline;"><?php echo esc_html($category->name); ?></h4>
-                        <span class="category-count category-count-clickable" onclick="showCategoryItems(<?php echo $category->id; ?>, '<?php echo esc_js($category->name); ?>')" style="cursor: pointer; color: #059669; text-decoration: underline;"><?php echo intval($category->item_count ?? 0); ?> items</span>
+                        <h4 class="category-name-clickable" onclick="showCategoryItems(<?php echo $category->id; ?>, '<?php echo esc_js($category->name); ?>')"><?php echo esc_html($category->name); ?></h4>
+                        <span class="category-count category-count-clickable" onclick="showCategoryItems(<?php echo $category->id; ?>, '<?php echo esc_js($category->name); ?>')"><?php echo intval($category->item_count ?? 0); ?> items</span>
                         <?php $child_count = !empty($category->children) ? count($category->children) : 0; if ($child_count > 0): ?>
                             <span class="badge badge-info" style="margin-left:8px"><?php echo $child_count; ?> subs</span>
                         <?php endif; ?>

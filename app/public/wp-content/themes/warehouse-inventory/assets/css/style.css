@@ -481,6 +481,21 @@ body {
     flex: 1;
 }
 
+.category-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.category-name-clickable {
+    font-weight: 600;
+    color: #111827;
+    font-size: 14px;
+    cursor: pointer;
+}
+.category-name-clickable:hover { text-decoration: underline; }
+.category-count { color: #059669; font-size: 12px; font-weight: 500; cursor: pointer; }
+
 .category-name {
     font-weight: 500;
     color: #1f2937;
