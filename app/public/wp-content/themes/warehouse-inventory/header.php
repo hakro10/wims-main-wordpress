@@ -28,9 +28,11 @@
 <header class="warehouse-header">
     <div class="container">
         <div class="header-content">
-            <div class="logo">
-                <i class="fas fa-warehouse"></i>
-                Warehouse Management System
+            <div class="logo" style="display:flex;align-items:center;gap:10px">
+                <div class="company-logo" id="company-logo" style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#64748b,#334155);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;overflow:hidden">
+                    <span style="font-size:16px;letter-spacing:.5px">LOGO</span>
+                </div>
+                <span>Warehouse Management System</span>
             </div>
             
             <div class="user-menu">

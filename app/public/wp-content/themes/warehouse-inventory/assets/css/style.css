@@ -38,6 +38,10 @@ body {
     gap: 0.5rem;
 }
 
+/* Company logo placeholder */
+.company-logo{border:1px solid #e5e7eb}
+[data-theme="dark"] .company-logo{border-color:#1f2937}
+
 .user-info {
     display: flex;
     align-items: center;
