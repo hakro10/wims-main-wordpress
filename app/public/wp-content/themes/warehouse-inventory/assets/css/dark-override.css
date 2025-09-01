@@ -261,3 +261,44 @@
 [data-theme="dark"] #add-task-modal input:focus,
 [data-theme="dark"] #add-task-modal select:focus,
 [data-theme="dark"] #add-task-modal textarea:focus{ border-color:#60a5fa !important; box-shadow:0 0 0 2px rgba(96,165,250,.28) !important; outline:none !important; }
+
+/* Team page - dark adjustments */
+[data-theme="dark"] .team-management .search-filters{ background:#0f172a !important; border:1px solid #1f2937 !important; }
+[data-theme="dark"] .team-management .search-filters h2,
+[data-theme="dark"] .team-management .search-filters h3{ color:#e5e7eb !important; }
+[data-theme="dark"] .team-management .search-input input{ background:#0b1220 !important; color:#e5e7eb !important; border:1px solid #1f2937 !important; }
+[data-theme="dark"] .team-management .search-input input::placeholder{ color:#94a3b8 !important; }
+
+[data-theme="dark"] #team-table thead th{ background:#0b1220 !important; color:#cbd5e1 !important; border-bottom:1px solid #1f2937 !important; }
+[data-theme="dark"] #team-table tbody tr{ border-bottom:1px solid #1f2937 !important; }
+[data-theme="dark"] #team-table tbody tr:hover{ background:rgba(255,255,255,.03) !important; }
+[data-theme="dark"] #team-table td{ color:#e5e7eb !important; }
+
+[data-theme="dark"] .role-badge{ background:#1f2937 !important; color:#e5e7eb !important; border:1px solid #334155 !important; }
+[data-theme="dark"] .status-badge.ACTIVE{ background:rgba(34,197,94,.14) !important; color:#86efac !important; border:1px solid rgba(34,197,94,.35) !important; }
+[data-theme="dark"] .status-badge.INACTIVE{ background:rgba(244,63,94,.12) !important; color:#fca5a5 !important; border:1px solid rgba(244,63,94,.35) !important; }
+
+[data-theme="dark"] .action-buttons .btn-icon{ background:transparent !important; color:#94a3b8 !important; border:1px solid #334155 !important; }
+[data-theme="dark"] .action-buttons .btn-icon:hover{ background:rgba(255,255,255,.06) !important; color:#e5e7eb !important; border-color:#475569 !important; }
+
+/* Team modals */
+[data-theme="dark"] #add-member-modal .modal,
+[data-theme="dark"] #edit-member-modal .modal,
+[data-theme="dark"] #password-modal .modal{ background:#0f172a !important; color:#e5e7eb !important; border:1px solid #334155 !important; }
+[data-theme="dark"] #add-member-modal [style*='border-bottom'],
+[data-theme="dark"] #edit-member-modal [style*='border-bottom'],
+[data-theme="dark"] #password-modal [style*='border-bottom']{ border-bottom:1px solid #334155 !important; }
+[data-theme="dark"] #add-member-modal [style*='border-top'],
+[data-theme="dark"] #edit-member-modal [style*='border-top'],
+[data-theme="dark"] #password-modal [style*='border-top']{ border-top:1px solid #334155 !important; }
+[data-theme="dark"] #add-member-modal input,
+[data-theme="dark"] #add-member-modal select,
+[data-theme="dark"] #add-member-modal textarea,
+[data-theme="dark"] #edit-member-modal input,
+[data-theme="dark"] #edit-member-modal select,
+[data-theme="dark"] #edit-member-modal textarea{ background:#0b1220 !important; color:#e5e7eb !important; border:1px solid #1f2937 !important; }
+[data-theme="dark"] #add-member-modal label,
+[data-theme="dark"] #edit-member-modal label{ color:#e2e8f0 !important; }
+[data-theme="dark"] #password-modal p[style*='color: #374151'],
+[data-theme="dark"] #password-modal div[style*='background: #f8fafc']{ color:#e5e7eb !important; background:#0b1220 !important; border-color:#1f2937 !important; }
+[data-theme="dark"] #password-modal div[style*='background: #e2e8f0']{ background:#0b1220 !important; border-color:#334155 !important; }
