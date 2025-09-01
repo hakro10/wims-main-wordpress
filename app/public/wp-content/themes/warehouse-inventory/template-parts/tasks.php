@@ -328,15 +328,15 @@ if ($tasks) {
 
 .kanban-board {
     display: grid;
-    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
     gap: 1rem;
     height: 100%;
     min-width: 0; /* allow grid to shrink within container */
 }
 
 /* Ensure 3 readable columns on common laptops (13–17") */
-@media (min-width: 1000px) {
-    .kanban-board { grid-template-columns: repeat(3, minmax(240px, 1fr)); }
+@media (min-width: 1100px) {
+    .kanban-board { grid-template-columns: repeat(3, minmax(280px, 1fr)); }
 }
 
 /* Mobile stacking */
