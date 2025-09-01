@@ -1617,6 +1617,21 @@ document.addEventListener('click', function(e) {
 
 // Initialize drag and drop event listeners
 document.addEventListener('DOMContentLoaded', function() {
+    // Dynamically fit tasks layout to viewport so page doesn't require scrolling
+    function resizeTasksLayout(){
+        try {
+            const container = document.querySelector('.tasks-main-container');
+            if (!container) return;
+            const rect = container.getBoundingClientRect();
+            const available = window.innerHeight - rect.top - 16; // small bottom gap
+            if (available > 240) {
+                container.style.height = available + 'px';
+            }
+        } catch (e) { /* noop */ }
+    }
+    resizeTasksLayout();
+    window.addEventListener('resize', resizeTasksLayout);
+
     document.querySelectorAll('.column-content').forEach(column => {
         column.addEventListener('dragleave', function(e) {
             if (!this.contains(e.relatedTarget)) {
