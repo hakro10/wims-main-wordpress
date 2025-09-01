@@ -285,7 +285,7 @@ if ($tasks) {
 /* Main Layout Styles */
 .tasks-main-container {
     display: grid;
-    grid-template-columns: 1fr clamp(280px, 24vw, 360px);
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 28vw);
     height: calc(100vh - 120px);
     background: #f8fafc;
     gap: 1rem;
@@ -328,7 +328,7 @@ if ($tasks) {
 
 .kanban-board {
     display: grid;
-    grid-template-columns: repeat(3, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1rem;
     height: 100%;
     min-width: 0; /* allow grid to shrink within container */
