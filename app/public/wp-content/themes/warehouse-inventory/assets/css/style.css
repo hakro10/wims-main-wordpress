@@ -516,38 +516,38 @@ body {
 
 /* Category Children States */
 .category-children {
-    transition: all 0.3s ease;
-    display: block;
+    max-height: 1000px;            /* smooth dropdown like locations */
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
 }
 
 .category-children.collapsed {
-    display: none;
+    max-height: 0;
 }
 
 .category-toggle {
-    transition: transform 0.3s ease;
-    background: none;
+    width: 24px;       /* match locations */
+    height: 24px;      /* match locations */
     border: none;
-    width: 20px;
-    height: 20px;
+    background: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 4px;
     color: #6b7280;
-    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.category-toggle:hover {
-    color: #374151;
-}
+.category-toggle:hover { background-color: #f3f4f6; color: #374151; }
 
 .category-toggle.collapsed {
     transform: rotate(-90deg);
 }
 
 .category-spacer {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
 }
 
 /* Indentation guides for hierarchical trees */

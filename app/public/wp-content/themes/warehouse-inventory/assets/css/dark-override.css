@@ -329,3 +329,6 @@
 [data-theme="dark"] .print-modal-content{ background:#0f172a !important; color:#e5e7eb !important; border:1px solid #334155 !important; }
 [data-theme="dark"] .print-modal-header{ border-bottom:1px solid #334155 !important; }
 [data-theme="dark"] .print-modal-footer{ border-top:1px solid #334155 !important; }
+
+/* Match locations toggle hover */
+[data-theme="dark"] .category-toggle:hover{ background:#111827 !important; color:#e5e7eb !important; }
