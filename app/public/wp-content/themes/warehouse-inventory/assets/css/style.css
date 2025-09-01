@@ -177,6 +177,13 @@ body {
 .theme-toggle:hover{background:#f9fafb}
 [data-theme="dark"] .theme-toggle{background:#0b1220;border-color:#1f2937}
 
+/* Language switcher (beside theme toggle) */
+.lang-switcher .btn{padding:6px 10px; border-radius:10px}
+.lang-switcher .lang-menu{background:#fff}
+[data-theme="dark"] .lang-switcher .lang-menu{background:#0f172a; border-color:#1f2937}
+.lang-switcher .lang-item:hover{background:#f3f4f6}
+[data-theme="dark"] .lang-switcher .lang-item:hover{background:#111827}
+
 .btn-primary {
     background: #3b82f6;
     color: white;

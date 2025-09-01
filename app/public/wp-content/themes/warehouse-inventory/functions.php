@@ -52,7 +52,9 @@ add_action('wp_enqueue_scripts', 'warehouse_inventory_scripts');
 
 // Lightweight i18n helper (Lithuanian support without .mo files)
 function wh_t(string $text): string {
-    $locale = function_exists('get_locale') ? get_locale() : 'en_US';
+    // Check cookie or localStorage hint (cookie set by header switcher) before WP locale
+    $forced = isset($_COOKIE['warehouse_lang']) ? sanitize_text_field($_COOKIE['warehouse_lang']) : '';
+    $locale = $forced ?: (function_exists('get_locale') ? get_locale() : 'en_US');
     static $lt = array(
         'Dashboard' => 'Skydelis',
         'Inventory' => 'Atsargos',

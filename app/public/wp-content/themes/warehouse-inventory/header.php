@@ -35,6 +35,15 @@
             
             <div class="user-menu">
                 <span id="theme-toggle-slot" aria-hidden="true"></span>
+                <div id="language-switcher" class="lang-switcher" style="position:relative;margin-left:8px;">
+                  <button class="btn btn-secondary" id="lang-toggle" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-globe"></i> <span id="lang-label">EN</span>
+                  </button>
+                  <div id="lang-menu" class="lang-menu" style="position:absolute;right:0;top:110%;display:none;background:var(--menu-bg,#fff);border:1px solid #e5e7eb;border-radius:8px;min-width:160px;z-index:1000;overflow:hidden;">
+                    <button class="lang-item" data-lang="en_US" style="display:block;width:100%;text-align:left;padding:8px 12px;background:none;border:0;cursor:pointer">English</button>
+                    <button class="lang-item" data-lang="lt_LT" style="display:block;width:100%;text-align:left;padding:8px 12px;background:none;border:0;cursor:pointer">Lietuvių</button>
+                  </div>
+                </div>
                 <?php if (is_user_logged_in()) : ?>
                     <?php $current_user = wp_get_current_user(); ?>
                     <span class="user-greeting">
@@ -56,3 +65,34 @@
         </div>
     </div>
 </header> 
+
+<script>
+(function(){
+  try{
+    var storedLang = localStorage.getItem('warehouse-lang') || 'en_US';
+    var label = document.getElementById('lang-label');
+    if(label){ label.textContent = storedLang.startsWith('lt') ? 'LT' : 'EN'; }
+    var btn = document.getElementById('lang-toggle');
+    var menu = document.getElementById('lang-menu');
+    if(btn && menu){
+      btn.addEventListener('click', function(){
+        var open = menu.style.display === 'block';
+        menu.style.display = open ? 'none' : 'block';
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+      document.addEventListener('click', function(e){
+        if(!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = 'none';
+      });
+      Array.prototype.forEach.call(menu.querySelectorAll('.lang-item'), function(item){
+        item.addEventListener('click', function(){
+          var lang = this.getAttribute('data-lang') || 'en_US';
+          try{ localStorage.setItem('warehouse-lang', lang); }catch(_){}
+          // Optionally inform backend via cookie to adjust get_locale()
+          document.cookie = 'warehouse_lang='+lang+'; path=/';
+          window.location.reload();
+        });
+      });
+    }
+  }catch(e){}
+})();
+</script>
