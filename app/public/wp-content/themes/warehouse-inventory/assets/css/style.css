@@ -525,30 +525,21 @@ body {
     max-height: 0;
 }
 
+/* Toggle visuals (match locations) */
 .category-toggle {
-    width: 24px;       /* match locations */
-    height: 24px;      /* match locations */
-    border: none;
-    background: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    color: #6b7280;
-    transition: all 0.2s;
+    transition: all 0.2s; /* already set by earlier block */
 }
-
-.category-toggle:hover { background-color: #f3f4f6; color: #374151; }
-
-.category-toggle.collapsed {
-    transform: rotate(-90deg);
-}
+.category-toggle i { transition: transform 0.2s; }
+.category-toggle.collapsed { transform: none; }
+.category-toggle.collapsed i { transform: rotate(-90deg); }
 
 .category-spacer {
     width: 24px;
     height: 24px;
 }
+
+/* Categories scroll area like locations */
+.categories-tree { max-height: 70vh; overflow-y: auto; }
 
 /* Indentation guides for hierarchical trees */
 .category-indent { border-right: 1px dashed #e5e7eb; }
