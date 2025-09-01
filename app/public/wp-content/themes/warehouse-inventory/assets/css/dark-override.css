@@ -215,7 +215,7 @@
 [data-theme="dark"] .empty-column{ color:#94a3b8 !important; border-color:#1f2937 !important; }
 
 /* Sidebar (history/chat) */
-[data-theme="dark"] .sidebar-section{ background:#0f172a !important; border-left:1px solid #1f2937 !important; }
+[data-theme="dark"] .sidebar-section{ background:#0f172a !important; border-left:1px solid #1f2937 !important; min-width:0 !important; }
 [data-theme="dark"] .sidebar-panel{ background:transparent !important; }
 [data-theme="dark"] .sidebar-content{ color:#e5e7eb !important; }
 [data-theme="dark"] .history-item{ border-bottom:1px solid #1f2937 !important; }

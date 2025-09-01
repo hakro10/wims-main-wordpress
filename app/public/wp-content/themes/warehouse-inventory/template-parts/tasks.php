@@ -284,10 +284,11 @@ if ($tasks) {
 
 /* Main Layout Styles */
 .tasks-main-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr clamp(280px, 24vw, 360px);
     height: calc(100vh - 120px);
     background: #f8fafc;
-    gap: 0;
+    gap: 1rem;
 }
 
 .tasks-section {
@@ -298,13 +299,10 @@ if ($tasks) {
 }
 
 .sidebar-section {
-    width: 400px;
     background: white;
     border-left: 1px solid #e5e7eb;
     display: flex;
     flex-direction: column;
-    height: 520px; /* Adjusted height without header */
-    max-height: 520px;
     overflow: hidden;
 }
 
@@ -330,9 +328,10 @@ if ($tasks) {
 
 .kanban-board {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
     height: 100%;
+    min-width: 0; /* allow grid to shrink within container */
 }
 
 .kanban-column {
@@ -342,6 +341,7 @@ if ($tasks) {
     min-height: 600px;
     display: flex;
     flex-direction: column;
+    min-width: 0; /* prevent overflow inside columns */
 }
 
 .column-header {
