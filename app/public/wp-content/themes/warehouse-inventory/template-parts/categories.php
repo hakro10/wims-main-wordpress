@@ -379,13 +379,13 @@ function deleteCategory(categoryId, categoryName) {
 function toggleCategoryChildren(categoryId) {
     const children = document.getElementById('children-' + categoryId);
     const toggle = document.querySelector(`[data-category-id="${categoryId}"] .category-toggle`);
-    
-    if (children.classList.contains('collapsed')) {
-        children.classList.remove('collapsed');
-        toggle.classList.remove('collapsed');
+    if (!children) return;
+    if (children.classList.contains('expanded')) {
+        children.classList.remove('expanded');
+        if (toggle) toggle.classList.remove('expanded');
     } else {
-        children.classList.add('collapsed');
-        toggle.classList.add('collapsed');
+        children.classList.add('expanded');
+        if (toggle) toggle.classList.add('expanded');
     }
 }
 
@@ -394,27 +394,29 @@ function toggleAllCategories() {
     const allToggles = document.querySelectorAll('.category-toggle');
     const button = event.target.closest('button');
     
-    const hasCollapsed = Array.from(allChildren).some(child => child.classList.contains('collapsed'));
+    const isExpanding = Array.from(allChildren).some(child => !child.classList.contains('expanded'));
     
     allChildren.forEach(child => {
-        if (hasCollapsed) {
-            child.classList.remove('collapsed');
+        if (isExpanding) {
+            child.classList.add('expanded');
         } else {
-            child.classList.add('collapsed');
+            child.classList.remove('expanded');
         }
     });
     
     allToggles.forEach(toggle => {
-        if (hasCollapsed) {
-            toggle.classList.remove('collapsed');
+        if (isExpanding) {
+            toggle.classList.add('expanded');
         } else {
-            toggle.classList.add('collapsed');
+            toggle.classList.remove('expanded');
         }
     });
     
-    button.innerHTML = hasCollapsed ? 
-        '<i class="fas fa-compress-arrows-alt"></i> Collapse All' : 
-        '<i class="fas fa-expand-arrows-alt"></i> Expand All';
+    if (button) {
+        button.innerHTML = isExpanding ? 
+            '<i class="fas fa-compress-arrows-alt"></i> Collapse All' : 
+            '<i class="fas fa-expand-arrows-alt"></i> Expand All';
+    }
 }
 
 // Category Items functionality

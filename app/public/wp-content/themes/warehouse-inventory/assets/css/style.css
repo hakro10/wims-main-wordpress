@@ -516,22 +516,17 @@ body {
 
 /* Category Children States */
 .category-children {
-    max-height: 1000px;            /* smooth dropdown like locations */
+    max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
 }
-
-.category-children.collapsed {
-    max-height: 0;
-}
+.category-children.expanded { max-height: 1000px; }
 
 /* Toggle visuals (match locations) */
-.category-toggle {
-    transition: all 0.2s; /* already set by earlier block */
-}
+.category-toggle { transition: all 0.2s; }
 .category-toggle i { transition: transform 0.2s; }
-.category-toggle.collapsed { transform: none; }
-.category-toggle.collapsed i { transform: rotate(-90deg); }
+.category-toggle.expanded i { transform: rotate(180deg); }
+.category-toggle:not(.expanded) i { transform: rotate(0deg); }
 
 .category-spacer {
     width: 24px;
