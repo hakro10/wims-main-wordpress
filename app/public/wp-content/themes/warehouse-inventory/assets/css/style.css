@@ -844,3 +844,5 @@ input[type="color"] {
 .flex { display: flex; }
 .hidden { display: none; }
 .block { display: block; }
+
+.logo img.custom-logo{height:36px;width:auto;border-radius:8px}

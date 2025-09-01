@@ -20,6 +20,13 @@ function warehouse_inventory_setup() {
         'gallery',
         'caption',
     ));
+    // Custom logo support (upload via Customizer → Site Identity)
+    add_theme_support('custom-logo', array(
+        'height'      => 60,
+        'width'       => 200,
+        'flex-width'  => true,
+        'flex-height' => true,
+    ));
     
     // Register navigation menus
     register_nav_menus(array(
