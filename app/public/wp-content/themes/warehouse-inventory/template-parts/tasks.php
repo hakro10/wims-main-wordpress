@@ -975,9 +975,16 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* Always show all columns side-by-side (3 kanban + history) */
 .tasks-main-container { height: calc(100vh - 150px); }
 .tasks-section { overflow: hidden; }
-.kanban-board { display: grid; grid-template-columns: repeat(3, minmax(200px, 1fr)); gap: 1rem; height: 100%; }
-.kanban-column { height: 100%; min-height: 0; min-width: 0; }
-.column-content { min-height: 0; overflow-y: auto; }
+.kanban-board { display: grid; grid-template-columns: repeat(3, minmax(260px, 1fr)); gap: 1rem; height: 100%; align-items: stretch; }
+.kanban-column { height: 100%; min-height: 0 !important; min-width: 0; padding: 0; background: transparent; border: none; box-shadow: none; }
+.column-content { min-height: 0; overflow-y: auto; background: transparent; padding: 0.25rem; }
+/* Remove visible panel backgrounds/borders; use subtle colored headers */
+.kanban-column .column-header{ background: transparent; padding: 0 0 0.5rem 0; border: 0; }
+.kanban-column[data-status="pending"] .column-title{ background: rgba(59,130,246,.15); color:#93c5fd; border-radius: 10px; padding:.5rem .75rem; }
+.kanban-column[data-status="in_progress"] .column-title{ background: rgba(99,102,241,.16); color:#c7d2fe; border-radius: 10px; padding:.5rem .75rem; }
+.kanban-column[data-status="completed"] .column-title{ background: rgba(34,197,94,.14); color:#86efac; border-radius: 10px; padding:.5rem .75rem; }
+/* Hide placeholder panel borders */
+.empty-column{ border-color: transparent; background: transparent; }
 .sidebar-section { height: 100%; max-height: none; display: flex; flex-direction: column; width: clamp(260px, 24vw, 340px); }
 .sidebar-panel { height: 100%; }
 .chat-messages { flex: 1; height: auto; max-height: none; }
