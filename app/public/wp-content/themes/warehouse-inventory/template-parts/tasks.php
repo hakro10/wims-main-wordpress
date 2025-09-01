@@ -335,18 +335,12 @@ if ($tasks) {
 }
 
 /* Ensure 3 readable columns on common laptops (13–17") */
-@media (min-width: 1024px) {
+@media (min-width: 1000px) {
     .kanban-board { grid-template-columns: repeat(3, minmax(240px, 1fr)); }
-}
-@media (min-width: 1120px) {
-    .kanban-board { grid-template-columns: repeat(3, minmax(260px, 1fr)); }
-}
-@media (min-width: 1280px) {
-    .kanban-board { grid-template-columns: repeat(3, minmax(280px, 1fr)); }
 }
 
 /* Mobile stacking */
-@media (max-width: 720px) {
+@media (max-width: 768px) {
     .tasks-main-container { grid-template-columns: 1fr; }
     .sidebar-section { order: 2; height: 320px; }
 }
