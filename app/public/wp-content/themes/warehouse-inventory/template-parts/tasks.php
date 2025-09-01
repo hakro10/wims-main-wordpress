@@ -973,16 +973,22 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .kanban-board { overflow-x: auto; }
 .sidebar-section { max-width: 100%; }
 
+/* Always show all columns side-by-side with internal scrolling */
+.tasks-main-container { height: calc(100vh - 150px); }
+.tasks-section { overflow: hidden; }
+.kanban-board { display: flex; flex-wrap: nowrap; gap: 1.5rem; overflow-x: auto; height: 100%; }
+.kanban-column { flex: 0 0 340px; min-width: 320px; height: 100%; min-height: 0; }
+.column-content { min-height: 0; overflow-y: auto; }
+.sidebar-section { height: 100%; max-height: none; display: flex; flex-direction: column; }
+.sidebar-panel { height: 100%; }
+.chat-messages { flex: 1; height: auto; max-height: none; }
+.chat-input-container { flex-shrink: 0; }
+
 /* Tighter sidebar on medium screens to prevent stretch */
 @media (max-width: 1360px) {
     .sidebar-section { width: 340px; }
 }
-@media (max-width: 1200px) {
-    .kanban-board { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 900px) {
-    .kanban-board { grid-template-columns: 1fr; }
-}
+/* With flex layout, keep columns fixed width; responsive handled by horizontal scroll */
 </style>
 
 <script>
