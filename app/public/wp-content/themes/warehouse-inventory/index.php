@@ -76,28 +76,28 @@ get_header(); ?>
         <div class="container">
             <div class="nav-list">
                 <a href="?tab=dashboard" class="nav-tab <?php echo ($active_tab === 'dashboard') ? 'active' : ''; ?>">
-                    <i class="fas fa-chart-line"></i> Dashboard
+                    <i class="fas fa-chart-line"></i> <?php echo function_exists('wh_t') ? wh_t('Dashboard') : 'Dashboard'; ?>
                 </a>
                 <a href="?tab=inventory" class="nav-tab <?php echo ($active_tab === 'inventory') ? 'active' : ''; ?>">
-                    <i class="fas fa-boxes"></i> Inventory
+                    <i class="fas fa-boxes"></i> <?php echo function_exists('wh_t') ? wh_t('Inventory') : 'Inventory'; ?>
                 </a>
                 <a href="?tab=categories" class="nav-tab <?php echo ($active_tab === 'categories') ? 'active' : ''; ?>">
-                    <i class="fas fa-tags"></i> Categories
+                    <i class="fas fa-tags"></i> <?php echo function_exists('wh_t') ? wh_t('Categories') : 'Categories'; ?>
                 </a>
                 <a href="?tab=locations" class="nav-tab <?php echo ($active_tab === 'locations') ? 'active' : ''; ?>">
-                    <i class="fas fa-map-marker-alt"></i> Locations
+                    <i class="fas fa-map-marker-alt"></i> <?php echo function_exists('wh_t') ? wh_t('Locations') : 'Locations'; ?>
                 </a>
                 <a href="?tab=sales" class="nav-tab <?php echo ($active_tab === 'sales') ? 'active' : ''; ?>">
-                    <i class="fas fa-dollar-sign"></i> Sales
+                    <i class="fas fa-dollar-sign"></i> <?php echo function_exists('wh_t') ? wh_t('Sales') : 'Sales'; ?>
                 </a>
                 <a href="?tab=tasks" class="nav-tab <?php echo ($active_tab === 'tasks') ? 'active' : ''; ?>">
-                    <i class="fas fa-tasks"></i> Tasks
+                    <i class="fas fa-tasks"></i> <?php echo function_exists('wh_t') ? wh_t('Tasks') : 'Tasks'; ?>
                 </a>
                 <a href="?tab=team" class="nav-tab <?php echo ($active_tab === 'team') ? 'active' : ''; ?>">
-                    <i class="fas fa-users"></i> Team
+                    <i class="fas fa-users"></i> <?php echo function_exists('wh_t') ? wh_t('Team') : 'Team'; ?>
                 </a>
                 <a href="?tab=qr-codes" class="nav-tab <?php echo ($active_tab === 'qr-codes') ? 'active' : ''; ?>">
-                    <i class="fas fa-qrcode"></i> QR Codes
+                    <i class="fas fa-qrcode"></i> <?php echo function_exists('wh_t') ? wh_t('QR Codes') : 'QR Codes'; ?>
                 </a>
             </div>
         </div>

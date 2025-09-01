@@ -107,13 +107,13 @@ function render_location_tree($locations, $level = 0) {
 
 <div class="warehouse-content">
     <div class="page-header">
-        <h2>Locations Management</h2>
+        <h2><?php echo function_exists('wh_t') ? wh_t('Locations Management') : 'Locations Management'; ?></h2>
         <div class="header-actions">
             <button class="btn btn-secondary" onclick="toggleAllLocations()">
-                <i class="fas fa-expand-arrows-alt"></i> Expand All
+                <i class="fas fa-expand-arrows-alt"></i> <?php echo function_exists('wh_t') ? wh_t('Expand All') : 'Expand All'; ?>
             </button>
             <button class="btn btn-primary" onclick="openLocationModal()">
-                <i class="fas fa-plus"></i> Add Location
+                <i class="fas fa-plus"></i> <?php echo function_exists('wh_t') ? wh_t('Add Location') : 'Add Location'; ?>
             </button>
         </div>
     </div>

@@ -77,13 +77,13 @@ function render_category_tree($categories, $level = 0) {
 
 <div class="warehouse-content">
     <div class="page-header">
-        <h2>Categories Management</h2>
+        <h2><?php echo function_exists('wh_t') ? wh_t('Categories Management') : 'Categories Management'; ?></h2>
         <div class="header-actions">
             <button class="btn btn-secondary" onclick="toggleAllCategories()">
-                <i class="fas fa-expand-arrows-alt"></i> Expand All
+                <i class="fas fa-expand-arrows-alt"></i> <?php echo function_exists('wh_t') ? wh_t('Expand All') : 'Expand All'; ?>
             </button>
             <button class="btn btn-primary" onclick="openCategoryModal()">
-                <i class="fas fa-plus"></i> Add Category
+                <i class="fas fa-plus"></i> <?php echo function_exists('wh_t') ? wh_t('Add Category') : 'Add Category'; ?>
             </button>
         </div>
     </div>

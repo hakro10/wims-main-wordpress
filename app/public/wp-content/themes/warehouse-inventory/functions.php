@@ -50,6 +50,31 @@ function warehouse_inventory_scripts() {
 }
 add_action('wp_enqueue_scripts', 'warehouse_inventory_scripts');
 
+// Lightweight i18n helper (Lithuanian support without .mo files)
+function wh_t(string $text): string {
+    $locale = function_exists('get_locale') ? get_locale() : 'en_US';
+    static $lt = array(
+        'Dashboard' => 'Skydelis',
+        'Inventory' => 'Atsargos',
+        'Categories' => 'Kategorijos',
+        'Locations' => 'Vietos',
+        'Sales' => 'Pardavimai',
+        'Tasks' => 'Užduotys',
+        'Team' => 'Komanda',
+        'QR Codes' => 'QR kodai',
+        'Categories Management' => 'Kategorijų valdymas',
+        'Locations Management' => 'Vietų valdymas',
+        'Expand All' => 'Išplėsti viską',
+        'Collapse All' => 'Sutraukti viską',
+        'Add Category' => 'Pridėti kategoriją',
+        'Add Location' => 'Pridėti vietą',
+    );
+    if (strpos($locale, 'lt') === 0) {
+        if (isset($lt[$text])) return $lt[$text];
+    }
+    return $text;
+}
+
 // Keep footer version in sync on frontend as well
 add_action('init', function(){
     if (defined('WH_INVENTORY_VERSION')) {
