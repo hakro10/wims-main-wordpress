@@ -27,12 +27,13 @@
 
 <header class="warehouse-header">
     <div class="container">
-        <div class="header-content" style="display:flex;align-items:center;justify-content:space-between">
-            <div class="user-menu-left" style="visibility:hidden">
-                <!-- spacer to help center logo block -->
-                <span style="display:inline-block;width:160px"></span>
+        <div class="header-content" style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;">
+            <!-- Left: App title -->
+            <div class="app-title" style="display:flex;align-items:center;gap:10px;justify-content:flex-start;">
+                <span class="warehouse-title">Warehouse Management System</span>
             </div>
 
+            <!-- Center: Company logo (upload/custom/fallback) -->
             <div class="logo" style="display:flex;align-items:center;gap:10px;justify-content:center;text-align:center;">
                 <?php 
                   $custom = function_exists('the_custom_logo') && has_custom_logo();
@@ -44,10 +45,10 @@
                     <span style="font-size:16px;letter-spacing:.5px">LOGO</span>
                 </div>
                 <?php } ?>
-                <span>Warehouse Management System</span>
             </div>
 
-            <div class="user-menu">
+            <!-- Right: User/menu controls -->
+            <div class="user-menu" style="justify-self:end;">
                 <span id="theme-toggle-slot" aria-hidden="true"></span>
                 <div id="language-switcher" class="lang-switcher" style="position:relative;margin-left:8px;">
                   <button class="btn btn-secondary" id="lang-toggle" aria-haspopup="true" aria-expanded="false">
