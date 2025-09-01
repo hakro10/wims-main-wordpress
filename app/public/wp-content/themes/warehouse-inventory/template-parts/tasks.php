@@ -285,7 +285,7 @@ if ($tasks) {
 /* Main Layout Styles */
 .tasks-main-container {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(260px, 28vw);
+    grid-template-columns: minmax(0, 1fr) clamp(240px, 22vw, 340px);
     height: calc(100vh - 120px);
     background: #f8fafc;
     gap: 1rem;
@@ -328,10 +328,27 @@ if ($tasks) {
 
 .kanban-board {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
     gap: 1rem;
     height: 100%;
     min-width: 0; /* allow grid to shrink within container */
+}
+
+/* Ensure 3 readable columns on common laptops (13–17") */
+@media (min-width: 1024px) {
+    .kanban-board { grid-template-columns: repeat(3, minmax(240px, 1fr)); }
+}
+@media (min-width: 1120px) {
+    .kanban-board { grid-template-columns: repeat(3, minmax(260px, 1fr)); }
+}
+@media (min-width: 1280px) {
+    .kanban-board { grid-template-columns: repeat(3, minmax(280px, 1fr)); }
+}
+
+/* Mobile stacking */
+@media (max-width: 720px) {
+    .tasks-main-container { grid-template-columns: 1fr; }
+    .sidebar-section { order: 2; height: 320px; }
 }
 
 .kanban-column {
