@@ -50,6 +50,16 @@ function warehouse_inventory_scripts() {
 }
 add_action('wp_enqueue_scripts', 'warehouse_inventory_scripts');
 
+// Keep footer version in sync on frontend as well
+add_action('init', function(){
+    if (defined('WH_INVENTORY_VERSION')) {
+        $stored = get_option('wh_inventory_version');
+        if ($stored !== WH_INVENTORY_VERSION) {
+            update_option('wh_inventory_version', WH_INVENTORY_VERSION);
+        }
+    }
+});
+
 // Remove custom database tables creation from theme activation
 function warehouse_inventory_remove_create_tables() {
     remove_action('after_switch_theme', 'warehouse_inventory_create_tables');

@@ -64,6 +64,15 @@ function render_location_tree($locations, $level = 0) {
                             <span class="item-count"><?php echo $location->item_count; ?> items</span>
                         <?php endif; ?>
                     </div>
+                    <?php 
+                        if (function_exists('get_location_path')) {
+                            $path_nodes = get_location_path($location->id);
+                            if (!empty($path_nodes)) {
+                                $path_names = array_map(function($n){ return esc_html($n->name); }, $path_nodes);
+                                echo '<div class="location-description" style="margin-top:2px">' . implode(' / ', $path_names) . '</div>';
+                            }
+                        }
+                    ?>
                     <?php if (!empty($location->description)): ?>
                         <div class="location-description"><?php echo esc_html($location->description); ?></div>
                     <?php endif; ?>

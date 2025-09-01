@@ -33,7 +33,19 @@ function render_category_tree($categories, $level = 0) {
                     <div class="category-header">
                         <h4 class="category-name-clickable" onclick="showCategoryItems(<?php echo $category->id; ?>, '<?php echo esc_js($category->name); ?>')" style="cursor: pointer; color: #3b82f6; text-decoration: underline;"><?php echo esc_html($category->name); ?></h4>
                         <span class="category-count category-count-clickable" onclick="showCategoryItems(<?php echo $category->id; ?>, '<?php echo esc_js($category->name); ?>')" style="cursor: pointer; color: #059669; text-decoration: underline;"><?php echo intval($category->item_count ?? 0); ?> items</span>
+                        <?php $child_count = !empty($category->children) ? count($category->children) : 0; if ($child_count > 0): ?>
+                            <span class="badge badge-info" style="margin-left:8px"><?php echo $child_count; ?> subs</span>
+                        <?php endif; ?>
                     </div>
+                    <?php 
+                        if (function_exists('get_category_path')) {
+                            $path_nodes = get_category_path($category->id);
+                            if (!empty($path_nodes)) {
+                                $path_names = array_map(function($n){ return esc_html($n->name); }, $path_nodes);
+                                echo '<div class="category-details" style="margin-top:2px">' . implode(' / ', $path_names) . '</div>';
+                            }
+                        }
+                    ?>
                     <?php if (!empty($category->description)): ?>
                         <p class="category-description"><?php echo esc_html($category->description); ?></p>
                     <?php endif; ?>
