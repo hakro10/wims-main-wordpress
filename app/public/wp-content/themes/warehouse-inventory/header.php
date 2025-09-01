@@ -34,7 +34,12 @@
             </div>
 
             <div class="logo" style="display:flex;align-items:center;gap:10px;justify-content:center;text-align:center;">
-                <?php if (function_exists('the_custom_logo') && has_custom_logo()) { the_custom_logo(); } else { ?>
+                <?php 
+                  $custom = function_exists('the_custom_logo') && has_custom_logo();
+                  $opt_logo = get_option('wh_company_logo_url');
+                  if ($opt_logo) {
+                    echo '<img src="'.esc_url($opt_logo).'" alt="Company Logo" class="custom-logo" />';
+                  } elseif ($custom) { the_custom_logo(); } else { ?>
                 <div class="company-logo" id="company-logo" style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#64748b,#334155);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;overflow:hidden">
                     <span style="font-size:16px;letter-spacing:.5px">LOGO</span>
                 </div>
@@ -58,6 +63,9 @@
                     <span class="user-greeting">
                         Welcome, <?php echo esc_html($current_user->display_name); ?>
                     </span>
+                    <?php if (current_user_can('manage_options')): ?>
+                    <button id="open-logo-modal" class="btn btn-secondary" style="margin-left:8px"><i class="fas fa-image"></i> Logo</button>
+                    <?php endif; ?>
                     <div class="online-status">
                         <span class="status-indicator online" title="Online"></span>
                     </div>
@@ -105,3 +113,51 @@
   }catch(e){}
 })();
 </script>
+
+<!-- Logo Upload Modal -->
+<div id="logo-modal" class="modal-overlay" style="display:none;">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-header"><h3 class="modal-title">Update Company Logo</h3><button class="modal-close" onclick="document.getElementById('logo-modal').style.display='none'">&times;</button></div>
+    <div class="modal-body">
+      <input type="file" id="logo-file" accept="image/*" />
+      <p class="form-hint" style="margin-top:8px">Recommended: transparent PNG/SVG, height ~36px.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="document.getElementById('logo-modal').style.display='none'">Cancel</button>
+      <button class="btn btn-danger" id="delete-logo-btn">Remove</button>
+      <button class="btn btn-primary" id="upload-logo-btn">Save</button>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var openBtn = document.getElementById('open-logo-modal');
+    var modal = document.getElementById('logo-modal');
+    if(openBtn && modal){ openBtn.addEventListener('click', function(){ modal.style.display='block'; }); }
+    var up = document.getElementById('upload-logo-btn');
+    var del = document.getElementById('delete-logo-btn');
+    function ajax(action, body){
+      return fetch(warehouse_ajax.ajax_url, { method:'POST', body: body }).then(r=>r.json());
+    }
+    if(up){ up.addEventListener('click', function(){
+      var f = document.getElementById('logo-file').files[0];
+      if(!f){ alert('Choose a file'); return; }
+      var fd = new FormData();
+      fd.append('action','wh_upload_logo');
+      fd.append('nonce', warehouse_ajax.nonce);
+      fd.append('file', f);
+      ajax('wh_upload_logo', fd).then(function(res){
+        if(res && res.success){ location.reload(); } else { alert(res && res.data ? res.data : 'Upload failed'); }
+      }).catch(function(){ alert('Upload failed'); });
+    }); }
+    if(del){ del.addEventListener('click', function(){
+      if(!confirm('Remove company logo?')) return;
+      var fd = new FormData();
+      fd.append('action','wh_delete_logo');
+      fd.append('nonce', warehouse_ajax.nonce);
+      ajax('wh_delete_logo', fd).then(function(res){
+        if(res && res.success){ location.reload(); } else { alert('Delete failed'); }
+      }).catch(function(){ alert('Delete failed'); });
+    }); }
+  })();
+  </script>
+</div>

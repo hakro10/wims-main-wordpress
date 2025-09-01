@@ -475,6 +475,9 @@ class WarehouseInventoryManager {
         foreach ($handlers as $handler) {
             add_action('wp_ajax_' . $handler, array($this, 'handle_' . $handler));
         }
+        // Custom handlers not in the list above
+        add_action('wp_ajax_wh_upload_logo', array($this, 'handle_wh_upload_logo'));
+        add_action('wp_ajax_wh_delete_logo', array($this, 'handle_wh_delete_logo'));
         // Whitelist read-only endpoints for unauthenticated users (if needed)
         $public_read = array('get_inventory_items', 'get_dashboard_stats');
         foreach ($public_read as $handler) {
@@ -578,6 +581,29 @@ class WarehouseInventoryManager {
         } else {
             return $stats;
         }
+    }
+
+    // Upload company logo
+    public function handle_wh_upload_logo() {
+        check_ajax_referer('warehouse_nonce', 'nonce');
+        if (!current_user_can('manage_options')) { wp_send_json_error('Forbidden', 403); }
+        if (empty($_FILES['file'])) { wp_send_json_error('No file'); }
+        require_once(ABSPATH . 'wp-admin/includes/file.php');
+        require_once(ABSPATH . 'wp-admin/includes/image.php');
+        $overrides = array('test_form' => false);
+        $move = wp_handle_upload($_FILES['file'], $overrides);
+        if (isset($move['error'])) { wp_send_json_error($move['error']); }
+        $url = esc_url_raw($move['url']);
+        update_option('wh_company_logo_url', $url);
+        wp_send_json_success(array('url' => $url));
+    }
+
+    // Delete company logo
+    public function handle_wh_delete_logo() {
+        check_ajax_referer('warehouse_nonce', 'nonce');
+        if (!current_user_can('manage_options')) { wp_send_json_error('Forbidden', 403); }
+        delete_option('wh_company_logo_url');
+        wp_send_json_success('Deleted');
     }
     
     public function handle_get_inventory_items() {
