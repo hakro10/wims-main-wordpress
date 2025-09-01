@@ -119,7 +119,11 @@
   <div class="modal" style="max-width:480px">
     <div class="modal-header"><h3 class="modal-title">Update Company Logo</h3><button class="modal-close" onclick="document.getElementById('logo-modal').style.display='none'">&times;</button></div>
     <div class="modal-body">
-      <input type="file" id="logo-file" accept="image/*" />
+      <div id="logo-dropzone" class="logo-dropzone" style="border:2px dashed #e5e7eb;border-radius:10px;padding:20px;text-align:center;cursor:pointer">
+        <div id="logo-preview-wrap" style="display:none;margin-bottom:10px"><img id="logo-preview" alt="Preview" style="max-height:80px;max-width:100%;border-radius:8px"/></div>
+        <div id="logo-droptext">Drop image here or click to browse</div>
+      </div>
+      <input type="file" id="logo-file" accept="image/*" style="display:none" />
       <p class="form-hint" style="margin-top:8px">Recommended: transparent PNG/SVG, height ~36px.</p>
     </div>
     <div class="modal-footer">
@@ -135,6 +139,23 @@
     if(openBtn && modal){ openBtn.addEventListener('click', function(){ modal.style.display='block'; }); }
     var up = document.getElementById('upload-logo-btn');
     var del = document.getElementById('delete-logo-btn');
+    var dz = document.getElementById('logo-dropzone');
+    var input = document.getElementById('logo-file');
+    var pv = document.getElementById('logo-preview');
+    var pvwrap = document.getElementById('logo-preview-wrap');
+    if(dz && input){
+      ['click'].forEach(function(ev){ dz.addEventListener(ev, function(){ input.click(); }); });
+      function handleFiles(files){
+        if(!files || !files[0]) return;
+        var f = files[0];
+        var reader = new FileReader();
+        reader.onload = function(e){ pv.src = e.target.result; pvwrap.style.display='block'; };
+        reader.readAsDataURL(f);
+      }
+      input.addEventListener('change', function(){ handleFiles(this.files); });
+      ;['dragover','dragenter'].forEach(function(ev){ dz.addEventListener(ev,function(e){ e.preventDefault(); dz.style.borderColor='#60a5fa'; }); });
+      ;['dragleave','drop'].forEach(function(ev){ dz.addEventListener(ev,function(e){ e.preventDefault(); dz.style.borderColor=''; if(ev==='drop'){ handleFiles(e.dataTransfer.files); } }); });
+    }
     function ajax(action, body){
       return fetch(warehouse_ajax.ajax_url, { method:'POST', body: body }).then(r=>r.json());
     }

@@ -171,6 +171,8 @@
 
 /* Modal surface for dark */
 [data-theme="dark"] .modal{ background:#0f172a; border:1px solid #1f2937; }
+[data-theme="dark"] .logo-dropzone{ border-color:#1f2937 !important; background:#0b1220 !important; }
+[data-theme="dark"] .logo-dropzone:hover{ border-color:#334155 !important; }
 [data-theme="dark"] .modal-title{ color:#e5e7eb; }
 [data-theme="dark"] .modal-close{ color:#94a3b8; }
 [data-theme="dark"] .form-label{ color:#cbd5e1; }
