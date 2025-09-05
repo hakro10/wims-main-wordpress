@@ -334,3 +334,26 @@
 
 /* Match locations toggle hover */
 [data-theme="dark"] .category-toggle:hover{ background:#111827 !important; color:#e5e7eb !important; }
+[data-theme="dark"] .settings-menu{
+  background:#0f172a !important;
+  border-color:#1f2937 !important;
+  box-shadow:0 12px 24px rgba(0,0,0,0.35) !important;
+}
+[data-theme="dark"] .settings-menu .menu-row{
+  background:transparent;
+  border-color:#1f2937 !important;
+  color:#e5e7eb !important;
+}
+[data-theme="dark"] .settings-menu strong{ color:#cbd5e1; }
+[data-theme="dark"] .settings-menu i{ color:#94a3b8; }
+[data-theme="dark"] .settings-menu .lang-choice{
+  background:#0b1220;
+  color:#e5e7eb;
+  border:1px solid #334155;
+  padding:4px 8px;
+  border-radius:6px;
+}
+[data-theme="dark"] .settings-menu .menu-row:hover{
+  background:#0b1220;
+  border-color:#334155;
+}
