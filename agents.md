@@ -280,6 +280,16 @@ define('FORCE_SSL_ADMIN', true);
 - Header: enabled WordPress Custom Logo and centered header title/logo.
 - Versioning: bumped to 1.3.5 (feature + subsequent fixes on language + logo).
 
+### 2025‑10‑11
+- Security hardening (plugin):
+  - Added baseline security headers via `send_headers` hook: `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, and a conservative CSP placeholder.
+  - Implemented transient-based rate limiting helper and applied to public-readable `get_inventory_items` (120 req/min/IP) to mitigate scraping/abuse.
+  - Hardened logo upload: enforced 2MB max size, strict MIME allowlist (jpeg/png/gif/webp), and mimes override in `wp_handle_upload`.
+  - Reduced data exposure in inventory query by selecting a safe column subset; unauthenticated responses remain redacted.
+  - Verified nonce and capability checks across AJAX handlers; search uses `$wpdb->esc_like` and prepared statements.
+  - Note: CSP currently broad to avoid breaking inline assets; will iterate to nonce-based CSP in a future pass.
+
+
 ## API Endpoints
 
 ### AJAX Handlers

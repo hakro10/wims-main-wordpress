@@ -45,6 +45,8 @@ class WarehouseInventoryManager {
         // Enqueue scripts and styles
         add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
         add_action('wp_enqueue_scripts', array($this, 'frontend_scripts'));
+        // Add basic security headers for all requests
+        add_action('send_headers', array($this, 'add_security_headers'));
         
         // AJAX handlers
         $this->setup_ajax_handlers();
@@ -55,6 +57,17 @@ class WarehouseInventoryManager {
         // Add shortcodes
         add_shortcode('warehouse_dashboard', array($this, 'dashboard_shortcode'));
         add_shortcode('warehouse_inventory', array($this, 'inventory_shortcode'));
+    }
+
+    /** Add common security headers (can be tightened later). */
+    public function add_security_headers() {
+        if (headers_sent()) return;
+        @header('X-Frame-Options: SAMEORIGIN');
+        @header('X-Content-Type-Options: nosniff');
+        @header('Referrer-Policy: no-referrer-when-downgrade');
+        @header('Permissions-Policy: camera=(), microphone=(), geolocation=()');
+        // CSP is kept broad to avoid breaking existing inline scripts; iterate later.
+        @header("Content-Security-Policy: default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; img-src 'self' data: blob: https:;");
     }
     
     public function activate() {
@@ -691,14 +704,50 @@ class WarehouseInventoryManager {
         check_ajax_referer('warehouse_nonce', 'nonce');
         if (!current_user_can('manage_options')) { wp_send_json_error('Forbidden', 403); }
         if (empty($_FILES['file'])) { wp_send_json_error('No file'); }
+        // File size/type validation
+        $max_size = 2 * 1024 * 1024; // 2MB
+        if (!empty($_FILES['file']['size']) && $_FILES['file']['size'] > $max_size) {
+            wp_send_json_error('File too large (max 2MB)');
+        }
+        $allowed_mimes = array(
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'png' => 'image/png',
+            'gif' => 'image/gif',
+            'webp' => 'image/webp',
+        );
+        $tmp = $_FILES['file']['tmp_name'];
+        if (!file_exists($tmp)) { wp_send_json_error('Upload failed'); }
+        $mime = function_exists('mime_content_type') ? mime_content_type($tmp) : $_FILES['file']['type'];
+        if (!in_array($mime, array_values($allowed_mimes), true)) {
+            wp_send_json_error('Invalid file type');
+        }
         require_once(ABSPATH . 'wp-admin/includes/file.php');
         require_once(ABSPATH . 'wp-admin/includes/image.php');
-        $overrides = array('test_form' => false);
+        $overrides = array('test_form' => false, 'mimes' => $allowed_mimes);
         $move = wp_handle_upload($_FILES['file'], $overrides);
         if (isset($move['error'])) { wp_send_json_error($move['error']); }
         $url = esc_url_raw($move['url']);
         update_option('wh_company_logo_url', $url);
         wp_send_json_success(array('url' => $url));
+    }
+
+    /** Simple rate limiter (per-IP per action). */
+    private function ratelimit_or_die($action, $limit = 60, $window = 60) {
+        $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0';
+        $key = 'wh_rl_' . md5($action . '|' . $ip);
+        $entry = get_transient($key);
+        $now = time();
+        if (!$entry || !is_array($entry) || empty($entry['start']) || ($now - intval($entry['start'])) >= $window) {
+            set_transient($key, array('count' => 1, 'start' => $now), $window);
+            return;
+        }
+        $count = intval($entry['count']);
+        if ($count >= $limit) {
+            wp_send_json_error('Rate limit exceeded', 429);
+        }
+        $entry['count'] = $count + 1;
+        set_transient($key, $entry, max(1, $window - ($now - intval($entry['start']))));
     }
 
     // Delete company logo
@@ -711,6 +760,8 @@ class WarehouseInventoryManager {
     
     public function handle_get_inventory_items() {
         check_ajax_referer('warehouse_nonce', 'nonce');
+        // Public-readable; apply moderate rate limit
+        $this->ratelimit_or_die('get_inventory_items', 120, 60);
         
         global $wpdb;
         
@@ -723,7 +774,8 @@ class WarehouseInventoryManager {
         
         $offset = ($page - 1) * $per_page;
         
-        $sql = "SELECT i.*, c.name as category_name, l.name as location_name
+        $sql = "SELECT i.id, i.name, i.internal_id, i.sku, i.barcode, i.serial_number, i.category_id, i.location_id, i.quantity, i.stock_status, i.status, i.updated_at,
+                       c.name as category_name, l.name as location_name
                 FROM {$wpdb->prefix}wh_inventory_items i
                 LEFT JOIN {$wpdb->prefix}wh_categories c ON i.category_id = c.id
                 LEFT JOIN {$wpdb->prefix}wh_locations l ON i.location_id = l.id
