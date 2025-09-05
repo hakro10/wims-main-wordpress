@@ -237,6 +237,49 @@ define('FORCE_SSL_ADMIN', true);
 - Forms (modals): standardized `.modal` containers, removed inline separators, normalized field layout; scoped top‑level layout via `.modal-form` to preserve two‑column rows; inputs/selects/textarea full‑width with correct colors in light+dark.
  - Modal layout fixes: ensured buttons align inside modal, hid stray side labels, normalized number input spinners, and prevented select truncation; added fallback `.btn` styles. Implemented in plugin `assets/css/{frontend.css,admin.css}`.
 
+### 2025‑10‑07
+- Security quick wins (plugin):
+  - Removed exposed backup `warehouse-inventory-manager.php.bak`.
+  - Escaped LIKE terms with `$wpdb->esc_like(...)` in `handle_get_inventory_items`.
+  - Redacted sensitive fields on unauthenticated inventory responses; still full data for authenticated users.
+  - Removed raw `print_r($_POST, ...)` debug logging and noisy SQL/user logs from team handlers.
+- Tasks UI/UX:
+  - Implemented Asana‑like columns with colored sticky headers and transparent panels.
+  - Layout refactor: grid board + clamped sidebar; fixed column overflow; no overlap on common laptop sizes.
+  - Forced 3 kanban columns always visible (Pending, In Progress, Completed) across widths.
+  - Auto‑fit `.tasks-main-container` height to the viewport on load/resize so chat input remains visible without page scroll.
+- Dark mode:
+  - Add Task modal fully themed for dark (modal/container/inputs/selects/textarea) + increased contrast for labels, borders, placeholders, and focus ring.
+- Docs: updated `agents.md` with latest changes.
+
+### 2025‑10‑08
+- Categories & Locations hierarchy:
+  - Converted categories and locations pages to nested hierarchical trees with expand/collapse.
+  - Added inline “Add subcategory/sublocation” actions and ensured parent_id prefill on modals.
+  - Kept unlimited depth; recursive render with indentation guides.
+  - Themed both sections for dark mode (rows, toggles, badges, modals, indent guides).
+- QR Codes (dark): themed scanner/generator panels, cards, print modal.
+- Versioning: bumped to 1.1.2 after QR dark fixes.
+
+### 2025‑10‑09
+- Tasks UI: viewport-fit height, forced 3 columns visible; responsive refinements.
+- Team (dark): fixed table, badges, modals, and inputs.
+- Categories vs Locations parity:
+  - Removed inline link colors in categories; aligned typography and spacing with locations.
+  - Implemented breadcrumb path and sub-count chips.
+  - Switched categories dropdown to locations’ model using `.expanded` class and max-height animation; unified toggle icon rotation.
+  - Added scroll clamp for `.categories-tree` to match locations.
+- Versioning: bumped to 1.1.3 for parity pass; bumped to 1.1.4 after JS/CSS parity fix.
+
+### 2025‑10‑10
+- Internationalization:
+  - Added lightweight i18n helper `wh_t()` with Lithuanian strings.
+  - Language switcher dropdown beside theme toggle (persists via cookie/localStorage; reloads page).
+  - Wired nav/section labels/buttons; more strings can be added incrementally.
+- UI: header company logo placeholder (simple gradient box labeled LOGO; ready to swap for uploaded image later).
+- Header: enabled WordPress Custom Logo and centered header title/logo.
+- Versioning: bumped to 1.3.5 (feature + subsequent fixes on language + logo).
+
 ## API Endpoints
 
 ### AJAX Handlers

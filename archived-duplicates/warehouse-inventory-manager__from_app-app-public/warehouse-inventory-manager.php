@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Warehouse Inventory Manager
  * Description: Complete warehouse inventory management system with items, categories, locations, and QR codes
- * Version: 1.0.0
+ * Version: 1.3.6
  * Author: Your Name
  * Text Domain: warehouse-inventory-manager
  */
@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin constants
-define('WH_INVENTORY_VERSION', '1.1.0');
+define('WH_INVENTORY_VERSION', '1.3.6');
 define('WH_INVENTORY_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WH_INVENTORY_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('WH_INVENTORY_DB_VERSION', '1.0');
