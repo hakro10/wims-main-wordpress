@@ -49,14 +49,45 @@
 
             <!-- Right: User/menu controls -->
             <div class="user-menu" style="justify-self:end;">
-                <span id="theme-toggle-slot" aria-hidden="true"></span>
-                <div id="language-switcher" class="lang-switcher" style="position:relative;margin-left:8px;">
-                  <button class="btn btn-secondary" id="lang-toggle" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-globe"></i> <span id="lang-label">EN</span>
+                <!-- Unified Settings dropdown -->
+                <div class="settings-wrap" style="position:relative">
+                  <button id="settings-toggle" class="btn btn-secondary" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-gear"></i> <span>Settings</span>
                   </button>
-                  <div id="lang-menu" class="lang-menu" style="position:absolute;right:0;top:110%;display:none;background:var(--menu-bg,#fff);border:1px solid #e5e7eb;border-radius:8px;min-width:160px;z-index:1000;overflow:hidden;">
-                    <button class="lang-item" data-lang="en_US" style="display:block;width:100%;text-align:left;padding:8px 12px;background:none;border:0;cursor:pointer">English</button>
-                    <button class="lang-item" data-lang="lt_LT" style="display:block;width:100%;text-align:left;padding:8px 12px;background:none;border:0;cursor:pointer">Lietuvių</button>
+                  <div id="settings-menu" class="settings-menu" style="position:absolute;right:0;top:110%;display:none;background:var(--menu-bg,#fff);border:1px solid #e5e7eb;border-radius:10px;min-width:260px;z-index:1000;overflow:hidden;box-shadow:0 10px 20px rgba(0,0,0,0.08)">
+                    <!-- Animated reveal container -->
+                    <div style="padding:10px 10px 6px 10px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;gap:10px">
+                      <i class="fas fa-user-circle" style="font-size:18px;color:#64748b"></i>
+                      <strong style="font-size:14px">User</strong>
+                    </div>
+                    <div style="padding:8px 10px;display:grid;gap:6px">
+                      <button id="toggle-theme" class="menu-row" style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;background:transparent;cursor:pointer">
+                        <span style="display:flex;align-items:center;gap:8px"><i class="fas fa-moon"></i><span>Appearance</span></span>
+                        <span id="theme-state" style="font-size:12px;color:#6b7280">Light</span>
+                      </button>
+                      <div class="menu-row" style="padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;gap:8px">
+                        <span style="display:flex;align-items:center;gap:8px"><i class="fas fa-globe"></i><span>Language</span></span>
+                        <div>
+                          <button class="lang-choice" data-lang="en_US" style="margin-right:4px" aria-label="Switch to English">EN</button>
+                          <button class="lang-choice" data-lang="lt_LT" aria-label="Switch to Lithuanian">LT</button>
+                        </div>
+                      </div>
+                      <?php if (is_user_logged_in()): ?>
+                      <a href="<?php echo esc_url( admin_url('profile.php') ); ?>" class="menu-row" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;text-decoration:none"><i class="fas fa-id-badge"></i><span>Profile</span></a>
+                      <a href="<?php echo esc_url( wp_logout_url(home_url()) ); ?>" class="menu-row" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;text-decoration:none"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+                      <?php endif; ?>
+                    </div>
+                    <?php if (current_user_can('manage_options') || current_user_can('manage_warehouse_users')): ?>
+                    <div style="padding:10px;border-top:1px solid #e5e7eb"></div>
+                    <div style="padding:10px 10px 6px 10px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;gap:10px">
+                      <i class="fas fa-shield-alt" style="font-size:18px;color:#64748b"></i>
+                      <strong style="font-size:14px">Admin</strong>
+                    </div>
+                    <div style="padding:8px 10px 12px 10px;display:grid;gap:6px">
+                      <a href="<?php echo esc_url( admin_url('options-general.php?page=wh-security') ); ?>" class="menu-row" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;text-decoration:none"><i class="fas fa-lock"></i><span>Security</span></a>
+                      <a href="<?php echo esc_url( admin_url('users.php') ); ?>" class="menu-row" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;text-decoration:none"><i class="fas fa-users-cog"></i><span>User Management</span></a>
+                    </div>
+                    <?php endif; ?>
                   </div>
                 </div>
                 <?php if (is_user_logged_in()) : ?>
@@ -74,7 +105,6 @@
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 <?php else : ?>
-                    <span id="theme-toggle-slot-guest" aria-hidden="true"></span>
                     <a href="#sign-in" class="btn btn-primary" onclick="(function(e){e.preventDefault();var t=document.getElementById('sign-in'); if(t){ t.scrollIntoView({behavior:'smooth', block:'start'}); } else { window.location.href = '<?php echo esc_js( home_url('/') ); ?>#sign-in'; }})(event)">
                         <i class="fas fa-sign-in-alt"></i> Login
                     </a>
@@ -87,30 +117,38 @@
 <script>
 (function(){
   try{
-    var storedLang = localStorage.getItem('warehouse-lang') || 'en_US';
-    var label = document.getElementById('lang-label');
-    if(label){ label.textContent = storedLang.startsWith('lt') ? 'LT' : 'EN'; }
-    var btn = document.getElementById('lang-toggle');
-    var menu = document.getElementById('lang-menu');
-    if(btn && menu){
-      btn.addEventListener('click', function(){
-        var open = menu.style.display === 'block';
-        menu.style.display = open ? 'none' : 'block';
-        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    // Settings dropdown behavior
+    var sBtn = document.getElementById('settings-toggle');
+    var sMenu = document.getElementById('settings-menu');
+    if (sBtn && sMenu) {
+      sBtn.addEventListener('click', function(){
+        var open = sMenu.style.display === 'block';
+        sMenu.style.display = open ? 'none' : 'block';
+        sBtn.setAttribute('aria-expanded', open ? 'false' : 'true');
       });
       document.addEventListener('click', function(e){
-        if(!menu.contains(e.target) && !btn.contains(e.target)) menu.style.display = 'none';
-      });
-      Array.prototype.forEach.call(menu.querySelectorAll('.lang-item'), function(item){
-        item.addEventListener('click', function(){
-          var lang = this.getAttribute('data-lang') || 'en_US';
-          try{ localStorage.setItem('warehouse-lang', lang); }catch(_){}
-          // Optionally inform backend via cookie to adjust get_locale()
-          document.cookie = 'warehouse_lang='+lang+'; path=/';
-          window.location.reload();
-        });
+        if(!sMenu.contains(e.target) && !sBtn.contains(e.target)) sMenu.style.display = 'none';
       });
     }
+    // Theme toggle in dropdown
+    var themeBtn = document.getElementById('toggle-theme');
+    var themeState = document.getElementById('theme-state');
+    function currentTheme(){ return document.documentElement.getAttribute('data-theme') || 'light'; }
+    function setTheme(t){ try{ localStorage.setItem('warehouse-theme', t); }catch(_){} document.documentElement.setAttribute('data-theme', t); if(themeState){ themeState.textContent = t==='dark' ? 'Dark' : 'Light'; } }
+    if(themeState){ themeState.textContent = currentTheme()==='dark' ? 'Dark' : 'Light'; }
+    if(themeBtn){ themeBtn.addEventListener('click', function(){ var next = currentTheme()==='dark' ? 'light' : 'dark'; setTheme(next); }); }
+    // Language selection in dropdown
+    var storedLang = localStorage.getItem('warehouse-lang') || 'en_US';
+    Array.prototype.forEach.call(document.querySelectorAll('.lang-choice'), function(btn){
+      btn.addEventListener('click', function(){
+        var lang = this.getAttribute('data-lang') || 'en_US';
+        try{ localStorage.setItem('warehouse-lang', lang); }catch(_){}
+        document.cookie = 'warehouse_lang='+lang+'; path=/';
+        window.location.reload();
+      });
+      // simple selected state styling
+      if (btn.getAttribute('data-lang') === storedLang) { btn.style.fontWeight = '700'; }
+    });
   }catch(e){}
 })();
 </script>

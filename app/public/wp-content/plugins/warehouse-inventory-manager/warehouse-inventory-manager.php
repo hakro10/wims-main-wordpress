@@ -32,8 +32,10 @@ class WarehouseInventoryManager {
         // Load text domain for translations
         load_plugin_textdomain('warehouse-inventory', false, dirname(plugin_basename(__FILE__)) . '/languages');
         
-        // Add admin menu
+        // Admin menus
         add_action('admin_menu', array($this, 'add_admin_menu'));
+        add_action('admin_menu', array($this, 'add_security_settings_page'));
+        add_action('admin_init', array($this, 'register_security_settings'));
         // Ensure stored version matches code version
         $stored_version = get_option('wh_inventory_version');
         if ($stored_version !== WH_INVENTORY_VERSION) {
@@ -516,6 +518,107 @@ class WarehouseInventoryManager {
     
     public function settings_page() {
         include WH_INVENTORY_PLUGIN_DIR . 'includes/admin/settings.php';
+    }
+
+    // Security settings page
+    public function add_security_settings_page() {
+        add_options_page(
+            'Warehouse Security',
+            'Warehouse Security',
+            'manage_options',
+            'wh-security',
+            array($this, 'render_security_settings_page')
+        );
+    }
+
+    public function register_security_settings() {
+        register_setting('wh_security', 'wh_security_force_https');
+        register_setting('wh_security', 'wh_security_disable_registration');
+
+        if (get_option('wh_security_force_https', null) === null) update_option('wh_security_force_https', '1');
+        if (get_option('wh_security_disable_registration', null) === null) update_option('wh_security_disable_registration', '1');
+
+        add_action('template_redirect', array($this, 'maybe_force_https'));
+        add_action('admin_init', array($this, 'maybe_force_https_admin'));
+        add_filter('option_users_can_register', array($this, 'maybe_disable_registration'));
+        add_action('login_init', array($this, 'block_register_action'));
+        add_filter('login_errors', array($this, 'hide_login_errors'));
+        add_filter('xmlrpc_enabled', array($this, 'disable_xmlrpc_by_default'));
+    }
+
+    public function render_security_settings_page() {
+        ?>
+        <div class="wrap">
+          <h1>Warehouse Security</h1>
+          <form method="post" action="options.php">
+            <?php settings_fields('wh_security'); ?>
+            <table class="form-table" role="presentation">
+              <tr>
+                <th scope="row">Force HTTPS globally</th>
+                <td>
+                  <label><input type="checkbox" name="wh_security_force_https" value="1" <?php checked(get_option('wh_security_force_https','1'), '1'); ?>> Redirect all HTTP requests to HTTPS</label>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Disable user registration</th>
+                <td>
+                  <label><input type="checkbox" name="wh_security_disable_registration" value="1" <?php checked(get_option('wh_security_disable_registration','1'), '1'); ?>> Only admins (or privileged roles) can create users</label>
+                </td>
+              </tr>
+            </table>
+            <?php submit_button(); ?>
+          </form>
+        </div>
+        <?php
+    }
+
+    // Enforcement
+    public function is_https() {
+        if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') return true;
+        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') return true;
+        if (isset($_SERVER['HTTP_X_FORWARDED_SSL']) && $_SERVER['HTTP_X_FORWARDED_SSL'] === 'on') return true;
+        return false;
+    }
+
+    public function maybe_force_https() {
+        if (get_option('wh_security_force_https', '1') !== '1') return;
+        if ($this->is_https()) return;
+        $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        wp_redirect($url, 301);
+        exit;
+    }
+
+    public function maybe_force_https_admin() {
+        if (get_option('wh_security_force_https', '1') !== '1') return;
+        if (is_ssl()) return;
+        if ($this->is_https()) return;
+        if (is_admin() || (isset($GLOBALS['pagenow']) && $GLOBALS['pagenow'] === 'wp-login.php')) {
+            $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            wp_redirect($url, 301);
+            exit;
+        }
+    }
+
+    public function maybe_disable_registration($value) {
+        if (get_option('wh_security_disable_registration', '1') === '1') return 0;
+        return $value;
+    }
+
+    public function block_register_action() {
+        if (get_option('wh_security_disable_registration', '1') === '1') {
+            if (isset($_GET['action']) && $_GET['action'] === 'register') {
+                wp_redirect(wp_login_url());
+                exit;
+            }
+        }
+    }
+
+    public function hide_login_errors($error) {
+        return __('Invalid credentials.', 'warehouse-inventory');
+    }
+
+    public function disable_xmlrpc_by_default($enabled) {
+        return false;
     }
     
     // Shortcodes
