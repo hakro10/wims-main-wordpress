@@ -59,17 +59,29 @@ if ($tasks) {
             <button class="btn btn-outline" onclick="toggleTeamChatPanel()">
                 <i class="fas fa-comments"></i> Team Chat
             </button>
+            <button class="btn btn-outline" id="refresh-board-btn" title="Refresh tasks" onclick="refreshTasksBoard()">
+                <i class="fas fa-sync"></i> Refresh
+            </button>
             <button class="btn btn-primary" onclick="document.getElementById('add-task-modal').classList.remove('hidden'); console.log('Button clicked!');">
                 <i class="fas fa-plus"></i> Add Task
             </button>
+            <span id="board-refreshed-at" style="margin-left:.75rem;font-size:.85rem;opacity:.8;"></span>
         </div>
     </div>
 
     <div class="tasks-main-container">
         <!-- Tasks Section -->
-        <div class="tasks-section">
+        <div class="tasks-section" id="tasks-section" data-loading="0">
+            <div class="loading-overlay hidden" id="tasks-loading-overlay" aria-hidden="true" style="position:relative;">
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);">
+                    <div style="display:flex;align-items:center;gap:.5rem;background:rgba(15,23,42,.6);color:#e5e7eb;padding:.75rem 1rem;border-radius:10px;">
+                        <i class="fas fa-sync fa-spin"></i>
+                        <span>Loading latest tasks…</span>
+                    </div>
+                </div>
+            </div>
             <!-- Kanban Board -->
-            <div class="kanban-board">
+            <div class="kanban-board" id="kanban-board">
                 <!-- Pending Column -->
                 <div class="kanban-column" data-status="pending">
                     <div class="column-header">
@@ -1031,6 +1043,12 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .sidebar-section { width: clamp(240px, 28vw, 320px); }
 }
 </style>
+<style>
+  /* Prevent stale board flicker by hiding until live refresh completes */
+  #tasks-section[data-loading="1"] #kanban-board { visibility: hidden; }
+  #tasks-section[data-loading="1"] #tasks-loading-overlay { display: block; }
+  #tasks-loading-overlay.hidden { display: none; }
+</style>
 
 <script>
 // Drag and Drop Functions
@@ -1079,6 +1097,8 @@ function drop(ev) {
                 moveTaskToHistory(taskId);
             }, 3000);
         }
+        // Also refresh from server to reflect any concurrent changes
+        setTimeout(() => refreshTasksBoard(true), 200);
     });
 }
 
@@ -1173,6 +1193,91 @@ function updateTaskCounts() {
             emptyState.style.display = count > 0 ? 'none' : 'flex';
         }
     });
+}
+
+function taskCardHtml(t) {
+    const created = t.created_at ? new Date(t.created_at) : new Date();
+    const createdStr = created.toLocaleString(undefined, { month: 'short', day: 'numeric' });
+    const due = t.due_date ? new Date(t.due_date) : null;
+    const dueStr = due ? due.toLocaleString(undefined, { month: 'short', day: 'numeric' }) : '';
+    const overdue = due ? (due.getTime() < Date.now()) : false;
+    const priority = (t.priority || 'medium').toLowerCase();
+    const safeTitle = t.title ? String(t.title).replace(/</g, '&lt;') : 'Task';
+    return `
+    <div class="task-card" draggable="true" ondragstart="drag(event)" data-task-id="${t.id}" data-status="${t.status}">
+      <div class="task-priority priority-${priority}"></div>
+      <div class="task-content">
+        <div class="task-header">
+          <h4>${safeTitle}</h4>
+          <div class="task-actions">
+            <button onclick="editTask(${t.id})" class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+            <button onclick="deleteTask(${t.id})" class="btn-icon" title="Delete"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="task-meta">
+          <span class="assignee"><i class="fas fa-user"></i> ${t.assigned_to_name || ''}</span>
+          ${dueStr ? `<span class="due-date ${overdue ? 'overdue' : ''}"><i class="fas fa-calendar"></i> ${dueStr} ${overdue ? '<i class=\"fas fa-exclamation-triangle\" title=\"Overdue\"></i>' : ''}</span>` : ''}
+        </div>
+        <div class="task-footer">
+          <span class="task-id">#${t.id}</span>
+          <span class="task-created">${createdStr}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function refreshTasksBoard(silent = false) {
+    const btn = document.getElementById('refresh-board-btn');
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-sync fa-spin"></i> Refreshing'; }
+
+    const fd = new FormData();
+    fd.append('action', 'get_tasks');
+    fd.append('nonce', warehouse_ajax.nonce);
+
+    return fetch(warehouse_ajax.ajax_url, { method: 'POST', body: fd })
+      .then(r => r.json())
+      .then(data => {
+        if (!data.success) { throw new Error(data.data || 'Failed to load tasks'); }
+        const buckets = data.data || {};
+        const columns = {
+          pending: document.querySelector('.kanban-column[data-status="pending"] .column-content'),
+          in_progress: document.querySelector('.kanban-column[data-status="in_progress"] .column-content'),
+          completed: document.querySelector('.kanban-column[data-status="completed"] .column-content'),
+        };
+
+        // Clear existing cards but keep the empty state element
+        Object.keys(columns).forEach(k => {
+          const el = columns[k];
+          if (!el) return;
+          [...el.querySelectorAll('.task-card')].forEach(node => node.remove());
+        });
+
+        // Render tasks
+        ['pending','in_progress','completed'].forEach(status => {
+          const el = columns[status];
+          const list = Array.isArray(buckets[status]) ? buckets[status] : [];
+          list.forEach(t => {
+            t.status = status; // ensure data-status matches column for DnD
+            el.insertAdjacentHTML('beforeend', taskCardHtml(t));
+          });
+        });
+
+        updateTaskCounts();
+        if (!silent) { showNotification('Board refreshed', 'success'); }
+        // Update last refreshed label
+        const ts = new Date();
+        const label = document.getElementById('board-refreshed-at');
+        if (label) {
+          label.textContent = `Updated ${ts.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}`;
+        }
+      })
+      .catch(err => {
+        console.error('Refresh failed:', err);
+        showNotification('Failed to refresh board', 'error');
+      })
+      .finally(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-sync"></i> Refresh'; }
+      });
 }
 
 function showHistoryPanel() {
@@ -1544,6 +1649,8 @@ window.submitAddTask = function() {
                         }
                     }
                 } catch(e) { console.warn('Could not inject new task:', e); }
+                // Ensure board reflects DB state
+                setTimeout(refreshTasksBoard, 200);
             } else {
                 showNotification(data.data?.message || 'Failed to add task', 'error');
             }
@@ -1592,6 +1699,8 @@ function deleteTask(taskId) {
                     taskCard.remove();
                     updateTaskCounts();
                     showNotification('Task deleted successfully', 'success');
+                    // Keep list in sync with server
+                    setTimeout(refreshTasksBoard, 200);
                 }, 300);
             }
         } else {
@@ -1852,11 +1961,25 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-    
+
     updateTaskCounts();
     
     // Initialize sidebar with chat as default
     showChatPanel();
+
+    // Pull latest tasks from server to avoid any cached HTML; hide board while loading
+    const section = document.getElementById('tasks-section');
+    const overlay = document.getElementById('tasks-loading-overlay');
+    if (section && overlay) {
+        section.setAttribute('data-loading', '1');
+        overlay.classList.remove('hidden');
+        refreshTasksBoard(true).finally(() => {
+            section.setAttribute('data-loading', '0');
+            overlay.classList.add('hidden');
+        });
+    } else {
+        refreshTasksBoard(true);
+    }
     
     // Add Enter key listener for chat input
     const chatInput = document.getElementById('chat-message-input');

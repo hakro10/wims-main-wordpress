@@ -38,14 +38,23 @@ add_action('after_setup_theme', 'warehouse_inventory_setup');
 
 // Enqueue styles and scripts
 function warehouse_inventory_scripts() {
+    // Use file modification times for cache-busting in dev/prod
+    $tpl_dir = get_template_directory();
+    $tpl_uri = get_template_directory_uri();
+    $ver_css_main = @filemtime($tpl_dir . '/style.css') ?: '2.0.0';
+    $ver_assets   = @filemtime($tpl_dir . '/assets/css/style.css') ?: '2.6.0';
+    $ver_dark     = @filemtime($tpl_dir . '/assets/css/dark-override.css') ?: '1.0.0';
+    $ver_js_main  = @filemtime($tpl_dir . '/assets/js/warehouse.js') ?: '1.0.0';
+    $ver_toggle   = @filemtime($tpl_dir . '/assets/js/theme-toggle.js') ?: '1.0.0';
+
     // Enqueue main theme styles (higher priority to override plugin styles)
-    wp_enqueue_style('warehouse-inventory-style', get_stylesheet_uri(), array(), '2.0.0');
-    wp_enqueue_style('warehouse-inventory-assets', get_template_directory_uri() . '/assets/css/style.css', array(), '2.6.0');
+    wp_enqueue_style('warehouse-inventory-style', get_stylesheet_uri(), array(), $ver_css_main);
+    wp_enqueue_style('warehouse-inventory-assets', $tpl_uri . '/assets/css/style.css', array(), $ver_assets);
     // Dark theme overrides (loads last to ensure it wins specificity)
-    wp_enqueue_style('warehouse-inventory-dark', get_template_directory_uri() . '/assets/css/dark-override.css', array('warehouse-inventory-assets'), '1.0.0');
-    wp_enqueue_script('warehouse-inventory-script', get_template_directory_uri() . '/assets/js/warehouse.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_style('warehouse-inventory-dark', $tpl_uri . '/assets/css/dark-override.css', array('warehouse-inventory-assets'), $ver_dark);
+    wp_enqueue_script('warehouse-inventory-script', $tpl_uri . '/assets/js/warehouse.js', array('jquery'), $ver_js_main, true);
     // Theme toggle (adds floating toggle button and persists preference)
-    wp_enqueue_script('warehouse-theme-toggle', get_template_directory_uri() . '/assets/js/theme-toggle.js', array(), '1.0.0', true);
+    wp_enqueue_script('warehouse-theme-toggle', $tpl_uri . '/assets/js/theme-toggle.js', array(), $ver_toggle, true);
     
     // Localize script for AJAX
     wp_localize_script('warehouse-inventory-script', 'warehouse_ajax', array(
@@ -807,6 +816,70 @@ function handle_get_task_history() {
         error_log('Task history error: ' . $e->getMessage());
         wp_send_json_error('Failed to load task history: ' . $e->getMessage());
     }
+}
+
+// Fetch latest tasks for board refresh
+add_action('wp_ajax_get_tasks', 'handle_get_tasks');
+function handle_get_tasks() {
+    check_ajax_referer('warehouse_nonce', 'nonce');
+
+    if (!current_user_can('edit_posts')) {
+        wp_send_json_error('Insufficient permissions');
+    }
+
+    // Ensure table and fetch
+    if (function_exists('wh_ensure_tasks_columns')) {
+        wh_ensure_tasks_columns();
+    }
+
+    $tasks = get_all_tasks();
+
+    // Normalize statuses to canonical keys used on the board
+    $normalize = function($status) {
+        $s = strtolower(trim((string)$status));
+        $map = array(
+            'in progress' => 'in_progress',
+            'in-progress' => 'in_progress',
+            'doing' => 'in_progress',
+            'work_in_progress' => 'in_progress',
+            'wip' => 'in_progress',
+            'done' => 'completed',
+            'complete' => 'completed',
+            'completed' => 'completed',
+            'todo' => 'pending',
+            'to_do' => 'pending',
+            'pending' => 'pending',
+            'archived' => 'archived',
+        );
+        return isset($map[$s]) ? $map[$s] : $s;
+    };
+
+    $result = array(
+        'pending' => array(),
+        'in_progress' => array(),
+        'completed' => array(),
+    );
+
+    if ($tasks) {
+        foreach ($tasks as $t) {
+            $st = $normalize($t->status);
+            if ($st === 'archived') { continue; }
+            $item = array(
+                'id' => intval($t->id),
+                'title' => $t->title,
+                'description' => $t->description,
+                'priority' => $t->priority,
+                'assigned_to_name' => $t->assigned_to_name,
+                'due_date' => $t->due_date,
+                'status' => $st,
+                'created_at' => $t->created_at,
+            );
+            if (!isset($result[$st])) { $result[$st] = array(); }
+            $result[$st][] = $item;
+        }
+    }
+
+    wp_send_json_success($result);
 }
 
 // Team Chat Functions
