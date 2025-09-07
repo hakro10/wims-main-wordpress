@@ -290,6 +290,30 @@ define('FORCE_SSL_ADMIN', true);
   - Note: CSP currently broad to avoid breaking inline assets; will iterate to nonce-based CSP in a future pass.
 
 
+### 2025‑10‑12
+- Deploy/CI:
+  - Added GitHub Actions workflow `.github/workflows/deploy.yml` to rsync only the theme and plugin to Hostinger on push to `main` (uses SSH deploy key and `TARGET_DIR`).
+- DB schema and migrations:
+  - Updated `db/schema.sql` with: tasks `updated_at`, inventory `idx_updated_at`, stock movements FK set to `RESTRICT` to preserve audit, and a lightweight `wp_wh_settings` table with language seeds (`language=en`, `language_available=en,lt`).
+  - Theme `functions.php` now ensures required task columns (`updated_at`, `completed_at`) exist before writes and creates `wp_wh_task_history` if missing.
+  - Task history insert made schema‑aware (supports both legacy and new columns).
+- Theme/Header/UI:
+  - Consolidated actions into Settings dropdown (moved Logo upload + Logout inside Settings). Added “Company Logo” entry opening the same modal.
+  - Fixed dark‑mode color inconsistencies on the Tasks page header buttons; added high‑specificity overrides.
+  - Language: header boot syncs `warehouse_lang` cookie from localStorage to keep server‑rendered labels consistent across tabs (no flip to LT on Sales/Tasks when EN chosen).
+- Tasks (Kanban):
+  - Prevented page‑level CSS bleed by scoping Tasks’ button styles to `.tasks-content`.
+  - Added robust archive flow: when task dragged to Completed, auto‑archives after 3s and refreshes History; returns concrete DB errors if any.
+  - New task creation now returns the created task and injects a card into Pending without full reload (includes assignee, created date, and due date with overdue badge).
+  - Removed stray PHP output that previously broke JSON and forced Quirks Mode.
+- Service Worker / Caching:
+  - Switched to network‑first for HTML/navigation and excluded admin‑ajax/wp‑json from caching; static assets use stale‑while‑revalidate. Immediate SW activation with one‑time reload.
+  - Updated `assets/js/production.js` to avoid page pre‑cache and to auto‑activate new SW version.
+- Plugin:
+  - Added missing plugin view files under `includes/admin/*.php` and `includes/shortcodes/*.php` to avoid include errors; they reuse theme template parts for admin pages and shortcodes.
+
+
+
 ## API Endpoints
 
 ### AJAX Handlers

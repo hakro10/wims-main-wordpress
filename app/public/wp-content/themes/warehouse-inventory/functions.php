@@ -477,6 +477,30 @@ add_action('template_redirect', 'restrict_warehouse_access');
 // Team management handlers are in the plugin
 
 // AJAX Handlers for Tasks Management
+/**
+ * Ensure required columns exist on wp_wh_tasks for status updates/archiving.
+ * Adds `updated_at` and `completed_at` if missing (no-op if present).
+ */
+function wh_ensure_tasks_columns() {
+    global $wpdb;
+    $tasks_table = $wpdb->prefix . 'wh_tasks';
+    // updated_at
+    $has_updated = $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = %s AND COLUMN_NAME = 'updated_at'",
+        $tasks_table
+    ));
+    if (intval($has_updated) === 0) {
+        $wpdb->query("ALTER TABLE $tasks_table ADD COLUMN updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
+    }
+    // completed_at
+    $has_completed = $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = %s AND COLUMN_NAME = 'completed_at'",
+        $tasks_table
+    ));
+    if (intval($has_completed) === 0) {
+        $wpdb->query("ALTER TABLE $tasks_table ADD COLUMN completed_at DATETIME NULL");
+    }
+}
 add_action('wp_ajax_add_task', 'handle_add_task');
 function handle_add_task() {
     check_ajax_referer('warehouse_nonce', 'nonce');
@@ -486,6 +510,7 @@ function handle_add_task() {
     }
     
     global $wpdb;
+    wh_ensure_tasks_columns();
     
     $result = $wpdb->insert(
         $wpdb->prefix . 'wh_tasks',
@@ -505,7 +530,12 @@ function handle_add_task() {
         wp_send_json_error('Failed to create task');
     }
     
-    wp_send_json_success('Task created successfully');
+    $new_id = $wpdb->insert_id;
+    $task = $wpdb->get_row($wpdb->prepare("SELECT t.*, u.display_name AS assigned_to_name FROM {$wpdb->prefix}wh_tasks t LEFT JOIN {$wpdb->prefix}users u ON t.assigned_to=u.ID WHERE t.id=%d", $new_id));
+    wp_send_json_success(array(
+        'message' => 'Task created successfully',
+        'task' => $task
+    ));
 }
 
 add_action('wp_ajax_delete_task', 'handle_delete_task');
@@ -542,6 +572,7 @@ function handle_update_task_status() {
     }
     
     global $wpdb;
+    wh_ensure_tasks_columns();
     
     $task_id = intval($_POST['task_id']);
     $status = sanitize_text_field($_POST['status']);
@@ -584,7 +615,25 @@ function handle_move_task_to_history() {
     global $wpdb;
     
     $task_id = intval($_POST['task_id']);
+
+    // Ensure history table exists
+    $history_table = $wpdb->prefix . 'wh_task_history';
+    $wpdb->query("CREATE TABLE IF NOT EXISTS $history_table (
+        id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
+        task_id MEDIUMINT UNSIGNED NULL,
+        user_id BIGINT UNSIGNED NULL,
+        title VARCHAR(255) NULL,
+        action VARCHAR(50) NULL,
+        created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        completed_at DATETIME NULL,
+        PRIMARY KEY (id),
+        KEY idx_task (task_id),
+        KEY idx_date (created_at)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
     
+    // Ensure tasks table has needed columns
+    wh_ensure_tasks_columns();
+
     // Archive the task
     $result = $wpdb->update(
         $wpdb->prefix . 'wh_tasks',
@@ -604,29 +653,54 @@ function handle_move_task_to_history() {
     
     // Get task details for history
     $task = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}wh_tasks WHERE id = %d", $task_id));
-    
+
     if ($task) {
-        // Add to task history using current schema
-        $history_data = array(
-            'original_task_id' => $task_id,
-            'title' => $task->title,
-            'description' => $task->description,
-            'priority' => $task->priority,
-            'assigned_to' => $task->assigned_to,
-            'created_by' => $task->created_by,
-            'completed_by' => get_current_user_id(),
-            'due_date' => $task->due_date,
-            'created_at' => $task->created_at,
-            'completed_at' => current_time('mysql'),
-            'completion_notes' => 'Task archived from completed status'
-        );
-        
-        $wpdb->insert(
-            $wpdb->prefix . 'wh_task_history',
-            $history_data
-        );
+
+        // Detect current schema (old vs new) using columns
+        $columns = $wpdb->get_col("SHOW COLUMNS FROM $history_table", 0);
+        if (is_wp_error($columns) || empty($columns)) { $columns = array(); }
+
+        $now = current_time('mysql');
+
+        if (in_array('task_id', $columns) && in_array('user_id', $columns)) {
+            // New schema: (id, task_id, user_id, title, action, created_at, completed_at, ...)
+            $wpdb->insert(
+                $history_table,
+                array(
+                    'task_id'      => $task_id,
+                    'user_id'      => get_current_user_id(),
+                    'title'        => $task->title,
+                    'action'       => 'completed',
+                    'created_at'   => $task->created_at ?: $now,
+                    'completed_at' => $now,
+                ),
+                array('%d','%d','%s','%s','%s','%s')
+            );
+        } else {
+            // Fallback to legacy columns if present
+            $wpdb->insert(
+                $history_table,
+                array(
+                    'original_task_id' => $task_id,
+                    'title'            => $task->title,
+                    'description'      => $task->description,
+                    'priority'         => $task->priority,
+                    'assigned_to'      => $task->assigned_to,
+                    'created_by'       => $task->created_by,
+                    'completed_by'     => get_current_user_id(),
+                    'due_date'         => $task->due_date,
+                    'created_at'       => $task->created_at ?: $now,
+                    'completed_at'     => $now,
+                    'completion_notes' => 'Task archived from completed status'
+                )
+            );
+        }
     }
     
+    if ($wpdb->last_error) {
+        wp_send_json_error('History insert failed: ' . $wpdb->last_error);
+    }
+
     wp_send_json_success('Task archived successfully');
 }
 
@@ -1192,4 +1266,3 @@ function get_hierarchical_categories_for_select($selected_id = null, $exclude_id
 
 // Clear any existing transients for task history fix
 delete_transient('wh_task_history_fixed');
-?> 

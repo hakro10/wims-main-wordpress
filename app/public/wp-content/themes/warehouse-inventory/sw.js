@@ -3,9 +3,9 @@
  * Provides offline support and caching for production
  */
 
-const CACHE_NAME = 'warehouse-v1.0.0';
+const CACHE_NAME = 'warehouse-v1.1.0';
+// Only pre-cache static assets. Do not pre-cache pages/HTML.
 const urlsToCache = [
-    '/',
     '/wp-content/themes/warehouse-inventory/assets/css/production.css',
     '/wp-content/themes/warehouse-inventory/assets/js/production.js',
     '/wp-content/themes/warehouse-inventory/assets/css/animations.css',
@@ -46,7 +46,7 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event
 self.addEventListener('fetch', (event) => {
     // Skip non-GET requests
     if (event.request.method !== 'GET') {
@@ -58,44 +58,46 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // Skip admin and login pages
+    const url = new URL(event.request.url);
+
+    // Never intercept admin, login, or AJAX/REST calls
     if (event.request.url.includes('/wp-admin') || 
-        event.request.url.includes('/wp-login')) {
+        event.request.url.includes('/wp-login') ||
+        url.pathname.includes('/admin-ajax.php') ||
+        url.pathname.startsWith('/wp-json/')) {
         return;
     }
 
+    // Determine if this is a navigation/HTML request → use network-first
+    const accept = event.request.headers.get('accept') || '';
+    const isHTML = event.request.mode === 'navigate' || accept.includes('text/html');
+
+    if (isHTML) {
+        event.respondWith(
+            fetch(event.request)
+                .then((response) => {
+                    // Optionally update cache for offline support
+                    const resClone = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
+                    return response;
+                })
+                .catch(() => caches.match(event.request))
+        );
+        return;
+    }
+
+    // Static assets (CSS/JS/images): stale-while-revalidate
     event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-                // Cache hit - return response
-                if (response) {
-                    return response;
+        caches.match(event.request).then((cached) => {
+            const fetchPromise = fetch(event.request).then((networkResponse) => {
+                if (networkResponse && networkResponse.status === 200) {
+                    const copy = networkResponse.clone();
+                    caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
                 }
-
-                // Clone the request
-                const fetchRequest = event.request.clone();
-
-                return fetch(fetchRequest).then((response) => {
-                    // Check if valid response
-                    if (!response || response.status !== 200 || response.type !== 'basic') {
-                        return response;
-                    }
-
-                    // Clone the response
-                    const responseToCache = response.clone();
-
-                    caches.open(CACHE_NAME)
-                        .then((cache) => {
-                            cache.put(event.request, responseToCache);
-                        });
-
-                    return response;
-                });
-            })
-            .catch(() => {
-                // Offline fallback
-                return caches.match('/offline.html');
-            })
+                return networkResponse;
+            }).catch(() => cached);
+            return cached || fetchPromise;
+        })
     );
 });
 

@@ -761,7 +761,7 @@ textarea.form-input {
     resize: vertical !important;
 }
 
-.btn {
+.tasks-content .btn {
     padding: 12px 20px !important;
     border-radius: 6px !important;
     font-weight: 500 !important;
@@ -774,26 +774,26 @@ textarea.form-input {
     text-decoration: none !important;
 }
 
-.btn-primary {
+.tasks-content .btn-primary {
     background: #007cba !important;
     color: white !important;
 }
 
-.btn-primary:hover {
+.tasks-content .btn-primary:hover {
     background: #005a8b !important;
 }
 
-.btn-secondary {
+.tasks-content .btn-secondary {
     background: #f1f1f1 !important;
     color: #333 !important;
     border: 1px solid #ddd !important;
 }
 
-.btn-secondary:hover {
+.tasks-content .btn-secondary:hover {
     background: #e6e6e6 !important;
 }
 
-.btn:disabled {
+.tasks-content .btn:disabled {
     opacity: 0.6 !important;
     cursor: not-allowed !important;
 }
@@ -1117,7 +1117,7 @@ function moveTaskToHistory(taskId) {
             }
         } else {
             console.error('Failed to move task to history:', data);
-            showNotification('Failed to move task to history', 'error');
+            showNotification(data.data || 'Failed to move task to history', 'error');
         }
     })
     .catch(error => {
@@ -1473,8 +1473,47 @@ window.submitAddTask = function() {
             if (data.success) {
                 showNotification('Task added successfully', 'success');
                 closeModal('add-task-modal');
-                // Refresh the page to show new task
-                setTimeout(() => window.location.reload(), 1000);
+                // Inject new task card into Pending column without reload
+                try {
+                    const t = data.task || (data.data && data.data.task) || null;
+                    if (t) {
+                        const col = document.querySelector('.kanban-column[data-status="pending"] .column-content');
+                        if (col) {
+                            const el = document.createElement('div');
+                            el.className = 'task-card';
+                            el.setAttribute('draggable','true');
+                            el.setAttribute('data-task-id', t.id);
+                            el.setAttribute('data-status','pending');
+                            el.ondragstart = function(e){ drag(e); };
+                            const created = t.created_at ? new Date(t.created_at) : new Date();
+                            const createdStr = created.toLocaleString(undefined,{month:'short', day:'numeric'});
+                            const due = t.due_date ? new Date(t.due_date) : null;
+                            const dueStr = due ? due.toLocaleString(undefined,{month:'short', day:'numeric'}) : '';
+                            const overdue = due ? (due.getTime() < Date.now()) : false;
+                            el.innerHTML = `
+                                <div class="task-priority priority-${t.priority || 'medium'}"></div>
+                                <div class="task-content">
+                                  <div class="task-header">
+                                    <h4>${t.title ? String(t.title).replace(/</g,'&lt;') : 'New Task'}</h4>
+                                    <div class="task-actions">
+                                      <button onclick="editTask(${t.id})" class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                                      <button onclick="deleteTask(${t.id})" class="btn-icon" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </div>
+                                  </div>
+                                  <div class="task-meta">
+                                    <span class="assignee"><i class="fas fa-user"></i> ${t.assigned_to_name || ''}</span>
+                                    ${dueStr ? `<span class="due-date ${overdue ? 'overdue' : ''}"><i class="fas fa-calendar"></i> ${dueStr} ${overdue ? '<i class=\"fas fa-exclamation-triangle\" title=\"Overdue\"></i>' : ''}</span>` : ''}
+                                  </div>
+                                  <div class="task-footer">
+                                    <span class="task-id">#${t.id}</span>
+                                    <span class="task-created">${createdStr}</span>
+                                  </div>
+                                </div>`;
+                            col.prepend(el);
+                            updateTaskCounts();
+                        }
+                    }
+                } catch(e) { console.warn('Could not inject new task:', e); }
             } else {
                 showNotification(data.data?.message || 'Failed to add task', 'error');
             }
@@ -1727,8 +1766,47 @@ document.addEventListener('DOMContentLoaded', function() {
                         modal.style.display = 'none';
                         form.reset();
                     }
-                    // Refresh page
-                    setTimeout(() => window.location.reload(), 1000);
+                    // Inject into Pending column without reload
+                    try {
+                        const t = data.task || (data.data && data.data.task) || null;
+                        if (t) {
+                            const col = document.querySelector('.kanban-column[data-status="pending"] .column-content');
+                            if (col) {
+                                const el = document.createElement('div');
+                                el.className = 'task-card';
+                                el.setAttribute('draggable','true');
+                                el.setAttribute('data-task-id', t.id);
+                                el.setAttribute('data-status','pending');
+                                el.ondragstart = function(e){ drag(e); };
+                                const created = t.created_at ? new Date(t.created_at) : new Date();
+                                const createdStr = created.toLocaleString(undefined,{month:'short', day:'numeric'});
+                                const due = t.due_date ? new Date(t.due_date) : null;
+                                const dueStr = due ? due.toLocaleString(undefined,{month:'short', day:'numeric'}) : '';
+                                const overdue = due ? (due.getTime() < Date.now()) : false;
+                                el.innerHTML = `
+                                    <div class="task-priority priority-${t.priority || 'medium'}"></div>
+                                    <div class="task-content">
+                                      <div class="task-header">
+                                        <h4>${t.title ? String(t.title).replace(/</g,'&lt;') : 'New Task'}</h4>
+                                        <div class="task-actions">
+                                          <button onclick="editTask(${t.id})" class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
+                                          <button onclick="deleteTask(${t.id})" class="btn-icon" title="Delete"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                      </div>
+                                      <div class="task-meta">
+                                        <span class="assignee"><i class="fas fa-user"></i> ${t.assigned_to_name || ''}</span>
+                                        ${dueStr ? `<span class="due-date ${overdue ? 'overdue' : ''}"><i class="fas fa-calendar"></i> ${dueStr} ${overdue ? '<i class=\"fas fa-exclamation-triangle\" title=\"Overdue\"></i>' : ''}</span>` : ''}
+                                      </div>
+                                      <div class="task-footer">
+                                        <span class="task-id">#${t.id}</span>
+                                        <span class="task-created">${createdStr}</span>
+                                      </div>
+                                    </div>`;
+                                col.prepend(el);
+                                updateTaskCounts();
+                            }
+                        }
+                    } catch(e) { console.warn('Could not inject new task:', e); }
                 } else {
                     alert('Failed to add task: ' + (data.data?.message || 'Unknown error'));
                 }

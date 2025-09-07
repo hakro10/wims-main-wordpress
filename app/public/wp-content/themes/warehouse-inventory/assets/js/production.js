@@ -214,15 +214,28 @@
 
         // Service worker setup
         setupServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/wp-content/themes/warehouse-inventory/sw.js')
-                    .then(registration => {
-                        console.log('Service Worker registered:', registration);
-                    })
-                    .catch(error => {
-                        console.log('Service Worker registration failed:', error);
+            if (!('serviceWorker' in navigator)) return;
+            navigator.serviceWorker.register('/wp-content/themes/warehouse-inventory/sw.js')
+                .then(reg => {
+                    console.log('Service Worker registered:', reg);
+                    // If there's an updated worker waiting, activate it immediately
+                    if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+                    reg.addEventListener('updatefound', () => {
+                        const nw = reg.installing;
+                        if (!nw) return;
+                        nw.addEventListener('statechange', () => {
+                            if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+                                nw.postMessage({ type: 'SKIP_WAITING' });
+                            }
+                        });
                     });
-            }
+                    // Reload once the new SW takes control
+                    let refreshed = false;
+                    navigator.serviceWorker.addEventListener('controllerchange', () => {
+                        if (refreshed) return; refreshed = true; window.location.reload();
+                    });
+                })
+                .catch(err => console.log('Service Worker registration failed:', err));
         }
 
         // Offline support
@@ -234,8 +247,8 @@
 
         setupOfflineCache() {
             const cacheName = 'warehouse-v1';
+            // Only pre-cache static assets; avoid HTML to keep DB-driven views fresh
             const urlsToCache = [
-                '/',
                 '/wp-content/themes/warehouse-inventory/assets/css/production.css',
                 '/wp-content/themes/warehouse-inventory/assets/js/production.js',
                 '/wp-content/plugins/warehouse-inventory-manager/assets/css/frontend.css',

@@ -5,6 +5,7 @@
 -- - Assumes WordPress table prefix `wp_`. Adjust if your prefix differs.
 -- - All foreign keys are ON DELETE SET NULL or CASCADE where appropriate.
 -- - No data is inserted here.
+-- - Matches current WP theme+plugin features (tasks, sales, i18n, security).
 
 SET NAMES utf8mb4;
 SET time_zone = '+00:00';
@@ -118,6 +119,7 @@ CREATE TABLE IF NOT EXISTS `wp_wh_inventory_items` (
   `updated_by` MEDIUMINT UNSIGNED NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_internal_id` (`internal_id`),
+  KEY `idx_updated_at` (`updated_at`),
   KEY `idx_category` (`category_id`),
   KEY `idx_location` (`location_id`),
   KEY `idx_status` (`status`),
@@ -150,7 +152,8 @@ CREATE TABLE IF NOT EXISTS `wp_wh_stock_movements` (
   KEY `idx_type` (`movement_type`),
   KEY `idx_date` (`performed_at`),
   KEY `idx_batch` (`batch_id`),
-  CONSTRAINT `fk_move_item` FOREIGN KEY (`item_id`) REFERENCES `wp_wh_inventory_items`(`id`) ON DELETE CASCADE,
+  -- Preserve audit history: prevent deleting items with movement history
+  CONSTRAINT `fk_move_item` FOREIGN KEY (`item_id`) REFERENCES `wp_wh_inventory_items`(`id`) ON DELETE RESTRICT,
   CONSTRAINT `fk_move_loc_from` FOREIGN KEY (`location_from`) REFERENCES `wp_wh_locations`(`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_move_loc_to` FOREIGN KEY (`location_to`) REFERENCES `wp_wh_locations`(`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -198,6 +201,7 @@ CREATE TABLE IF NOT EXISTS `wp_wh_tasks` (
   `status` VARCHAR(20) NOT NULL DEFAULT 'pending',
   `created_by` BIGINT UNSIGNED NULL,
   `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_status` (`status`),
   KEY `idx_assigned_to` (`assigned_to`)
@@ -246,6 +250,21 @@ CREATE TABLE IF NOT EXISTS `wp_wh_chat_messages` (
   KEY `idx_channel_date` (`channel`, `created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Lightweight i18n settings used by theme (language switcher)
+-- Stores current language code to allow early boot before WP options load
+CREATE TABLE IF NOT EXISTS `wp_wh_settings` (
+  `id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key` VARCHAR(100) NOT NULL,
+  `value` TEXT NULL,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_key` (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Seed default language setting only if not present (no mock data beyond a default)
+INSERT INTO `wp_wh_settings` (`key`, `value`)
+SELECT 'language', 'en' FROM DUAL
+WHERE NOT EXISTS (SELECT 1 FROM `wp_wh_settings` WHERE `key`='language');
+
 -- Restore SQL mode
 SET SQL_MODE=@OLD_SQL_MODE;
-

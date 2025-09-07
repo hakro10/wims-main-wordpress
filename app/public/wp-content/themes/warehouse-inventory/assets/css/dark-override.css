@@ -155,6 +155,23 @@
 [data-theme="dark"] .btn-secondary{ background:#0b1220; color:#e5e7eb; }
 [data-theme="dark"] .btn-secondary:hover{ background:#111827; }
 
+/* Ensure header action buttons stay consistent on Tasks page */
+[data-theme="dark"] .warehouse-header .btn-secondary{ background:#0b1220 !important; color:#e5e7eb !important; border-color:#334155 !important; }
+[data-theme="dark"] .warehouse-header .btn-secondary:hover{ background:#111827 !important; border-color:#475569 !important; }
+
+/* Ultra-specific fix: Tasks view injects a generic .btn-secondary !important.
+   Force the Settings trigger to the correct dark appearance regardless of page CSS. */
+[data-theme="dark"] #settings-toggle.btn.btn-secondary{
+  background:#0b1220 !important;
+  color:#e5e7eb !important;
+  border:1px solid #334155 !important;
+  box-shadow:none !important;
+}
+[data-theme="dark"] #settings-toggle.btn.btn-secondary:hover{
+  background:#111827 !important;
+  border-color:#475569 !important;
+}
+
 /* Chat bubbles and pale surfaces */
 [data-theme="dark"] .chat-message.other .chat-message-content{ background:#0b1220; color:#e5e7eb; border:1px solid #1f2937; }
 [data-theme="dark"] .chat-message.own .chat-message-content{ background:#0f172a; color:#e5e7eb; border:1px solid #1f2937; }

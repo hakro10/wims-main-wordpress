@@ -1,0 +1,55 @@
+name: Deploy WIMS to Hostinger
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'app/public/wp-content/themes/warehouse-inventory/**'
+      - 'app/public/wp-content/plugins/warehouse-inventory-manager/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ secrets.PORT }}" "${{ secrets.HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Prepare target directories
+        run: |
+          ssh -p "${{ secrets.PORT }}" "${{ secrets.USERNAME }}@${{ secrets.HOST }}" "\
+            mkdir -p '${{ secrets.TARGET_DIR }}/wp-content/themes/warehouse-inventory' && \
+            mkdir -p '${{ secrets.TARGET_DIR }}/wp-content/plugins/warehouse-inventory-manager' \
+          "
+
+      - name: Deploy Theme
+        run: |
+          rsync -az --delete -e "ssh -p ${{ secrets.PORT }}" \
+            app/public/wp-content/themes/warehouse-inventory/ \
+            "${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.TARGET_DIR }}/wp-content/themes/warehouse-inventory/"
+
+      - name: Deploy Plugin
+        run: |
+          rsync -az --delete -e "ssh -p ${{ secrets.PORT }}" \
+            app/public/wp-content/plugins/warehouse-inventory-manager/ \
+            "${{ secrets.USERNAME }}@${{ secrets.HOST }}:${{ secrets.TARGET_DIR }}/wp-content/plugins/warehouse-inventory-manager/"
+
+      - name: Post-deploy sanity check
+        run: |
+          ssh -p "${{ secrets.PORT }}" "${{ secrets.USERNAME }}@${{ secrets.HOST }}" "\
+            test -f '${{ secrets.TARGET_DIR }}/wp-content/plugins/warehouse-inventory-manager/warehouse-inventory-manager.php' && \
+            test -f '${{ secrets.TARGET_DIR }}/wp-content/themes/warehouse-inventory/functions.php' && \
+            echo 'Theme and plugin present.' \
+          "
+

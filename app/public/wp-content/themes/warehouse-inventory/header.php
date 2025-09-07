@@ -11,6 +11,12 @@
           var th = localStorage.getItem('warehouse-theme');
           if(!th){ th = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
           document.documentElement.setAttribute('data-theme', th);
+          // Sync language cookie with stored preference for consistent server-rendered labels
+          var lang = localStorage.getItem('warehouse-lang') || 'en_US';
+          // If cookie missing or different, set a long-lived cookie
+          var needsSet = true;
+          try { needsSet = document.cookie.indexOf('warehouse_lang='+lang) === -1; } catch(_) {}
+          if (needsSet) { document.cookie = 'warehouse_lang='+lang+'; path=/; max-age='+(60*60*24*365); }
         }catch(e){}
       })();
     </script>
@@ -74,6 +80,9 @@
                       </div>
                       <?php if (is_user_logged_in()): ?>
                       <a href="<?php echo esc_url( admin_url('profile.php') ); ?>" class="menu-row" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;text-decoration:none"><i class="fas fa-id-badge"></i><span>Profile</span></a>
+                      <?php if (current_user_can('manage_options')): ?>
+                      <button id="menu-logo" class="menu-row" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;background:transparent;cursor:pointer"><i class="fas fa-image"></i><span>Company Logo</span></button>
+                      <?php endif; ?>
                       <a href="<?php echo esc_url( wp_logout_url(home_url()) ); ?>" class="menu-row" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid #e5e7eb;text-decoration:none"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
                       <?php endif; ?>
                     </div>
@@ -95,15 +104,9 @@
                     <span class="user-greeting">
                         Welcome, <?php echo esc_html($current_user->display_name); ?>
                     </span>
-                    <?php if (current_user_can('manage_options')): ?>
-                    <button id="open-logo-modal" class="btn btn-secondary" style="margin-left:8px"><i class="fas fa-image"></i> Logo</button>
-                    <?php endif; ?>
                     <div class="online-status">
                         <span class="status-indicator online" title="Online"></span>
                     </div>
-                    <a href="<?php echo wp_logout_url(home_url()); ?>" class="btn btn-secondary">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
                 <?php else : ?>
                     <a href="#sign-in" class="btn btn-primary" onclick="(function(e){e.preventDefault();var t=document.getElementById('sign-in'); if(t){ t.scrollIntoView({behavior:'smooth', block:'start'}); } else { window.location.href = '<?php echo esc_js( home_url('/') ); ?>#sign-in'; }})(event)">
                         <i class="fas fa-sign-in-alt"></i> Login
@@ -174,8 +177,10 @@
   <script>
   (function(){
     var openBtn = document.getElementById('open-logo-modal');
+    var openFromMenu = document.getElementById('menu-logo');
     var modal = document.getElementById('logo-modal');
     if(openBtn && modal){ openBtn.addEventListener('click', function(){ modal.style.display='block'; }); }
+    if(openFromMenu && modal){ openFromMenu.addEventListener('click', function(){ modal.style.display='block'; sMenu.style.display='none'; }); }
     var up = document.getElementById('upload-logo-btn');
     var del = document.getElementById('delete-logo-btn');
     var dz = document.getElementById('logo-dropzone');
