@@ -6,6 +6,29 @@
 $tasks = get_all_tasks();
 $task_history = get_task_history();
 
+// Normalize legacy/mixed status values to canonical keys used by UI
+if (!function_exists('wh_normalize_status')) {
+    function wh_normalize_status($status) {
+        $s = strtolower(trim((string)$status));
+        // common variants
+        $map = array(
+            'in progress' => 'in_progress',
+            'in-progress' => 'in_progress',
+            'doing' => 'in_progress',
+            'work_in_progress' => 'in_progress',
+            'wip' => 'in_progress',
+            'done' => 'completed',
+            'complete' => 'completed',
+            'completed' => 'completed',
+            'todo' => 'pending',
+            'to_do' => 'pending',
+            'pending' => 'pending',
+            'archived' => 'archived',
+        );
+        return $map[$s] ?? $s;
+    }
+}
+
 // Group tasks by status
 $grouped_tasks = array(
     'pending' => array(),
@@ -15,8 +38,12 @@ $grouped_tasks = array(
 
 if ($tasks) {
     foreach ($tasks as $task) {
-        if ($task->status !== 'archived') {
-            $grouped_tasks[$task->status][] = $task;
+        $normalized = wh_normalize_status($task->status);
+        if ($normalized !== 'archived') {
+            // Ensure property used by card/template reflects normalized value for drag/drop
+            $task->status = $normalized;
+            if (!isset($grouped_tasks[$normalized])) { $grouped_tasks[$normalized] = array(); }
+            $grouped_tasks[$normalized][] = $task;
         }
     }
 }
@@ -1026,17 +1053,19 @@ function drop(ev) {
     
     const taskId = ev.dataTransfer.getData("text");
     const newStatus = ev.currentTarget.closest('.kanban-column').dataset.status;
-    const oldStatus = draggedElement.dataset.status;
-    
+    const oldStatus = draggedElement?.dataset?.status;
+    const targetColumnContent = ev.currentTarget; // store target
+
     if (draggedElement) {
         draggedElement.classList.remove('dragging');
     }
-    
-    if (newStatus !== oldStatus) {
-        updateTaskStatus(taskId, newStatus);
-        
+
+    if (!draggedElement || newStatus === oldStatus) return;
+
+    // Defer DOM move until server confirms
+    updateTaskStatus(taskId, newStatus, function onSuccess() {
         // Move the task card to new column
-        ev.currentTarget.appendChild(draggedElement);
+        targetColumnContent.appendChild(draggedElement);
         draggedElement.dataset.status = newStatus;
         
         // Update task counts
@@ -1048,12 +1077,12 @@ function drop(ev) {
             setTimeout(() => {
                 console.log('Auto-archiving completed task:', taskId);
                 moveTaskToHistory(taskId);
-            }, 3000); // 3 second delay
+            }, 3000);
         }
-    }
+    });
 }
 
-function updateTaskStatus(taskId, newStatus) {
+function updateTaskStatus(taskId, newStatus, onSuccess) {
     console.log('Updating task', taskId, 'to status', newStatus);
     console.log('Nonce available:', warehouse_ajax.nonce);
     
@@ -1072,6 +1101,7 @@ function updateTaskStatus(taskId, newStatus) {
         console.log('Response:', data);
         if (data.success) {
             showNotification('Task status updated successfully', 'success');
+            if (typeof onSuccess === 'function') onSuccess();
         } else {
             showNotification(data.data || 'Failed to update task status', 'error');
             console.error('Error updating task:', data);

@@ -3,7 +3,7 @@
  * Provides offline support and caching for production
  */
 
-const CACHE_NAME = 'warehouse-v1.1.0';
+const CACHE_NAME = 'warehouse-v1.1.1';
 // Only pre-cache static assets. Do not pre-cache pages/HTML.
 const urlsToCache = [
     '/wp-content/themes/warehouse-inventory/assets/css/production.css',
@@ -73,6 +73,12 @@ self.addEventListener('fetch', (event) => {
     const isHTML = event.request.mode === 'navigate' || accept.includes('text/html');
 
     if (isHTML) {
+        // Never cache the Tasks board HTML; always fetch fresh
+        const tab = url.searchParams.get('tab');
+        if (tab === 'tasks') {
+            event.respondWith(fetch(event.request));
+            return;
+        }
         event.respondWith(
             fetch(event.request)
                 .then((response) => {
