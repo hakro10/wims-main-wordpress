@@ -6,7 +6,7 @@ This document gives agents a single, authoritative view of the project: architec
 A comprehensive WordPress‑based warehouse inventory management system. It provides inventory tracking, hierarchical categories and locations, task management with kanban, team collaboration and chat, QR code generation and scanning, and sales tracking with analytics.
 
 ## Active Components
-- Active Theme: Warehouse Inventory Manager (`wp-content/themes/warehouse-inventory-manager`)
+- Active Theme: Warehouse Inventory Management (`wp-content/themes/warehouse-inventory`)
 - Active Plugin: Warehouse Inventory Manager (`wp-content/plugins/warehouse-inventory-manager`)
 
 ## Technology Stack
@@ -44,9 +44,9 @@ A comprehensive WordPress‑based warehouse inventory management system. It prov
 
 ## Project Structure
 
-### WordPress Theme (`warehouse-inventory-manager/`)
+### WordPress Theme (`warehouse-inventory/`)
 ```
-warehouse-inventory-manager/
+warehouse-inventory/
 ├── assets/
 │   ├── css/
 │   │   ├── style.css            # Main stylesheet
@@ -85,6 +85,8 @@ warehouse-inventory-manager/
 └── dist/{admin.bundle.js, public.bundle.js, *.LICENSE.txt}
 ```
 Note: Older references to `class-wh-activator.php`, `class-wh-deactivator.php`, `class-wh-loader.php`, `class-wh-qr-codes.php` are not used in the current plugin.
+
+Important: Tasks (Kanban, chat, history) AJAX handlers currently live in the theme’s `functions.php`, not in the plugin.
 
 ## Database Schema
 
@@ -133,7 +135,7 @@ Note: Older references to `class-wh-activator.php`, `class-wh-deactivator.php`, 
 
 ### Installation
 1. Clone repository and install WordPress.
-2. Copy theme `warehouse-inventory-manager/` to `wp-content/themes/`.
+2. Copy theme `warehouse-inventory/` to `wp-content/themes/`.
 3. Copy plugin `warehouse-inventory-manager/` to `wp-content/plugins/`.
 4. Activate the theme and plugin in WP admin.
 5. Database migration runs automatically on plugin activation.
@@ -255,6 +257,10 @@ Keep this section updated after fixes/changes.
   - `assets/js/production.js` avoids page pre‑cache and auto‑activates new SW version.
 - Plugin: added missing plugin view files under `includes/admin/*.php` and `includes/shortcodes/*.php` to avoid include errors; they reuse theme template parts.
 
+### 2025‑10‑12 (docs update)
+- Docs: corrected theme path (`wp-content/themes/warehouse-inventory`), documented Tasks endpoints (`get_tasks`, `delete_task`, `get_task_assignees`, `get_chat_messages`), and clarified that Tasks AJAX runs in the theme.
+- Versioning: theme and plugin currently at `1.3.6`.
+
 ## API Endpoints (AJAX Handlers)
 - `get_inventory_items` — Get all inventory items
 - `save_inventory_item` — Save inventory item
@@ -270,9 +276,13 @@ Keep this section updated after fixes/changes.
 - `update_task_status` — Update task status
 - `get_task_history` — Get completed tasks
 - `send_chat_message` — Send team chat message
+- `delete_task` — Delete task
+- `get_tasks` — Get latest tasks for board refresh
+- `get_task_assignees` — Get user list for per-user boards
+- `get_chat_messages` — Fetch recent chat messages for chat panel
 - Additional: `get_dashboard_stats`, `get_profit_data`, `rebuild_profit_data`, `fix_purchase_prices`, `debug_profit_data`, `get_team_members`, `add_team_member`, `update_team_member`, `delete_team_member`, `reset_user_password`, `get_inactive_items`, `permanently_delete_item`, `bulk_cleanup_inactive_items`.
 
-Public read‑only (no login): `get_inventory_items`, `get_dashboard_stats` (with rate limiting and redactions as applicable).
+Public read‑only (no login): `get_inventory_items`, `get_dashboard_stats` (with rate limiting and redactions as applicable). All Tasks endpoints are authenticated and implemented in the theme.
 
 ## Troubleshooting
 - Database: verify `wp-config.php` credentials.
@@ -306,4 +316,3 @@ define('WP_DEBUG_DISPLAY', false);
 - Plugin documentation
 - Theme documentation
 - GitHub issues
-

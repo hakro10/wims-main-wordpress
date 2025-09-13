@@ -3,6 +3,10 @@
  * Tasks Management Template Part - Kanban Board with History
  */
 
+// Everyone can see all user boards
+$is_admin = current_user_can('manage_options');
+$current_user_id = get_current_user_id();
+
 $tasks = get_all_tasks();
 $task_history = get_task_history();
 
@@ -40,7 +44,6 @@ if ($tasks) {
     foreach ($tasks as $task) {
         $normalized = wh_normalize_status($task->status);
         if ($normalized !== 'archived') {
-            // Ensure property used by card/template reflects normalized value for drag/drop
             $task->status = $normalized;
             if (!isset($grouped_tasks[$normalized])) { $grouped_tasks[$normalized] = array(); }
             $grouped_tasks[$normalized][] = $task;
@@ -53,14 +56,21 @@ if ($tasks) {
     <div class="page-header">
         <h1>📋 Tasks Management</h1>
         <div class="header-actions">
-            <button class="btn btn-outline" onclick="toggleHistoryPanel()">
+            <button class="btn btn-outline" onclick="toggleTopPanels(); showHistoryPanel();">
                 <i class="fas fa-history"></i> History
             </button>
-            <button class="btn btn-outline" onclick="toggleTeamChatPanel()">
+            <button class="btn btn-outline" id="team-chat-button" onclick="toggleTopPanels(); showChatPanel();" style="position:relative;">
                 <i class="fas fa-comments"></i> Team Chat
+                <span id="chat-unread-badge" class="chat-unread-badge" style="display:none;">0</span>
             </button>
             <button class="btn btn-outline" id="refresh-board-btn" title="Refresh tasks" onclick="refreshTasksBoard()">
                 <i class="fas fa-sync"></i> Refresh
+            </button>
+            <button class="btn btn-outline" onclick="showGlobalBoard()">
+                <i class="fas fa-columns"></i> Global Board
+            </button>
+            <button class="btn btn-outline" onclick="showUserBoards()">
+                <i class="fas fa-users"></i> User Boards
             </button>
             <button class="btn btn-primary" onclick="document.getElementById('add-task-modal').classList.remove('hidden'); console.log('Button clicked!');">
                 <i class="fas fa-plus"></i> Add Task
@@ -69,8 +79,28 @@ if ($tasks) {
         </div>
     </div>
 
+    <!-- Top Panels: History (left) and Chat (right) -->
+    <div class="top-panels" id="top-panels" style="display:none;grid-template-columns: repeat(2, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+        <div class="top-panel" id="history-panel">
+            <div class="sidebar-content">
+                <div style="text-align:center;padding:2rem;opacity:.8;"><i class="fas fa-spinner fa-spin"></i> Loading history…</div>
+            </div>
+        </div>
+        <div class="top-panel" id="team-chat-panel">
+            <div class="chat-messages" id="chat-messages"></div>
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <input type="text" id="chat-message-input" placeholder="Type your message..." class="chat-input">
+                    <button onclick="sendChatMessage()" class="btn btn-primary chat-send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="tasks-main-container">
-        <!-- Tasks Section -->
+        <!-- Tasks Section (Admin: global board; Non-admin: personal board) -->
         <div class="tasks-section" id="tasks-section" data-loading="0">
             <div class="loading-overlay hidden" id="tasks-loading-overlay" aria-hidden="true" style="position:relative;">
                 <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);">
@@ -153,11 +183,11 @@ if ($tasks) {
             </div>
         </div>
 
-        <!-- Sidebar Section -->
-        <div class="sidebar-section">
+        <!-- Sidebar Section legacy (hidden) -->
+        <div class="sidebar-section" style="display:none;">
 
             <!-- History Panel -->
-            <div id="history-panel" class="sidebar-panel hidden">
+            <div id="history-panel-legacy" class="sidebar-panel hidden">
                 <div class="sidebar-content">
                     <?php if ($task_history): ?>
                         <?php foreach ($task_history as $history_item): ?>
@@ -204,11 +234,66 @@ if ($tasks) {
                             <p class="retention-notice"><i class="fas fa-clock"></i> Task history is kept for 6 months</p>
                         </div>
                     <?php endif; ?>
+        </div>
+    </div>
+
+    <!-- User Boards Section (visible to all) -->
+    <section id="user-boards-section" style="margin-top:2rem;">
+        <h2 style="display:flex;align-items:center;gap:.5rem;margin:0 0 1rem 0;">
+            <i class="fas fa-users"></i>
+            User Task Boards
+        </h2>
+        <div id="user-boards-container" style="display:flex;flex-direction:column;gap:1rem;">
+            <?php 
+            // Server-side initial render of user boards (ensures visibility even if JS fails)
+            $users = get_users(array('role__in' => array('administrator','warehouse_manager','warehouse_employee')));
+            $tasks_by_user = array();
+            foreach (($tasks ?: array()) as $t) {
+                $uid = intval($t->assigned_to);
+                if (!$uid) { continue; }
+                $status = function_exists('wh_normalize_status') ? wh_normalize_status($t->status) : $t->status;
+                if (!isset($tasks_by_user[$uid])) { $tasks_by_user[$uid] = array('pending'=>array(),'in_progress'=>array(),'completed'=>array()); }
+                if (isset($tasks_by_user[$uid][$status])) { $tasks_by_user[$uid][$status][] = $t; }
+            }
+            foreach ($users as $u): 
+                $uid = intval($u->ID);
+                $b = isset($tasks_by_user[$uid]) ? $tasks_by_user[$uid] : array('pending'=>array(),'in_progress'=>array(),'completed'=>array());
+            ?>
+            <div class="user-board" data-user-id="<?php echo $uid; ?>" style="border:1px solid rgba(148,163,184,.2);border-radius:10px;">
+                <div class="user-board-header" style="display:flex;align-items:center;justify-content:space-between;padding:.5rem 1rem;">
+                    <div style="display:flex;align-items:center;gap:.5rem;">
+                        <i class="fas fa-user"></i>
+                        <strong><?php echo esc_html($u->display_name); ?></strong>
+                    </div>
+                    <div class="user-board-counts" id="<?php echo 'user-board-' . $uid . '-counts'; ?>" style="opacity:.8;font-size:.9rem;">
+                        Pending <?php echo count($b['pending']); ?> • In Progress <?php echo count($b['in_progress']); ?> • Completed <?php echo count($b['completed']); ?>
+                    </div>
+                </div>
+                <div class="user-board-body" id="<?php echo 'user-board-' . $uid; ?>" style="padding: .5rem 1rem 1rem 1rem;">
+                    <div class="kanban-board" style="display:grid;grid-template-columns:repeat(3, minmax(260px, 1fr));gap:1rem;">
+                        <?php foreach (array('pending'=>'fa-clock','in_progress'=>'fa-spinner','completed'=>'fa-check-circle') as $st => $icon): ?>
+                        <div class="kanban-column" data-status="<?php echo $st; ?>">
+                            <div class="column-header"><div class="column-title"><i class="fas <?php echo $icon; ?>"></i> <span><?php echo ucwords(str_replace('_',' ', $st)); ?></span> <span class="task-count"><?php echo count($b[$st]); ?></span></div></div>
+                            <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <?php foreach ($b[$st] as $task): $task->status = $st; include get_template_directory() . '/template-parts/task-card-template.php'; endforeach; ?>
+                                <?php if (empty($b[$st])): ?>
+                                    <div class="empty-column">
+                                        <i class="fas <?php echo $st==='pending'?'fa-plus-circle':($st==='in_progress'?'fa-play-circle':'fa-check-circle'); ?>"></i>
+                                        <p>No <?php echo esc_html(str_replace('_',' ', $st)); ?> tasks</p>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
             </div>
+            <?php endforeach; ?>
+        </div>
+    </section>
 
-            <!-- Team Chat Panel -->
-            <div id="team-chat-panel" class="sidebar-panel">
+            <!-- Team Chat Panel duplicate hidden to avoid layout duplication -->
+            <div id="team-chat-panel-legacy" class="sidebar-panel" style="display:none;">
                 <div class="chat-messages" id="chat-messages">
                     <!-- Chat messages will be loaded here -->
                 </div>
@@ -325,7 +410,7 @@ if ($tasks) {
 .tasks-main-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr) clamp(240px, 22vw, 340px);
-    height: calc(100vh - 120px);
+    min-height: calc(100vh - 120px);
     background: #f8fafc;
     gap: 1rem;
 }
@@ -841,11 +926,11 @@ textarea.form-input {
 @media (max-width: 1024px) {
     .tasks-main-container {
         flex-direction: column;
-        height: auto;
+        min-height: auto;
     }
     
     .tasks-section {
-        height: 60vh;
+        height: auto;
         padding: 1rem;
     }
     
@@ -1021,7 +1106,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .sidebar-section { max-width: 100%; }
 
 /* Always show all columns side-by-side (3 kanban + history) */
-.tasks-main-container { height: calc(100vh - 150px); }
+.tasks-main-container { min-height: calc(100vh - 150px); }
 .tasks-section { overflow: hidden; }
 .kanban-board { display: grid; grid-template-columns: repeat(3, minmax(260px, 1fr)); gap: 1rem; height: 100%; align-items: stretch; }
 .kanban-column { height: 100%; min-height: 0 !important; min-width: 0; padding: 0; background: transparent; border: none; box-shadow: none; }
@@ -1044,10 +1129,41 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 </style>
 <style>
+/* Layout for fixed top panels (History + Chat) */
+.top-panels { height: calc(100vh - 150px); overflow: hidden; }
+.top-panel { display: flex; flex-direction: column; min-height: 260px; height: 100%; background: transparent; border: none; }
+.top-panel .sidebar-content { flex: 1; overflow: auto; }
+.top-panel .chat-messages { flex: 1; overflow: auto; }
+.top-panel .chat-input-container { flex-shrink: 0; }
+@media (max-width: 1000px) {
+  .top-panels { grid-template-columns: 1fr; height: auto; }
+}
+</style>
+<style>
   /* Prevent stale board flicker by hiding until live refresh completes */
   #tasks-section[data-loading="1"] #kanban-board { visibility: hidden; }
   #tasks-section[data-loading="1"] #tasks-loading-overlay { display: block; }
   #tasks-loading-overlay.hidden { display: none; }
+  /* View toggling: default shows global; when .view-user-boards is on the root, show users */
+  .tasks-content.view-user-boards .tasks-main-container { display: none !important; }
+  .tasks-content.view-user-boards #user-boards-section { display: block !important; }
+.tasks-content:not(.view-user-boards) #user-boards-section { display: none !important; }
+/* Chat unread badge */
+.chat-unread-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: .5rem;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 6px;
+    border-radius: 9999px;
+    background: #ef4444; /* red */
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 700;
+    line-height: 1;
+}
 </style>
 
 <script>
@@ -1087,7 +1203,9 @@ function drop(ev) {
         draggedElement.dataset.status = newStatus;
         
         // Update task counts
-        updateTaskCounts();
+        // Update counts only within the affected target board
+        const container = targetColumnContent.closest('#kanban-board') || document;
+        updateTaskCounts(container);
         
         // If completed, move to history after delay
         if (newStatus === 'completed') {
@@ -1158,7 +1276,8 @@ function moveTaskToHistory(taskId) {
                 
                 setTimeout(() => {
                     taskCard.remove();
-                    updateTaskCounts();
+                    const board = document.getElementById('kanban-board');
+                    updateTaskCounts(board);
                     showNotification('Task moved to history', 'success');
                     
                     // Always refresh history panel (even if hidden)
@@ -1176,8 +1295,9 @@ function moveTaskToHistory(taskId) {
     });
 }
 
-function updateTaskCounts() {
-    document.querySelectorAll('.kanban-column').forEach(column => {
+function updateTaskCounts(container) {
+    const scope = container || document;
+    scope.querySelectorAll('.kanban-column').forEach(column => {
         const taskCards = column.querySelectorAll('.task-card');
         const count = taskCards.length;
         const countElement = column.querySelector('.task-count');
@@ -1239,11 +1359,12 @@ function refreshTasksBoard(silent = false) {
       .then(data => {
         if (!data.success) { throw new Error(data.data || 'Failed to load tasks'); }
         const buckets = data.data || {};
-        const columns = {
-          pending: document.querySelector('.kanban-column[data-status="pending"] .column-content'),
-          in_progress: document.querySelector('.kanban-column[data-status="in_progress"] .column-content'),
-          completed: document.querySelector('.kanban-column[data-status="completed"] .column-content'),
-        };
+        const board = document.getElementById('kanban-board');
+        const columns = board ? {
+          pending: board.querySelector('.kanban-column[data-status="pending"] .column-content'),
+          in_progress: board.querySelector('.kanban-column[data-status="in_progress"] .column-content'),
+          completed: board.querySelector('.kanban-column[data-status="completed"] .column-content'),
+        } : {};
 
         // Clear existing cards but keep the empty state element
         Object.keys(columns).forEach(k => {
@@ -1258,11 +1379,11 @@ function refreshTasksBoard(silent = false) {
           const list = Array.isArray(buckets[status]) ? buckets[status] : [];
           list.forEach(t => {
             t.status = status; // ensure data-status matches column for DnD
-            el.insertAdjacentHTML('beforeend', taskCardHtml(t));
+            if (el) { el.insertAdjacentHTML('beforeend', taskCardHtml(t)); }
           });
         });
 
-        updateTaskCounts();
+        updateTaskCounts(board);
         if (!silent) { showNotification('Board refreshed', 'success'); }
         // Update last refreshed label
         const ts = new Date();
@@ -1280,28 +1401,127 @@ function refreshTasksBoard(silent = false) {
       });
 }
 
+// Build per-user boards (admin only)
+function buildUserBoards() {
+    const container = document.getElementById('user-boards-container');
+    if (!container) return; // non-admin or section hidden
+
+    // Fetch distinct assignees
+    const fd = new FormData();
+    fd.append('action', 'get_task_assignees');
+    fd.append('nonce', warehouse_ajax.nonce);
+
+    container.innerHTML = '<div style="text-align:center;padding:1rem;opacity:.8;"><i class="fas fa-spinner fa-spin"></i> Loading users…</div>';
+
+    fetch(warehouse_ajax.ajax_url, { method: 'POST', body: fd })
+      .then(r => r.json())
+      .then(data => {
+        if (!data.success) throw new Error(data.data || 'Failed to load assignees');
+        const users = data.data || [];
+        if (!users.length) { container.innerHTML = '<div style="opacity:.8;">No users with tasks yet.</div>'; return; }
+
+        // Render a collapsible board for each user
+        container.innerHTML = '';
+        users.forEach(u => {
+          const boardId = `user-board-${u.id}`;
+          const html = `
+            <div class="user-board" data-user-id="${u.id}" style="border:1px solid rgba(148,163,184,.2);border-radius:10px;">
+              <div class="user-board-header" style="display:flex;align-items:center;justify-content:space-between;padding:.5rem 1rem;cursor:pointer;" onclick="toggleUserBoard('${boardId}')">
+                <div style="display:flex;align-items:center;gap:.5rem;">
+                    <i class="fas fa-user"></i>
+                    <strong>${u.name}</strong>
+                </div>
+                <div class="user-board-counts" id="${boardId}-counts" style="opacity:.8;font-size:.9rem;"></div>
+              </div>
+              <div class="user-board-body" id="${boardId}" style="padding: .5rem 1rem 1rem 1rem;">
+                <div class="kanban-board" style="display:grid;grid-template-columns:repeat(3, minmax(260px, 1fr));gap:1rem;">
+                  <div class="kanban-column" data-status="pending">
+                    <div class="column-header"><div class="column-title"><i class="fas fa-clock"></i> <span>Pending</span> <span class="task-count">0</span></div></div>
+                    <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                  </div>
+                  <div class="kanban-column" data-status="in_progress">
+                    <div class="column-header"><div class="column-title"><i class="fas fa-spinner"></i> <span>In Progress</span> <span class="task-count">0</span></div></div>
+                    <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                  </div>
+                  <div class="kanban-column" data-status="completed">
+                    <div class="column-header"><div class="column-title"><i class="fas fa-check-circle"></i> <span>Completed</span> <span class="task-count">0</span></div></div>
+                    <div class="column-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                  </div>
+                </div>
+              </div>
+            </div>`;
+          container.insertAdjacentHTML('beforeend', html);
+          refreshUserBoard(u.id);
+        });
+      })
+      .catch(err => {
+        console.error('Assignees load failed:', err);
+        container.innerHTML = '<div style="color:#ef4444;">Failed to load user boards</div>';
+      });
+}
+
+function toggleUserBoard(boardId) {
+    const body = document.getElementById(boardId);
+    if (!body) return;
+    const isHidden = body.style.display === 'none';
+    body.style.display = isHidden ? '' : 'none';
+}
+
+function refreshUserBoard(userId) {
+    const board = document.querySelector(`.user-board[data-user-id="${userId}"]`);
+    if (!board) return;
+    const countsEl = document.getElementById(`user-board-${userId}-counts`);
+    const fd = new FormData();
+    fd.append('action', 'get_tasks');
+    fd.append('nonce', warehouse_ajax.nonce);
+    fd.append('assigned_to', String(userId));
+
+    fetch(warehouse_ajax.ajax_url, { method: 'POST', body: fd })
+      .then(r => r.json())
+      .then(data => {
+        if (!data.success) throw new Error(data.data || 'Failed to load tasks');
+        const buckets = data.data || {};
+        const columns = {
+          pending: board.querySelector('.kanban-column[data-status="pending"] .column-content'),
+          in_progress: board.querySelector('.kanban-column[data-status="in_progress"] .column-content'),
+          completed: board.querySelector('.kanban-column[data-status="completed"] .column-content'),
+        };
+
+        Object.keys(columns).forEach(k => {
+          const el = columns[k];
+          if (!el) return;
+          [...el.querySelectorAll('.task-card')].forEach(node => node.remove());
+        });
+
+        ['pending','in_progress','completed'].forEach(status => {
+          const el = columns[status];
+          const list = Array.isArray(buckets[status]) ? buckets[status] : [];
+          list.forEach(t => { t.status = status; el.insertAdjacentHTML('beforeend', taskCardHtml(t)); });
+        });
+
+        // Update counts header
+        const p = (buckets.pending || []).length;
+        const ip = (buckets.in_progress || []).length;
+        const c = (buckets.completed || []).length;
+        if (countsEl) countsEl.textContent = `Pending ${p} • In Progress ${ip} • Completed ${c}`;
+      })
+      .catch(err => console.error('User board refresh failed:', err));
+}
+
 function showHistoryPanel() {
-    const historyPanel = document.getElementById('history-panel');
-    const chatPanel = document.getElementById('team-chat-panel');
-    
-    // Switch panels
-    historyPanel.classList.remove('hidden');
-    chatPanel.classList.add('hidden');
-    
-    // Refresh history when showing
+    ensureTopPanelsVisible();
     refreshHistoryPanel();
+    const el = document.getElementById('history-panel');
+    if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function showChatPanel() {
-    const historyPanel = document.getElementById('history-panel');
-    const chatPanel = document.getElementById('team-chat-panel');
-    
-    // Switch panels
-    chatPanel.classList.remove('hidden');
-    historyPanel.classList.add('hidden');
-    
-    // Load chat messages when showing
+    ensureTopPanelsVisible();
+    // Set flag to mark chat as read after loading
+    window.chatMarkReadOnOpen = true;
     loadChatMessages();
+    const el = document.getElementById('team-chat-panel');
+    if (el && el.scrollIntoView) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 // Keep backward compatibility for header buttons
@@ -1311,6 +1531,49 @@ function toggleHistoryPanel() {
 
 function toggleTeamChatPanel() {
     showChatPanel();
+}
+
+// Chat unread helpers
+function getChatLastRead() {
+    const v = localStorage.getItem('wh_chat_last_read_ts');
+    const n = v ? parseInt(v, 10) : 0;
+    return Number.isFinite(n) ? n : 0;
+}
+
+function setChatLastRead(ts) {
+    if (!ts || !Number.isFinite(ts)) return;
+    localStorage.setItem('wh_chat_last_read_ts', String(ts));
+    updateChatUnreadIndicator(0);
+}
+
+function updateChatUnreadIndicator(count) {
+    const badge = document.getElementById('chat-unread-badge');
+    if (!badge) return;
+    if (count && count > 0) {
+        badge.style.display = 'inline-flex';
+        badge.textContent = count > 9 ? '9+' : String(count);
+    } else {
+        badge.style.display = 'none';
+    }
+}
+
+function latestMessageTs(messages) {
+    let max = 0;
+    for (const m of (messages || [])) {
+        const ts = m && m.created_at ? (new Date(m.created_at)).getTime() : 0;
+        if (ts && ts > max) max = ts;
+    }
+    return max;
+}
+
+function countUnread(messages) {
+    const lastRead = getChatLastRead();
+    let c = 0;
+    for (const m of (messages || [])) {
+        const ts = m && m.created_at ? (new Date(m.created_at)).getTime() : 0;
+        if (ts && ts > lastRead) c++;
+    }
+    return c;
 }
 
 function loadChatMessages() {
@@ -1330,7 +1593,17 @@ function loadChatMessages() {
     .then(response => response.json())
     .then(data => {
         if (data.success && data.data) {
-            displayChatMessages(data.data);
+            const messages = data.data;
+            displayChatMessages(messages);
+            // Update unread indicator and possibly mark read if opened
+            try {
+                updateChatUnreadIndicator(countUnread(messages));
+                if (window.chatMarkReadOnOpen) {
+                    const ts = latestMessageTs(messages);
+                    if (ts) setChatLastRead(ts);
+                    window.chatMarkReadOnOpen = false;
+                }
+            } catch(e) { /* noop */ }
         } else {
             chatMessages.innerHTML = `
                 <div class="empty-chat">
@@ -1392,6 +1665,23 @@ function displayChatMessages(messages) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
+// Background polling to update chat unread indicator without opening panel
+function checkChatUnread() {
+    try {
+        const fd = new FormData();
+        fd.append('action', 'get_chat_messages');
+        fd.append('nonce', warehouse_ajax.nonce);
+        fetch(warehouse_ajax.ajax_url, { method: 'POST', body: fd })
+          .then(r => r.json())
+          .then(data => {
+              if (!data || !data.success) return;
+              const messages = data.data || [];
+              updateChatUnreadIndicator(countUnread(messages));
+          })
+          .catch(() => {});
+    } catch (e) { /* noop */ }
+}
+
 function sendChatMessage() {
     const messageInput = document.getElementById('chat-message-input');
     const message = messageInput.value.trim();
@@ -1415,6 +1705,7 @@ function sendChatMessage() {
         if (data.success) {
             messageInput.value = '';
             loadChatMessages(); // Reload messages
+            try { setChatLastRead(Date.now()); } catch(e){}
         } else {
             showNotification('Failed to send message', 'error');
         }
@@ -1612,7 +1903,8 @@ window.submitAddTask = function() {
                 try {
                     const t = data.task || (data.data && data.data.task) || null;
                     if (t) {
-                        const col = document.querySelector('.kanban-column[data-status="pending"] .column-content');
+                        const board = document.getElementById('kanban-board');
+                        const col = board ? board.querySelector('.kanban-column[data-status="pending"] .column-content') : null;
                         if (col) {
                             const el = document.createElement('div');
                             el.className = 'task-card';
@@ -1644,8 +1936,9 @@ window.submitAddTask = function() {
                                     <span class="task-created">${createdStr}</span>
                                   </div>
                                 </div>`;
-                            col.prepend(el);
-                            updateTaskCounts();
+                            if (col) col.prepend(el);
+                            const board = document.getElementById('kanban-board');
+                            updateTaskCounts(board);
                         }
                     }
                 } catch(e) { console.warn('Could not inject new task:', e); }
@@ -1697,7 +1990,8 @@ function deleteTask(taskId) {
                 
                 setTimeout(() => {
                     taskCard.remove();
-                    updateTaskCounts();
+                    const board = document.getElementById('kanban-board');
+                    updateTaskCounts(board);
                     showNotification('Task deleted successfully', 'success');
                     // Keep list in sync with server
                     setTimeout(refreshTasksBoard, 200);
@@ -1795,6 +2089,13 @@ document.addEventListener('click', function(e) {
 
 // Initialize drag and drop event listeners
 document.addEventListener('DOMContentLoaded', function() {
+    // Ensure the main tasks container is visible (fix for hidden board)
+    try {
+        const mainContainer = document.querySelector('.tasks-main-container');
+        if (mainContainer && (mainContainer.style.display === 'none' || getComputedStyle(mainContainer).display === 'none')) {
+            mainContainer.style.display = '';
+        }
+    } catch (e) { /* noop */ }
     // Dynamically fit tasks layout to viewport so page doesn't require scrolling
     function resizeTasksLayout(){
         try {
@@ -1909,7 +2210,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     try {
                         const t = data.task || (data.data && data.data.task) || null;
                         if (t) {
-                            const col = document.querySelector('.kanban-column[data-status="pending"] .column-content');
+                            const board = document.getElementById('kanban-board');
+                            const col = board ? board.querySelector('.kanban-column[data-status="pending"] .column-content') : null;
                             if (col) {
                                 const el = document.createElement('div');
                                 el.className = 'task-card';
@@ -1941,8 +2243,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <span class="task-created">${createdStr}</span>
                                       </div>
                                     </div>`;
-                                col.prepend(el);
-                                updateTaskCounts();
+                                if (col) col.prepend(el);
+                                const board = document.getElementById('kanban-board');
+                                updateTaskCounts(board);
                             }
                         }
                     } catch(e) { console.warn('Could not inject new task:', e); }
@@ -1962,10 +2265,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    updateTaskCounts();
+    // Initial count update scoped to global board
+    try { updateTaskCounts(document.getElementById('kanban-board')); } catch(e){}
     
-    // Initialize sidebar with chat as default
-    showChatPanel();
+    // Top panels: load both history and chat
+    try { refreshHistoryPanel(); } catch(e) { console.warn('History refresh skipped:', e); }
+    try { loadChatMessages(); } catch(e) { console.warn('Chat load skipped:', e); }
+    // Start background polling for chat unread updates
+    try {
+        if (!window.__chat_poll_started) {
+            window.__chat_poll_started = true;
+            setTimeout(checkChatUnread, 1000);
+            setInterval(checkChatUnread, 15000);
+        }
+    } catch (e) { /* noop */ }
 
     // Pull latest tasks from server to avoid any cached HTML; hide board while loading
     const section = document.getElementById('tasks-section');
@@ -1981,6 +2294,9 @@ document.addEventListener('DOMContentLoaded', function() {
         refreshTasksBoard(true);
     }
     
+    // Build per-user boards (visible to all roles)
+    try { buildUserBoards(); } catch (e) { console.warn('User boards skipped:', e); }
+
     // Add Enter key listener for chat input
     const chatInput = document.getElementById('chat-message-input');
     if (chatInput) {
@@ -1992,6 +2308,70 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+function scrollToSection(id) {
+    try {
+        const el = document.getElementById(id);
+        if (el && el.scrollIntoView) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    } catch(e) { console.warn('Scroll failed:', e); }
+}
+
+// Explicit view toggles for Global vs User boards
+function showGlobalBoard() {
+    try {
+        const root = document.querySelector('.tasks-content');
+        if (root) root.classList.remove('view-user-boards');
+        // Also toggle inline styles to be extra explicit
+        const tasksSection = document.getElementById('tasks-section');
+        const usersSection = document.getElementById('user-boards-section');
+        if (tasksSection) tasksSection.style.display = '';
+        if (usersSection) usersSection.style.display = 'none';
+        // Refresh global board to ensure up-to-date view
+        try { refreshTasksBoard(true); } catch(e){}
+        scrollToSection('kanban-board');
+    } catch(e) { console.warn('showGlobalBoard failed', e); }
+}
+
+function showUserBoards() {
+    try {
+        const root = document.querySelector('.tasks-content');
+        if (root) root.classList.add('view-user-boards');
+        // Also toggle inline styles to be extra explicit
+        const tasksSection = document.getElementById('tasks-section');
+        const usersSection = document.getElementById('user-boards-section');
+        if (tasksSection) tasksSection.style.display = 'none';
+        if (usersSection) usersSection.style.display = '';
+        // Build or refresh user boards when switching to this view
+        try { buildUserBoards(); } catch(e){}
+        scrollToSection('user-boards-section');
+    } catch(e) { console.warn('showUserBoards failed', e); }
+}
+
+function toggleTopPanels() {
+    const panels = document.getElementById('top-panels');
+    if (!panels) return;
+    const isHidden = panels.style.display === 'none' || panels.classList.contains('hidden');
+    if (isHidden) {
+        panels.style.display = 'grid';
+        panels.classList.remove('hidden');
+        // Load content on open
+        try { refreshHistoryPanel(); } catch(e){}
+        try { loadChatMessages(); } catch(e){}
+    } else {
+        panels.style.display = 'none';
+        panels.classList.add('hidden');
+    }
+}
+
+function ensureTopPanelsVisible() {
+    const panels = document.getElementById('top-panels');
+    if (panels && (panels.style.display === 'none' || panels.classList.contains('hidden'))) {
+        panels.style.display = 'grid';
+        panels.classList.remove('hidden');
+    }
+}
 
 // Add CSS for notification animation
 const style = document.createElement('style');

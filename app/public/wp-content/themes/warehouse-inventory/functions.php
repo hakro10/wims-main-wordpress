@@ -823,7 +823,7 @@ add_action('wp_ajax_get_tasks', 'handle_get_tasks');
 function handle_get_tasks() {
     check_ajax_referer('warehouse_nonce', 'nonce');
 
-    if (!current_user_can('edit_posts')) {
+    if (!is_user_logged_in()) {
         wp_send_json_error('Insufficient permissions');
     }
 
@@ -832,7 +832,23 @@ function handle_get_tasks() {
         wh_ensure_tasks_columns();
     }
 
-    $tasks = get_all_tasks();
+    $assigned_to = isset($_POST['assigned_to']) ? intval($_POST['assigned_to']) : 0;
+    $include_archived = isset($_POST['include_archived']) ? (bool) $_POST['include_archived'] : false;
+
+    global $wpdb;
+    if (function_exists('wh_ensure_tasks_columns')) { wh_ensure_tasks_columns(); }
+
+    // Build filtered query
+    $where = array();
+    if (!$include_archived) { $where[] = "t.status <> 'archived'"; }
+    if ($assigned_to > 0) { $where[] = $wpdb->prepare('t.assigned_to = %d', $assigned_to); }
+    $where_sql = $where ? ('WHERE ' . implode(' AND ', $where)) : '';
+
+    $tasks = $wpdb->get_results("SELECT t.*, u.display_name AS assigned_to_name
+                                 FROM {$wpdb->prefix}wh_tasks t
+                                 LEFT JOIN {$wpdb->prefix}users u ON t.assigned_to = u.ID
+                                 $where_sql
+                                 ORDER BY t.created_at DESC");
 
     // Normalize statuses to canonical keys used on the board
     $normalize = function($status) {
@@ -880,6 +896,41 @@ function handle_get_tasks() {
     }
 
     wp_send_json_success($result);
+}
+
+// Distinct assignees who have tasks (for admin multi-board view)
+add_action('wp_ajax_get_task_assignees', 'handle_get_task_assignees');
+function handle_get_task_assignees() {
+    check_ajax_referer('warehouse_nonce', 'nonce');
+
+    if (!is_user_logged_in()) {
+        wp_send_json_error('Insufficient permissions');
+    }
+
+    // Return all relevant users (admins, managers, employees), not only those with tasks
+    $roles = array('administrator', 'warehouse_manager', 'warehouse_employee');
+    $users = get_users(array(
+        'role__in' => $roles,
+        'orderby'  => 'display_name',
+        'order'    => 'ASC',
+        'fields'   => array('ID','display_name')
+    ));
+    // Ensure current user is always present even if role mapping misses
+    $current_id = get_current_user_id();
+    $found = false;
+    foreach ($users as $u) { if (intval($u->ID) === intval($current_id)) { $found = true; break; } }
+    if (!$found && $current_id) {
+        $self = get_user_by('id', $current_id);
+        if ($self) { $users[] = (object) array('ID' => $self->ID, 'display_name' => $self->display_name); }
+    }
+    $list = array();
+    foreach ($users as $u) {
+        $list[] = array(
+            'id'   => intval($u->ID),
+            'name' => $u->display_name ?: ('User #' . intval($u->ID))
+        );
+    }
+    wp_send_json_success($list);
 }
 
 // Team Chat Functions
