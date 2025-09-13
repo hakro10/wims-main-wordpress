@@ -292,21 +292,7 @@ if ($tasks) {
         </div>
     </section>
 
-            <!-- Team Chat Panel duplicate hidden to avoid layout duplication -->
-            <div id="team-chat-panel-legacy" class="sidebar-panel" style="display:none;">
-                <div class="chat-messages" id="chat-messages">
-                    <!-- Chat messages will be loaded here -->
-                </div>
-                
-                <div class="chat-input-container">
-                    <div class="chat-input-wrapper">
-                        <input type="text" id="chat-message-input" placeholder="Type your message..." class="chat-input">
-                        <button onclick="sendChatMessage()" class="btn btn-primary chat-send-btn">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>

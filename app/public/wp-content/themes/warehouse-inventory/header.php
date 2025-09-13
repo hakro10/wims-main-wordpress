@@ -27,6 +27,9 @@
     
     <!-- Shadcn UI Components -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/shadcn-components.css">
+    
+    <!-- Favicon: inline SVG to avoid 404 on /favicon.ico -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23334155'/%3E%3Ctext x='8' y='12' text-anchor='middle' font-size='10' fill='%23ffffff'%3EW%3C/text%3E%3C/svg%3E">
 </head>
 
 <body <?php body_class(); ?>>
