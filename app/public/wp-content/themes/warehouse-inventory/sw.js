@@ -3,7 +3,7 @@
  * Provides offline support and caching for production
  */
 
-const CACHE_NAME = 'warehouse-v1.1.1';
+const CACHE_NAME = 'warehouse-v1.1.4';
 // Only pre-cache static assets. Do not pre-cache pages/HTML.
 const urlsToCache = [
     '/wp-content/themes/warehouse-inventory/assets/css/production.css',
@@ -28,6 +28,7 @@ self.addEventListener('install', (event) => {
                 return cache.addAll(urlsToCache);
             })
     );
+    self.skipWaiting();
 });
 
 // Activate event - clean up old caches
@@ -42,7 +43,7 @@ self.addEventListener('activate', (event) => {
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim())
     );
 });
 
@@ -73,22 +74,8 @@ self.addEventListener('fetch', (event) => {
     const isHTML = event.request.mode === 'navigate' || accept.includes('text/html');
 
     if (isHTML) {
-        // Never cache the Tasks board HTML; always fetch fresh
-        const tab = url.searchParams.get('tab');
-        if (tab === 'tasks') {
-            event.respondWith(fetch(event.request));
-            return;
-        }
-        event.respondWith(
-            fetch(event.request)
-                .then((response) => {
-                    // Optionally update cache for offline support
-                    const resClone = response.clone();
-                    caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
-                    return response;
-                })
-                .catch(() => caches.match(event.request))
-        );
+        // Do NOT cache HTML to prevent stale pages after updates
+        event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
         return;
     }
 
@@ -180,5 +167,19 @@ self.addEventListener('notificationclick', (event) => {
 self.addEventListener('message', (event) => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
+    }
+    if (event.data && event.data.type === 'PURGE_URL' && event.data.url) {
+        event.waitUntil((async () => {
+            const keys = await caches.keys();
+            await Promise.all(keys.map(async (key) => {
+                const cache = await caches.open(key);
+                const requests = await cache.keys();
+                await Promise.all(requests.map((req) => {
+                    if (req.url === event.data.url) {
+                        return cache.delete(req);
+                    }
+                }));
+            }));
+        })());
     }
 });

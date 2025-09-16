@@ -275,13 +275,16 @@ function editCategory(categoryId) {
     
     // Fetch category data
     const formData = new FormData();
-    formData.append('action', 'get_category_data');
+    formData.append('action', 'wh_get_category_data');
     formData.append('nonce', warehouse_ajax.nonce);
     formData.append('category_id', categoryId);
     
-    fetch(warehouse_ajax.ajax_url, {
+    const bustUrl = new URL(warehouse_ajax.ajax_url, location.origin);
+    bustUrl.searchParams.set('_rt', Date.now().toString());
+    fetch(bustUrl.toString(), {
         method: 'POST',
-        body: formData
+        body: formData,
+        cache: 'no-store'
     })
     .then(response => response.json())
     .then(data => {
@@ -299,7 +302,8 @@ function editCategory(categoryId) {
             
             document.getElementById('categoryModal').style.display = 'block';
         } else {
-            alert('Error: ' + data.data);
+            const err = typeof data.data === 'string' ? data.data : (data.data && data.data.message) || JSON.stringify(data.data || {});
+            alert('Error: ' + err);
         }
     })
     .catch(error => {
@@ -314,7 +318,7 @@ function submitCategory(event) {
     }
     
     const formData = new FormData();
-    formData.append('action', editingCategoryId ? 'update_category' : 'add_category');
+    formData.append('action', editingCategoryId ? 'wh_update_category' : 'wh_add_category');
     formData.append('nonce', warehouse_ajax.nonce);
     
     if (editingCategoryId) {
@@ -327,24 +331,33 @@ function submitCategory(event) {
     formData.append('parent_id', document.getElementById('categoryParent').value);
     formData.append('icon', document.getElementById('categoryIcon').value);
     
-    fetch(warehouse_ajax.ajax_url, {
+    const submitBtn = document.getElementById('submitBtn');
+    if (submitBtn) submitBtn.disabled = true;
+    const bustUrl2 = new URL(warehouse_ajax.ajax_url, location.origin);
+    bustUrl2.searchParams.set('_rt', Date.now().toString());
+    fetch(bustUrl2.toString(), {
         method: 'POST',
-        body: formData
+        body: formData,
+        cache: 'no-store'
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert(data.data);
+            const msg = typeof data.data === 'string' ? data.data : (data.data && data.data.message) || 'Category saved';
+            alert(msg);
             closeCategoryModal();
-            location.reload(); // Refresh to show updated hierarchy
+            try { navigator.serviceWorker?.controller?.postMessage({ type: 'PURGE_URL', url: location.href }); } catch(_) {}
+            refreshCategoriesTree();
         } else {
-            alert('Error: ' + data.data);
+            const err = typeof data.data === 'string' ? data.data : (data.data && data.data.message) || JSON.stringify(data.data || {});
+            alert('Error: ' + err);
         }
     })
     .catch(error => {
         console.error('Error:', error);
         alert('An error occurred while saving the category');
-    });
+    })
+    .finally(() => { if (submitBtn) submitBtn.disabled = false; });
 }
 
 function deleteCategory(categoryId, categoryName) {
@@ -352,28 +365,43 @@ function deleteCategory(categoryId, categoryName) {
         return;
     }
     
+    // prevent double clicks
+    const buttons = document.querySelectorAll('.btn-icon.btn-danger');
+    buttons.forEach(b => b.disabled = true);
+
     const formData = new FormData();
-    formData.append('action', 'delete_category');
+    formData.append('action', 'wh_delete_category');
     formData.append('nonce', warehouse_ajax.nonce);
     formData.append('category_id', categoryId);
     
-    fetch(warehouse_ajax.ajax_url, {
+    const bustUrl3 = new URL(warehouse_ajax.ajax_url, location.origin);
+    bustUrl3.searchParams.set('_rt', Date.now().toString());
+    fetch(bustUrl3.toString(), {
         method: 'POST',
-        body: formData
+        body: formData,
+        cache: 'no-store'
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            alert(data.data);
-            location.reload();
+            const msg = typeof data.data === 'string' ? data.data : (data.data && data.data.message) || 'Category deleted';
+            alert(msg);
+            // Optimistically remove the row from DOM to avoid stale cached HTML
+            const row = document.querySelector(`.category-row[data-category-id="${categoryId}"]`);
+            if (row) { row.remove(); }
+            try { navigator.serviceWorker?.controller?.postMessage({ type: 'PURGE_URL', url: location.href }); } catch(_) {}
+            // Refresh tree to ensure consistency without full reload
+            refreshCategoriesTree();
         } else {
-            alert('Error: ' + data.data);
+            const err = typeof data.data === 'string' ? data.data : (data.data && data.data.message) || JSON.stringify(data.data || {});
+            alert('Error: ' + err);
         }
     })
     .catch(error => {
         console.error('Error:', error);
         alert('An error occurred while deleting the category');
-    });
+    })
+    .finally(() => { buttons.forEach(b => b.disabled = false); });
 }
 
 function toggleCategoryChildren(categoryId) {
@@ -610,4 +638,25 @@ document.addEventListener('keydown', function(e) {
         stabilize(document.getElementById('categoryIcon'));
     });
 })();
-</script> 
+</script>
+<script>
+async function refreshCategoriesTree() {
+    try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('_rt', Date.now().toString());
+        const res = await fetch(url.toString(), { cache: 'no-store' });
+        const html = await res.text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const fresh = doc.querySelector('.categories-tree');
+        const target = document.querySelector('.categories-tree');
+        if (fresh && target) {
+            target.innerHTML = fresh.innerHTML;
+        } else {
+            location.reload();
+        }
+    } catch (e) {
+        console.error('Failed to refresh categories tree:', e);
+        location.reload();
+    }
+}
+</script>

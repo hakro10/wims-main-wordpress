@@ -57,22 +57,29 @@ function warehouse_inventory_scripts() {
     wp_enqueue_script('warehouse-theme-toggle', $tpl_uri . '/assets/js/theme-toggle.js', array(), $ver_toggle, true);
     
     // Localize script for AJAX
+    $app_version = get_option('wh_inventory_version');
+    if (!$app_version && defined('WH_INVENTORY_VERSION')) { $app_version = WH_INVENTORY_VERSION; }
+    if (!$app_version) { $app_version = (string) (int) (microtime(true)); }
     wp_localize_script('warehouse-inventory-script', 'warehouse_ajax', array(
         // Use relative URL to avoid http/https mixed-content warnings in dev
         'ajax_url' => admin_url('admin-ajax.php', 'relative'),
         'nonce' => wp_create_nonce('warehouse_nonce'),
         'current_user_id' => get_current_user_id(),
+        'app_version' => $app_version,
     ));
 }
 add_action('wp_enqueue_scripts', 'warehouse_inventory_scripts');
 
 // Avoid caching the Tasks page HTML to prevent stale boards after updates
 add_action('send_headers', function () {
-    // Only for logged-in app views to keep public pages cacheable
+    // Logged-in pages should not be cached to avoid stale UI
     if (is_user_logged_in()) {
-        $tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : '';
-        if ($tab === 'tasks') {
-            nocache_headers(); // sets no-cache, no-store, must-revalidate
+        nocache_headers();
+        // Strengthen directives in case of proxy/CDN caches
+        if (!headers_sent()) {
+            @header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+            @header('Pragma: no-cache');
+            @header('Expires: Wed, 11 Jan 1984 05:00:00 GMT');
         }
     }
 });
@@ -222,7 +229,7 @@ function get_category_path($category_id) {
 // Get all locations
 function get_all_locations() {
     global $wpdb;
-    return $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wh_locations ORDER BY level, name");
+    return $wpdb->get_results("SELECT * FROM {$wpdb->prefix}wh_locations WHERE is_active = 1 ORDER BY level, name");
 }
 
 // Get locations as hierarchical tree
@@ -235,7 +242,7 @@ function get_locations_tree($parent_id = null) {
         SELECT l.*,
                (SELECT COUNT(*) FROM {$wpdb->prefix}wh_inventory_items WHERE location_id = l.id) as item_count
         FROM {$wpdb->prefix}wh_locations l
-        WHERE $where
+        WHERE $where AND l.is_active = 1
         ORDER BY l.level, l.name
     ");
     
@@ -268,6 +275,75 @@ function get_location_path($location_id) {
     }
     
     return $path;
+}
+
+// Recalculate level and path for a location branch (used after updates/moves)
+function wh_refresh_location_hierarchy($root_id) {
+    global $wpdb;
+
+    $root_id = intval($root_id);
+    if ($root_id <= 0) {
+        return;
+    }
+
+    $queue = array($root_id);
+    $visited = array();
+
+    while (!empty($queue)) {
+        $current_id = array_shift($queue);
+        if (isset($visited[$current_id])) {
+            continue;
+        }
+        $visited[$current_id] = true;
+
+        $location = $wpdb->get_row($wpdb->prepare(
+            "SELECT id, name, parent_id, level, path FROM {$wpdb->prefix}wh_locations WHERE id = %d",
+            $current_id
+        ));
+        if (!$location) {
+            continue;
+        }
+
+        $level = 1;
+        $path = $location->name;
+        if (!empty($location->parent_id)) {
+            $parent = $wpdb->get_row($wpdb->prepare(
+                "SELECT level, path FROM {$wpdb->prefix}wh_locations WHERE id = %d",
+                $location->parent_id
+            ));
+            if ($parent) {
+                $level = intval($parent->level) + 1;
+                $parent_path = $parent->path ?: '';
+                $path = ($parent_path ? $parent_path . ' > ' : '') . $location->name;
+            }
+        }
+
+        if (intval($location->level) !== $level || (string) $location->path !== (string) $path) {
+            $wpdb->update(
+                $wpdb->prefix . 'wh_locations',
+                array(
+                    'level' => $level,
+                    'path' => $path,
+                ),
+                array('id' => $location->id),
+                array('%d', '%s'),
+                array('%d')
+            );
+        }
+
+        $children = $wpdb->get_col($wpdb->prepare(
+            "SELECT id FROM {$wpdb->prefix}wh_locations WHERE parent_id = %d",
+            $current_id
+        ));
+        if ($children) {
+            foreach ($children as $child_id) {
+                $child_id = intval($child_id);
+                if ($child_id > 0 && !isset($visited[$child_id])) {
+                    $queue[] = $child_id;
+                }
+            }
+        }
+    }
 }
 
 // Get all tasks
@@ -1118,6 +1194,34 @@ function handle_manual_cleanup_data() {
 
 // AJAX Handlers for Categories Management
 add_action('wp_ajax_add_category', 'handle_add_category');
+add_action('wp_ajax_wh_add_category', 'handle_add_category');
+
+// Generate a unique slug for categories (global uniqueness across tree)
+function wh_generate_unique_category_slug($base_slug, $exclude_id = null) {
+    global $wpdb;
+    $slug = $base_slug;
+    $i = 2;
+    while (true) {
+        if ($exclude_id) {
+            $exists = (int) $wpdb->get_var($wpdb->prepare(
+                "SELECT COUNT(*) FROM {$wpdb->prefix}wh_categories WHERE slug = %s AND id != %d",
+                $slug,
+                $exclude_id
+            ));
+        } else {
+            $exists = (int) $wpdb->get_var($wpdb->prepare(
+                "SELECT COUNT(*) FROM {$wpdb->prefix}wh_categories WHERE slug = %s",
+                $slug
+            ));
+        }
+        if ($exists === 0) {
+            return $slug;
+        }
+        $slug = $base_slug . '-' . $i;
+        $i++;
+    }
+}
+
 function handle_add_category() {
     check_ajax_referer('warehouse_nonce', 'nonce');
     
@@ -1128,12 +1232,16 @@ function handle_add_category() {
     global $wpdb;
     
     $name = sanitize_text_field($_POST['name']);
-    $slug = sanitize_title($name);
+    // Base slug from provided slug or name
+    $base_slug = sanitize_title($_POST['slug'] ?? $name);
     $description = sanitize_textarea_field($_POST['description'] ?? '');
     $color = sanitize_hex_color($_POST['color'] ?? '#3b82f6');
     $parent_id = intval($_POST['parent_id'] ?? 0);
     $icon = sanitize_text_field($_POST['icon'] ?? 'tag');
     
+    // Ensure slug uniqueness to avoid DB duplicate key error
+    $slug = wh_generate_unique_category_slug($base_slug);
+
     $result = $wpdb->insert(
         $wpdb->prefix . 'wh_categories',
         array(
@@ -1150,13 +1258,22 @@ function handle_add_category() {
     );
     
     if ($result === false) {
+        // Provide a clearer error if unique constraint still hit for any reason
+        if (strpos(strtolower($wpdb->last_error), 'duplicate') !== false) {
+            wp_send_json_error(sprintf("A category with slug '%s' already exists.", esc_html($slug)));
+        }
         wp_send_json_error('Database error: ' . $wpdb->last_error);
     }
-    
-    wp_send_json_success('Category created successfully');
+
+    wp_send_json_success(array(
+        'message' => 'Category created successfully',
+        'id' => (int) $wpdb->insert_id,
+        'slug' => $slug
+    ));
 }
 
 add_action('wp_ajax_update_category', 'handle_update_category');
+add_action('wp_ajax_wh_update_category', 'handle_update_category');
 function handle_update_category() {
     check_ajax_referer('warehouse_nonce', 'nonce');
     
@@ -1168,7 +1285,7 @@ function handle_update_category() {
     
     $category_id = intval($_POST['category_id']);
     $name = sanitize_text_field($_POST['name']);
-    $slug = sanitize_title($name);
+    $base_slug = sanitize_title($_POST['slug'] ?? $name);
     $description = sanitize_textarea_field($_POST['description']);
     $color = sanitize_hex_color($_POST['color']);
     $parent_id = intval($_POST['parent_id']);
@@ -1189,6 +1306,9 @@ function handle_update_category() {
         }
     }
     
+    // Ensure slug uniqueness on update (exclude current record)
+    $slug = wh_generate_unique_category_slug($base_slug, $category_id);
+
     $result = $wpdb->update(
         $wpdb->prefix . 'wh_categories',
         array(
@@ -1212,6 +1332,7 @@ function handle_update_category() {
 }
 
 add_action('wp_ajax_delete_category', 'handle_delete_category');
+add_action('wp_ajax_wh_delete_category', 'handle_delete_category');
 function handle_delete_category() {
     check_ajax_referer('warehouse_nonce', 'nonce');
     
@@ -1260,6 +1381,7 @@ function handle_delete_category() {
 }
 
 add_action('wp_ajax_get_category_data', 'handle_get_category_data');
+add_action('wp_ajax_wh_get_category_data', 'handle_get_category_data');
 function handle_get_category_data() {
     check_ajax_referer('warehouse_nonce', 'nonce');
     
@@ -1281,6 +1403,9 @@ function handle_get_category_data() {
 
 // AJAX Handlers for Locations Management
 add_action('wp_ajax_add_location', 'handle_add_location');
+add_action('wp_ajax_wh_add_location', 'handle_add_location');
+add_action('wp_ajax_delete_location', 'handle_delete_location');
+add_action('wp_ajax_wh_delete_location', 'handle_delete_location');
 function handle_add_location() {
     check_ajax_referer('warehouse_nonce', 'nonce');
     
@@ -1296,13 +1421,14 @@ function handle_add_location() {
     
     // Calculate level and path
     $level = 1;
-    $full_path = $name;
+    $path = $name;
     
     if ($parent_id > 0) {
         $parent = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}wh_locations WHERE id = %d", $parent_id));
         if ($parent) {
             $level = $parent->level + 1;
-            $full_path = $parent->full_path . ' > ' . $name;
+            $parent_path = isset($parent->path) ? $parent->path : '';
+            $path = ($parent_path ? $parent_path . ' > ' : '') . $name;
         }
     }
     
@@ -1315,19 +1441,26 @@ function handle_add_location() {
             'type' => sanitize_text_field($_POST['type']),
             'parent_id' => $parent_id ?: null,
             'level' => $level,
-            'full_path' => $full_path,
+            'path' => $path,
             'created_at' => current_time('mysql')
         )
     );
     
     if ($result === false) {
-        wp_send_json_error('Failed to create location');
+        $err = $wpdb->last_error ? ('Failed to create location: ' . $wpdb->last_error) : 'Failed to create location';
+        wp_send_json_error($err);
     }
-    
+
+    $new_id = intval($wpdb->insert_id);
+    if ($new_id) {
+        wh_refresh_location_hierarchy($new_id);
+    }
+
     wp_send_json_success('Location created successfully');
 }
 
 add_action('wp_ajax_update_location', 'handle_update_location');
+add_action('wp_ajax_wh_update_location', 'handle_update_location');
 function handle_update_location() {
     check_ajax_referer('warehouse_nonce', 'nonce');
     
@@ -1344,13 +1477,14 @@ function handle_update_location() {
     
     // Calculate level and path
     $level = 1;
-    $full_path = $name;
+    $path = $name;
     
     if ($parent_id > 0) {
         $parent = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}wh_locations WHERE id = %d", $parent_id));
         if ($parent) {
             $level = $parent->level + 1;
-            $full_path = $parent->full_path . ' > ' . $name;
+            $parent_path = isset($parent->path) ? $parent->path : '';
+            $path = ($parent_path ? $parent_path . ' > ' : '') . $name;
         }
     }
     
@@ -1363,7 +1497,7 @@ function handle_update_location() {
             'type' => sanitize_text_field($_POST['type']),
             'parent_id' => $parent_id ?: null,
             'level' => $level,
-            'full_path' => $full_path,
+            'path' => $path,
             'updated_at' => current_time('mysql')
         ),
         array('id' => $location_id),
@@ -1374,11 +1508,62 @@ function handle_update_location() {
     if ($result === false) {
         wp_send_json_error('Failed to update location');
     }
-    
+
+    wh_refresh_location_hierarchy($location_id);
+
     wp_send_json_success('Location updated successfully');
 }
 
+function handle_delete_location() {
+    check_ajax_referer('warehouse_nonce', 'nonce');
+    
+    if (!current_user_can('manage_options')) {
+        wp_send_json_error('Insufficient permissions');
+    }
+    
+    global $wpdb;
+    
+    $location_id = intval($_POST['location_id'] ?? $_POST['id'] ?? 0);
+    if (!$location_id) {
+        wp_send_json_error('Invalid location ID');
+    }
+    
+    // Check if location has items
+    $item_count = $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM {$wpdb->prefix}wh_inventory_items WHERE location_id = %d",
+        $location_id
+    ));
+    if ($item_count > 0) {
+        wp_send_json_error('Cannot delete location with items. Please move items to another location first.');
+    }
+    
+    // Check if location has sublocations
+    $child_count = $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM {$wpdb->prefix}wh_locations WHERE parent_id = %d AND is_active = 1",
+        $location_id
+    ));
+    if ($child_count > 0) {
+        wp_send_json_error('Cannot delete location with sublocations. Please move or delete them first.');
+    }
+    
+    // Soft delete by updating is_active status
+    $result = $wpdb->update(
+        $wpdb->prefix . 'wh_locations',
+        array('is_active' => 0),
+        array('id' => $location_id),
+        array('%d'),
+        array('%d')
+    );
+    
+    if ($result === false) {
+        wp_send_json_error('Failed to delete location');
+    }
+    
+    wp_send_json_success('Location deleted successfully');
+}
+
 add_action('wp_ajax_get_location_data', 'handle_get_location_data');
+add_action('wp_ajax_wh_get_location_data', 'handle_get_location_data');
 function handle_get_location_data() {
     check_ajax_referer('warehouse_nonce', 'nonce');
     

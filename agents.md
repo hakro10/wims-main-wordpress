@@ -261,6 +261,38 @@ Keep this section updated after fixes/changes.
 - Docs: corrected theme path (`wp-content/themes/warehouse-inventory`), documented Tasks endpoints (`get_tasks`, `delete_task`, `get_task_assignees`, `get_chat_messages`), and clarified that Tasks AJAX runs in the theme.
 - Versioning: theme and plugin currently at `1.3.6`.
 
+### 2025‑10‑12 (cache + locations fixes)
+- SW/Cache: stopped caching HTML, added SKIP_WAITING + clients.claim, and added PURGE_URL message; bumped cache name.
+- Categories: fixed duplicate slug error by auto‑deduping; improved success/error alerts; removed stale row on delete.
+- Locations: fixed `full_path` → `path` column usage; added stricter is_active filters; improved success/error alerts; prevented double submissions; added in‑place tree refresh without full reload; aligned plugin permission checks with admin role.
+- Versioning: bumped to `1.3.7` after fixes.
+
+### 2025‑10‑12 (cache hardening + endpoint isolation)
+- No-cache: disable caching for all logged-in requests (headers) to avoid stale app HTML across tabs.
+- Service worker: confirmed HTML bypass; rely only on static assets cache.
+- Categories/Locations: isolated theme AJAX endpoints (`wh_*`) to avoid double handlers with plugin; templates updated to call `wh_*` actions.
+- Locations: list only `is_active = 1` in tree and parent select; delete sends both `id` and `location_id`.
+- Versioning: bumped to `1.3.8`.
+
+### 2025‑10‑12 (no-cache + live refresh + versioned bust)
+- JS: add version-aware cache bust; unregister SW and clear caches when `warehouse_ajax.app_version` changes; bust admin-ajax requests with `_rt` and set `cache: no-store`.
+- Categories/Locations UI: re-render trees in-place after add/delete (no full reload) and add `_rt` to admin-ajax.
+- SW: bump cache name to `warehouse-v1.1.3`.
+- Versioning: bumped to `1.3.9`.
+
+### 2025‑10‑12 (one-time hard reset + fixes)
+- JS: unconditional one-time SW unregister + cache clear (`warehouse_reset_20251013`) to force clean state on all clients after deploy.
+- Theme: enqueue production.js globally so cache bust applies on all app tabs (Categories/Locations too).
+- AJAX: add delete_location handler in theme and register wh_delete_location + delete_location.
+- Fetch: add `cache: 'no-store'` and `_rt` bust param across admin-ajax calls in templates.
+- Versioning: bumped to `1.3.10`.
+
+### 2025‑10‑13
+- Categories: category item modal now walks the full descendant tree so deep subcategories surface their inventory records.
+- Locations: hierarchy refresh runs after add/update to keep descendant `level`/`path` values accurate; toggle-all button derives state without relying on translated text.
+- Tasks: drag-and-drop now isolates the dragged card per interaction to prevent overlaps when multiple drops happen quickly.
+- Versioning: bumped theme and plugin to `1.3.11`; service worker cache renamed to `warehouse-v1.1.4` for busting.
+
 ## API Endpoints (AJAX Handlers)
 - `get_inventory_items` — Get all inventory items
 - `save_inventory_item` — Save inventory item
@@ -310,6 +342,10 @@ define('WP_DEBUG_DISPLAY', false);
 - Bug fix: bump patch `+0.0.1`.
 - New feature: bump minor `+0.1`.
 - Record the change in the changelog and update any visible version strings in the theme/plugin UI if present.
+
+## Maintainer Rules
+- Always bump versions on fixes: After every bug fix merged to `main`, increment both the theme and plugin versions by `+0.0.1` (and reflect in plugin header/constants like `WH_INVENTORY_VERSION`).
+- Prevent stale caches after UI/asset changes: When changing any HTML/CSS/JS that ships with the theme/plugin, also bump the Service Worker cache name and ensure a cache-busting version is applied to enqueued assets so users don’t need to manually clear their browser cache.
 
 ## Support
 - WordPress documentation

@@ -1162,9 +1162,12 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-    draggedElement = ev.target;
-    ev.target.classList.add('dragging');
-    ev.dataTransfer.setData("text", ev.target.dataset.taskId);
+    const card = ev.currentTarget || ev.target;
+    const taskCard = card.closest ? card.closest('.task-card') : card;
+    if (!taskCard) return;
+    draggedElement = taskCard;
+    taskCard.classList.add('dragging');
+    ev.dataTransfer.setData("text", taskCard.dataset.taskId);
 }
 
 function drop(ev) {
@@ -1180,14 +1183,20 @@ function drop(ev) {
         draggedElement.classList.remove('dragging');
     }
 
-    if (!draggedElement || newStatus === oldStatus) return;
+    if (!draggedElement || newStatus === oldStatus) {
+        draggedElement = null;
+        return;
+    }
+
+    const taskCard = draggedElement;
+    draggedElement = null;
 
     // Defer DOM move until server confirms
     updateTaskStatus(taskId, newStatus, function onSuccess() {
         // Move the task card to new column
-        targetColumnContent.appendChild(draggedElement);
-        draggedElement.dataset.status = newStatus;
-        
+        targetColumnContent.appendChild(taskCard);
+        taskCard.dataset.status = newStatus;
+
         // Update task counts
         // Update counts only within the affected target board
         const container = targetColumnContent.closest('#kanban-board') || document;

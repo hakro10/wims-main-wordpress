@@ -3,7 +3,7 @@
  * Plugin Name: Warehouse Inventory Manager
  * Plugin URI: https://example.com/warehouse-inventory-manager
  * Description: Complete warehouse inventory management system with dashboard, items, categories, locations, sales tracking, and QR codes.
- * Version: 1.3.6
+ * Version: 1.3.11
  * Author: Your Name
  * License: GPL v2 or later
  * Text Domain: warehouse-inventory
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('WH_INVENTORY_VERSION', '1.3.6');
+define('WH_INVENTORY_VERSION', '1.3.11');
 define('WH_INVENTORY_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WH_INVENTORY_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -1157,7 +1157,7 @@ class WarehouseInventoryManager {
     public function handle_add_category() {
         check_ajax_referer('warehouse_nonce', 'nonce');
         
-        if (!current_user_can('manage_warehouse')) {
+        if (!current_user_can('manage_warehouse') && !current_user_can('manage_options')) {
             wp_send_json_error('Insufficient permissions');
         }
         
@@ -1193,7 +1193,7 @@ class WarehouseInventoryManager {
     public function handle_update_category() {
         check_ajax_referer('warehouse_nonce', 'nonce');
         
-        if (!current_user_can('manage_warehouse')) {
+        if (!current_user_can('manage_warehouse') && !current_user_can('manage_options')) {
             wp_send_json_error('Insufficient permissions');
         }
         
@@ -1230,7 +1230,7 @@ class WarehouseInventoryManager {
     public function handle_delete_category() {
         check_ajax_referer('warehouse_nonce', 'nonce');
         
-        if (!current_user_can('manage_warehouse')) {
+        if (!current_user_can('manage_warehouse') && !current_user_can('manage_options')) {
             wp_send_json_error('Insufficient permissions');
         }
         
@@ -1273,19 +1273,39 @@ class WarehouseInventoryManager {
             wp_send_json_error('Invalid category ID');
         }
         
-        // Get all items in this category and its subcategories (excluding inactive items)
+        // Collect all descendant category IDs (breadth-first) so deep trees are included
+        $category_ids = array(intval($category_id));
+        $queue = array(intval($category_id));
+
+        while (!empty($queue)) {
+            $current_id = array_shift($queue);
+            $children = $wpdb->get_col($wpdb->prepare(
+                "SELECT id FROM {$wpdb->prefix}wh_categories WHERE parent_id = %d AND is_active = 1",
+                $current_id
+            ));
+
+            if ($children) {
+                foreach ($children as $child_id) {
+                    $child_id = intval($child_id);
+                    if (!in_array($child_id, $category_ids, true)) {
+                        $category_ids[] = $child_id;
+                        $queue[] = $child_id;
+                    }
+                }
+            }
+        }
+
+        $placeholders = implode(',', array_fill(0, count($category_ids), '%d'));
+
         $sql = "SELECT i.*, c.name as category_name, l.name as location_name
                 FROM {$wpdb->prefix}wh_inventory_items i
                 LEFT JOIN {$wpdb->prefix}wh_categories c ON i.category_id = c.id
                 LEFT JOIN {$wpdb->prefix}wh_locations l ON i.location_id = l.id
-                WHERE (i.category_id = %d OR i.category_id IN (
-                    SELECT id FROM {$wpdb->prefix}wh_categories 
-                    WHERE parent_id = %d AND is_active = 1
-                ))
+                WHERE i.category_id IN ($placeholders)
                 AND i.status != 'inactive'
                 ORDER BY i.name ASC";
-        
-        $items = $wpdb->get_results($wpdb->prepare($sql, $category_id, $category_id));
+
+        $items = $wpdb->get_results($wpdb->prepare($sql, $category_ids));
         
         wp_send_json_success($items);
     }

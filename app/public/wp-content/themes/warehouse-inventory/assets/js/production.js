@@ -70,6 +70,8 @@
             this.setupCSRFProtection();
             this.setupInputValidation();
             this.setupXSSProtection();
+            this.setupVersionedCacheBust();
+            this.setupOneTimeHardReset();
         }
 
         setupCSRFProtection() {
@@ -87,9 +89,54 @@
                         options.headers = options.headers || {};
                         options.headers['X-WP-Nonce'] = window.warehouse_ajax?.nonce || '';
                     }
+                    // Prevent intermediary caches for AJAX
+                    options.cache = 'no-store';
+                    try {
+                        const u = new URL(url, location.origin);
+                        u.searchParams.set('_rt', Date.now().toString());
+                        args[0] = u.toString();
+                    } catch(_) {}
                 }
                 return originalFetch.apply(this, args);
             };
+        }
+
+        async clearAppCaches() {
+            try {
+                if ('caches' in window) {
+                    const keys = await caches.keys();
+                    await Promise.all(keys.map(k => k.startsWith('warehouse-') ? caches.delete(k) : Promise.resolve()));
+                }
+            } catch(_) {}
+        }
+
+        setupVersionedCacheBust() {
+            try {
+                const ver = window.warehouse_ajax?.app_version || '';
+                const key = 'warehouse_app_version';
+                const prev = localStorage.getItem(key);
+                if (ver && prev !== ver) {
+                    // New app version → unregister SW and clear caches, then save version
+                    if (navigator.serviceWorker?.getRegistrations) {
+                        navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+                    }
+                    this.clearAppCaches();
+                    localStorage.setItem(key, ver);
+                }
+            } catch(_) {}
+        }
+
+        setupOneTimeHardReset() {
+            try {
+                const key = 'warehouse_reset_20251013';
+                if (!localStorage.getItem(key)) {
+                    if (navigator.serviceWorker?.getRegistrations) {
+                        navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+                    }
+                    this.clearAppCaches();
+                    localStorage.setItem(key, 'done');
+                }
+            } catch(_) {}
         }
 
         setupInputValidation() {

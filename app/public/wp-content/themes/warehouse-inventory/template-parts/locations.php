@@ -109,7 +109,12 @@ function render_location_tree($locations, $level = 0) {
     <div class="page-header">
         <h2><?php echo function_exists('wh_t') ? wh_t('Locations Management') : 'Locations Management'; ?></h2>
         <div class="header-actions">
-            <button class="btn btn-secondary" onclick="toggleAllLocations()">
+            <button 
+                class="btn btn-secondary" 
+                onclick="toggleAllLocations(event)"
+                data-expand-label="<?php echo function_exists('wh_t') ? esc_attr(wh_t('Expand All')) : 'Expand All'; ?>"
+                data-collapse-label="<?php echo function_exists('wh_t') ? esc_attr(wh_t('Collapse All')) : 'Collapse All'; ?>"
+            >
                 <i class="fas fa-expand-arrows-alt"></i> <?php echo function_exists('wh_t') ? wh_t('Expand All') : 'Expand All'; ?>
             </button>
             <button class="btn btn-primary" onclick="openLocationModal()">
@@ -457,32 +462,24 @@ function toggleLocationChildren(locationId) {
     }
 }
 
-function toggleAllLocations() {
+function toggleAllLocations(evt) {
     const allChildren = document.querySelectorAll('.location-children');
     const allToggles = document.querySelectorAll('.location-toggle');
-    const button = event.target.closest('button');
-    
-    const isExpanding = button.textContent.includes('Expand');
-    
-    allChildren.forEach(child => {
-        if (isExpanding) {
-            child.classList.add('expanded');
-        } else {
-            child.classList.remove('expanded');
-        }
-    });
-    
-    allToggles.forEach(toggle => {
-        if (isExpanding) {
-            toggle.classList.add('expanded');
-        } else {
-            toggle.classList.remove('expanded');
-        }
-    });
-    
-    button.innerHTML = isExpanding ? 
-        '<i class="fas fa-compress-arrows-alt"></i> Collapse All' : 
-        '<i class="fas fa-expand-arrows-alt"></i> Expand All';
+    const button = evt && evt.target ? evt.target.closest('button') : null;
+
+    const shouldExpand = Array.from(allChildren).some(child => !child.classList.contains('expanded'));
+
+    allChildren.forEach(child => child.classList.toggle('expanded', shouldExpand));
+    allToggles.forEach(toggle => toggle.classList.toggle('expanded', shouldExpand));
+
+    if (button) {
+        const expandLabel = button.getAttribute('data-expand-label') || 'Expand All';
+        const collapseLabel = button.getAttribute('data-collapse-label') || 'Collapse All';
+        button.innerHTML = shouldExpand
+            ? `<i class="fas fa-compress-arrows-alt"></i> ${collapseLabel}`
+            : `<i class="fas fa-expand-arrows-alt"></i> ${expandLabel}`;
+        button.dataset.expanded = shouldExpand ? '1' : '0';
+    }
 }
 
 function openLocationModal(parentId = null) {
@@ -556,7 +553,7 @@ function submitAddLocation() {
     const form = document.getElementById('add-location-form');
     const formData = new FormData(form);
     
-    const action = currentEditingLocationId ? 'update_location' : 'add_location';
+    const action = currentEditingLocationId ? 'wh_update_location' : 'wh_add_location';
     formData.append('action', action);
     formData.append('nonce', warehouse_ajax.nonce);
     
@@ -564,24 +561,35 @@ function submitAddLocation() {
         formData.append('location_id', currentEditingLocationId);
     }
     
+    const btn = document.getElementById('submitLocationBtn');
+    if (btn) btn.disabled = true;
+    const bustUrl = new URL(warehouse_ajax.ajax_url, location.origin);
+    bustUrl.searchParams.set('_rt', Date.now().toString());
     jQuery.ajax({
-        url: warehouse_ajax.ajax_url,
+        url: bustUrl.toString(),
         type: 'POST',
+        headers: { 'Cache-Control': 'no-store' },
         data: formData,
         processData: false,
         contentType: false,
         success: function(response) {
-            if (response.success) {
+            try { console.log('add/update_location response:', response); } catch(_) {}
+            if (response && response.success) {
+                const msg = (response.data && (response.data.message || response.data)) || 'Location saved';
+                alert(typeof msg === 'string' ? msg : JSON.stringify(msg));
                 closeLocationModal();
-                location.reload(); // Refresh page to show changes
+                try { navigator.serviceWorker?.controller?.postMessage({ type: 'PURGE_URL', url: location.href }); } catch(_) {}
+                refreshLocationsTree();
             } else {
-                alert('Error: ' + (response.data || 'Unknown error'));
+                const err = response ? (response.data || 'Unknown error') : 'No response';
+                alert('Error: ' + (typeof err === 'string' ? err : JSON.stringify(err)));
             }
         },
-        error: function() {
+        error: function(xhr) {
+            try { console.error('AJAX error:', xhr && xhr.responseText); } catch(_) {}
             alert('Error communicating with server');
         }
-    });
+    }).always(function(){ if (btn) btn.disabled = false; });
 }
 
 function deleteLocation(locationId) {
@@ -589,17 +597,22 @@ function deleteLocation(locationId) {
         return;
     }
     
+    const bustUrl2 = new URL(warehouse_ajax.ajax_url, location.origin);
+    bustUrl2.searchParams.set('_rt', Date.now().toString());
     jQuery.ajax({
-        url: warehouse_ajax.ajax_url,
+        url: bustUrl2.toString(),
         type: 'POST',
+        headers: { 'Cache-Control': 'no-store' },
         data: {
-            action: 'delete_location',
+            action: 'wh_delete_location',
             location_id: locationId,
+            id: locationId, // ensure compatibility with plugin handler
             nonce: warehouse_ajax.nonce
         },
         success: function(response) {
             if (response.success) {
-                location.reload(); // Refresh page to show changes
+                try { navigator.serviceWorker?.controller?.postMessage({ type: 'PURGE_URL', url: location.href }); } catch(_) {}
+                refreshLocationsTree();
             } else {
                 alert('Error deleting location: ' + (response.data || 'Unknown error'));
             }
@@ -608,6 +621,26 @@ function deleteLocation(locationId) {
             alert('Error communicating with server');
         }
     });
+}
+
+async function refreshLocationsTree() {
+    try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('_rt', Date.now().toString());
+        const res = await fetch(url.toString(), { cache: 'no-store' });
+        const html = await res.text();
+        const doc = new DOMParser().parseFromString(html, 'text/html');
+        const fresh = doc.querySelector('.locations-tree');
+        const target = document.querySelector('.locations-tree');
+        if (fresh && target) {
+            target.innerHTML = fresh.innerHTML;
+        } else {
+            location.reload();
+        }
+    } catch (e) {
+        console.error('Failed to refresh locations tree:', e);
+        location.reload();
+    }
 }
 
 function generateQR(locationId) {
